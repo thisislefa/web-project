@@ -3,542 +3,610 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defcon - Our Projects</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-
+    <title>Our Work - Project Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
     <style>
-        /* ---------------------------------- */
-        /* --- Global Styles & Variables --- */
-        /* ---------------------------------- */
-        
-        :root {
-            /* Color Palette */
-            --color-dark-navy: #06273e;
-            --color-primary-blue: #0091ff;
-            --color-light-gray: #f4f4f4;
-            --color-white: #ffffff;
-            --color-black: #000000;
-            --color-text-light: #333; /* For dark text on light bg */
-            --color-text-dark: #eee;   /* For light text on dark bg */
-
-            /* Typography */
-            --font-family-base: 'Inter', sans-serif;
-
-            /* Sizing & Borders */
-            --border-radius: 1px;
-            --container-width: 1200px;
-        }
-
-        /* Basic Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        html, body {
-            font-family: var(--font-family-base);
-            background-color: var(--color-white);
-            color: var(--color-text-light);
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #f8fafc;
+            color: #1a202c;
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            color: var(--color-dark-navy);
-            margin-bottom: 0.75rem;
-        }
-
-        h1 { font-size: 3rem; }
-        h2 { font-size: 2.25rem; }
-        h3 { font-size: 1.5rem; }
-        h4 { font-size: 1.25rem; }
-
-        p {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--color-primary-blue);
-            transition: opacity 0.3s ease;
-        }
-
-        a:hover {
-            opacity: 0.8;
-        }
-
-        /* Utility Class */
-        .container {
-            width: 100%;
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* ---------------------------------- */
-        /* --- Hero Section --- */
-        /* ---------------------------------- */
-
+        /* ===== HERO SECTION ===== */
         .hero-section {
-            position: relative;
-            padding: 100px 0;
-            background-image: url('https://placehold.co/1920x800/06273e/f4f4f4?text=Defcon+Projects+Hero'); /* Placeholder - Replace with your image */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: var(--color-white);
+            background-color: #07091d;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(30, 144, 255, 0.2) 0%, transparent 60%);
+            box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 16px 16px;
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
         }
 
-        /* Dark overlay for text readability */
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(6, 39, 62, 0.75); /* Dark Navy overlay */
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
+        .hero-container {
+            max-width: 1280px;
             margin: 0 auto;
-            text-align: center;
         }
 
-        .hero-content h1 {
-            color: var(--color-white);
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
         }
 
-        .hero-content p {
-            font-size: 1.15rem;
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 60px;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: #a3d5ff;
             margin-bottom: 30px;
-            color: var(--color-text-dark);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .cta-button {
+        @media (min-width: 768px) {
+            .hero-subtitle {
+                font-size: 24px;
+            }
+        }
+
+        .hero-button {
             display: inline-block;
-            padding: 12px 28px;
-            font-family: var(--font-family-base);
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--color-white);
-            background-color: var(--color-primary-blue);
-            border: 1px solid var(--color-primary-blue);
-            border-radius: var(--border-radius);
+            background-color: white;
+            color: #1e40af;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            border: none;
             cursor: pointer;
-            text-align: center;
             transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
-        .cta-button:hover {
-            background-color: transparent;
-            color: var(--color-primary-blue);
-            border-color: var(--color-primary-blue);
-        }
-        
-        .hero-content .cta-button:hover {
-             background-color: var(--color-white);
-             color: var(--color-dark-navy);
-             border-color: var(--color-white);
+        .hero-button:hover {
+            background-color: #f3f4f6;
+            transform: scale(1.05);
         }
 
-        /* ---------------------------------- */
-        /* --- Projects Showcase Section --- */
-        /* ---------------------------------- */
-
-        .projects-section {
-            padding: 80px 0;
-            background-color: var(--color-light-gray);
+        /* ===== INTRO SECTION ===== */
+        .intro-section {
+            background-color: white;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 60px 20px;
         }
 
-        .projects-section .section-title {
-            text-align: center;
-            margin-bottom: 50px;
+        .intro-container {
+            max-width: 1280px;
+            margin: 0 auto;
         }
 
-        .project-grid {
+        .intro-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
-        .project-card {
-            background: var(--color-white);
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+        @media (min-width: 1024px) {
+            .intro-grid {
+                grid-template-columns: 1fr 2fr;
+            }
         }
 
-        .project-image {
-            height: 240px;
-            background-color: var(--color-dark-navy);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--color-white);
-            font-size: 1.5rem;
+        .intro-heading {
+            font-size: 44px;
             font-weight: 700;
-            /* Replace with <img> tag when you have images */
-            /* e.g., <img src="path/to/image.jpg" alt="Project Title"> */
-        }
-        
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            color: #1a202c;
         }
 
-        .project-content {
-            padding: 25px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-        
-        .project-category {
-            display: inline-block;
-            padding: 4px 10px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            background-color: rgba(0, 145, 255, 0.1);
-            color: var(--color-primary-blue);
-            border-radius: var(--border-radius);
-            margin-bottom: 10px;
+        .intro-content {
+            color: #4b5563;
+            font-size: 18px;
+            line-height: 1.8;
         }
 
-        .project-content h3 {
-            margin-top: 5px;
+        .intro-content p {
+            margin-bottom: 16px;
         }
 
-        .project-content .project-description {
-            font-size: 0.95rem;
-            color: #555;
-            flex-grow: 1;
+        .intro-content p:last-child {
+            margin-bottom: 0;
         }
 
-        .project-details {
-            border-top: 1px solid var(--color-light-gray);
-            margin-top: 20px;
-            padding-top: 20px;
-            font-size: 0.9rem;
-            color: #444;
+        /* ===== MAIN LAYOUT ===== */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        .project-details div {
-            margin-bottom: 10px;
+        .main-grid {
+            display: grid;
+            gap: 30px;
         }
 
-        .project-details strong {
-            color: var(--color-dark-navy);
-            font-weight: 500;
-            min-width: 90px;
-            display: inline-block;
+        @media (min-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr 3fr;
+            }
         }
-        
-        .project-tech-tags {
+
+        /* ===== SIDEBAR (FILTERS) ===== */
+        .sidebar {
+            padding-top: 10px;
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                overflow-y: auto;
+                padding-right: 30px;
+            }
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
+        .filters-list {
+            list-style: none;
+            margin-bottom: 30px;
             display: flex;
             flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 5px;
-        }
-        
-        .tech-tag {
-            background: var(--color-light-gray);
-            color: #333;
-            padding: 3px 8px;
-            font-size: 0.8rem;
-            border-radius: var(--border-radius);
-            border: 1px solid #ddd;
+            gap: 10px;
+            /* EDIT: spacing between filters */
         }
 
-        /* ---------------------------------- */
-        /* --- Project Managers Section --- */
-        /* ---------------------------------- */
-
-        .managers-section {
-            padding: 80px 0;
-            background-color: var(--color-white);
+        @media (min-width: 1024px) {
+            .filters-list {
+                flex-direction: column;
+                gap: 8px;
+                /* EDIT: spacing between filters on desktop */
+            }
         }
 
-        .managers-section .section-title {
+        .filter-button {
+            /* ===== EDIT FILTER BUTTON PROPERTIES HERE ===== */
+            padding: 10px 16px;               /* EDIT: button padding (vertical horizontal) */
+            border: none;                     /* EDIT: button border */
+            border-radius: 6px;               /* EDIT: button corner roundness */
+            font-weight: 500;                 /* EDIT: font weight (400, 500, 600, 700, 800) */
+            font-size: 14px;                  /* EDIT: font size */
+            font-family: 'Inter', sans-serif; /* EDIT: font family */
+            letter-spacing: 0;                /* EDIT: letter spacing */
+            cursor: pointer;
+            transition: all 0.15s ease;
+            background-color: transparent;   /* EDIT: default background color */
+            color: #4b5563;                   /* EDIT: default text color */
+            white-space: nowrap;
+            text-transform: none;             /* EDIT: text-transform (uppercase, lowercase, capitalize, none) */
+            line-height: 1.4;                 /* EDIT: line height */
+        }
+
+        .filter-button:hover {
+            background-color: #f1f5f9;        /* EDIT: hover background color */
+            color: #4b5563;                   /* EDIT: hover text color */
+        }
+
+        .filter-button.active {
+            background-color: #1e40af;        /* EDIT: active (selected) background color */
+            color: white;                     /* EDIT: active (selected) text color */
+            font-weight: 600;                 /* EDIT: active font weight */
+        }
+
+        .service-focus {
+            font-size: 12px;
+            color: #9ca3af;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .service-focus-title {
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        /* ===== PROJECTS SECTION ===== */
+        .projects-section {
+            flex: 1;
+        }
+
+        .section-heading {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1a202c;
+        }
+
+        .section-description {
+            color: #4b5563;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        /* ===== PROJECT TABLE ===== */
+        .table-header {
+            display: none;
+            grid-template-columns: 1.5fr 1.2fr 0.8fr 0.4fr 0.6fr;
+            gap: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #cbd5e1;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #9ca3af;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .table-header {
+                display: grid;
+            }
+        }
+
+        .table-header-cell {
+            text-align: left;
+        }
+
+        .table-header-cell.text-center {
             text-align: center;
-            margin-bottom: 50px;
         }
-        
-        .manager-grid {
+
+        .table-header-cell.text-right {
+            text-align: right;
+        }
+
+        /* ===== PROJECT ROW ===== */
+        .projects-list {
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .project-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
+            gap: 16px;
+            padding: 16px 8px;
+            border-bottom: 1px solid #e5e7eb;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
         }
-        
-        .manager-card {
-            border: 1px solid var(--color-light-gray);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            text-align: center;
+
+        @media (min-width: 768px) {
+            .project-row {
+                grid-template-columns: 1.5fr 1.2fr 0.8fr 0.4fr 0.6fr;
+                padding: 16px 0;
+            }
         }
-        
-        .manager-photo {
-            width: 130px;
-            height: 130px;
-            margin: 0 auto 20px auto;
-            overflow: hidden;
-            border-radius: 50%; /* We make photos circular, not 1px */
-            background: var(--color-light-gray);
+
+        .project-row:hover {
+            background-color: #f1f5f9;
         }
-        
-        .manager-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+
+        @media (min-width: 768px) {
+            .project-row:hover {
+                background-color: transparent;
+            }
         }
-        
-        .manager-card h4 {
-            color: var(--color-dark-navy);
-            margin-bottom: 5px;
+
+        .project-name {
+            font-weight: 600;
+            color: #0369a1;
+            grid-column: 1;
         }
-        
-        .manager-title {
-            font-size: 0.9rem;
+
+        .project-service {
+            font-size: 14px;
+            color: #4b5563;
+            grid-column: 1;
+            margin-top: -8px;
+        }
+
+        @media (min-width: 768px) {
+            .project-service {
+                grid-column: 2;
+                margin-top: 0;
+            }
+        }
+
+        .project-tech {
+            font-size: 14px;
+            color: #9ca3af;
+        }
+
+        .project-team {
+            text-align: right;
+            font-size: 14px;
+            color: #4b5563;
+            grid-column: 2;
+        }
+
+        @media (min-width: 768px) {
+            .project-team {
+                grid-column: 4;
+                text-align: center;
+            }
+        }
+
+        .project-date {
+            text-align: right;
+            font-size: 14px;
             font-weight: 500;
-            color: var(--color-primary-blue);
-            margin-bottom: 15px;
-        }
-        
-        .manager-expertise {
-            font-size: 0.95rem;
-            color: #555;
+            color: #4b5563;
+            grid-column: 2;
+            order: 5;
         }
 
-        /* ---------------------------------- */
-        /* --- Get Started (CTA) Section --- */
-        /* ---------------------------------- */
+        @media (min-width: 768px) {
+            .project-date {
+                grid-column: 5;
+                order: initial;
+            }
+        }
 
-        .get-started-section {
-            padding: 80px 0;
-            background-color: var(--color-dark-navy);
-            color: var(--color-white);
+        .project-team-label,
+        .project-date-label {
+            display: inline;
+            color: #9ca3af;
+            font-weight: 500;
+            margin-right: 6px;
+        }
+
+        @media (min-width: 768px) {
+            .project-team-label,
+            .project-date-label {
+                display: none;
+            }
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            padding: 40px 20px;
             text-align: center;
-        }
-        
-        .get-started-section h2 {
-            color: var(--color-white);
-            margin-bottom: 20px;
-        }
-        
-        .get-started-section p {
-            max-width: 600px;
-            margin: 0 auto 30px auto;
-            font-size: 1.1rem;
-            color: var(--color-text-dark);
+            color: #9ca3af;
         }
 
-        .get-started-section .cta-button {
-            background-color: var(--color-primary-blue);
-            color: var(--color-white);
-            border-color: var(--color-primary-blue);
-            padding: 14px 32px;
-            font-size: 1.1rem;
+        .loading-state {
+            padding: 40px 20px;
+            text-align: center;
+            color: #9ca3af;
         }
-
-        .get-started-section .cta-button:hover {
-            background-color: var(--color-white);
-            color: var(--color-dark-navy);
-            border-color: var(--color-white);
-        }
-        
-        /* ---------------------------------- */
-        /* --- Responsive Adjustments --- */
-        /* ---------------------------------- */
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            h2 { font-size: 2rem; }
-
-            .hero-section {
-                padding: 80px 0;
-                background-attachment: scroll; /* Fixes issues on mobile */
-            }
-            
-            .project-grid {
-                grid-template-columns: 1fr; /* Stack on mobile */
-            }
-        }
-        
     </style>
 </head>
 <body>
 
-    <main id="portfolio-page">
+    <!-- HERO SECTION -->
+    <header class="hero-section">
+        <div class="hero-container">
+            <h1 class="hero-title">Innovation Meets Execution</h1>
+            <p class="hero-subtitle">Transforming Ideas into Tangible Success.</p>
+            <a href="#projects" class="hero-button">View Our Work</a>
+        </div>
+    </header>
 
-        <section class="hero-section">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Our Proven Expertise</h1>
+    <!-- INTRO SECTION -->
+    <section class="intro-section">
+        <div class="intro-container">
+            <div class="intro-grid">
+                <div>
+                    <h2 class="intro-heading">Our Methodology</h2>
+                </div>
+                <div class="intro-content">
                     <p>
-                        At Defcon, we don't just build; we engineer solutions. From complex Web3 ecosystems and scalable cloud infrastructures to engaging creative campaigns, our portfolio is a testament to the technical excellence and innovative thinking we bring to every challenge. Explore the work that defines us.
+                        We combine strategic thinking, creative design, and deep technical expertise that drive growth, collaboration, and measurable impact for our clients. Every project begins with a deep dive into your unique challenges and ends with a robust, scalable, and beautifully crafted solution.
                     </p>
-                    <a href="#contact" class="cta-button">Contact Us</a>
+                    <p>
+                        Our process ensures seamless integration of design and development, guaranteeing the final product is not only functional but also perfectly aligned with your business objectives.
+                    </p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section class="projects-section">
-            <div class="container">
-                <h2 class="section-title">Our Work</h2>
+    <!-- MAIN CONTENT -->
+    <main id="projects" class="main-container">
+        <div class="main-grid">
+            
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <h3 class="sidebar-title">Our Work</h3>
                 
-                <div class="project-grid">
+                <ul class="filters-list" id="category-filters">
+                    <li><button class="filter-button active" data-category="All Projects">All Projects (5)</button></li>
+                    <li><button class="filter-button" data-category="Software Development">Software Development (2)</button></li>
+                    <li><button class="filter-button" data-category="Marketing & Creative Studio">Marketing & Creative Studio (1)</button></li>
+                    <li><button class="filter-button" data-category="IT Infrastructure">IT Infrastructure (1)</button></li>
+                    <li><button class="filter-button" data-category="Smart Technology">Smart Technology (1)</button></li>
+                </ul>
 
-                    <article class="project-card">
-                        <div class="project-image">
-                           (Project Image)
-                        </div>
-                        <div class="project-content">
-                            <span class="project-category">Blockchain & Web3</span>
-                            <h3>DeFi Yield Optimizer</h3>
-                            <p class="project-description">
-                                A decentralized finance (DeFi) platform designed to automate and optimize yield farming strategies. The system polls multiple lending protocols to find the best real-time returns, automatically rebalancing user assets to maximize APY.
-                            </p>
-                            <div class="project-details">
-                                <div><strong>Timeline:</strong> 6 Months</div>
-                                <div><strong>Team Size:</strong> 5 (2 Blockchain, 1 Frontend, 1 Backend, 1 PM)</div>
-                                <div><strong>Technologies:</strong></div>
-                                <div class="project-tech-tags">
-                                    <span class="tech-tag">Solidity</span>
-                                    <span class="tech-tag">React</span>
-                                    <span class="tech-tag">Node.js</span>
-                                    <span class="tech-tag">Web3.js</span>
-                                    <span class="tech-tag">The Graph</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image">
-                           (Project Image)
-                        </div>
-                        <div class="project-content">
-                            <span class="project-category">Cloud Computing & E-commerce</span>
-                            <h3>Aura Retail E-commerce Platform</h3>
-                            <p class="project-description">
-                                A multi-vendor e-commerce marketplace built on a serverless, cloud-native architecture. The platform scales automatically to handle traffic spikes and includes a custom CMS, complex payment routing, and integrated marketing automation.
-                            </p>
-                            <div class="project-details">
-                                <div><strong>Timeline:</strong> 9 Months</div>
-                                <div><strong>Team Size:</strong> 8 (3 Full-Stack, 1 Cloud Architect, 1 UI/UX, 1 QA, 2 PMs)</div>
-                                <div><strong>Technologies:</strong></div>
-                                <div class="project-tech-tags">
-                                    <span class="tech-tag">Next.js</span>
-                                    <span class="tech-tag">AWS Lambda</span>
-                                    <span class="tech-tag">DynamoDB</span>
-                                    <span class="tech-tag">Stripe Connect</span>
-                                    <span class="tech-tag">Mobile (React Native)</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
-                    <article class="project-card">
-                        <div class="project-image">
-                           (Project Image)
-                        </div>
-                        <div class="project-content">
-                            <span class="project-category">IT Infrastructure & Smart Technology</span>
-                            <h3>Smart Campus Infrastructure Rollout</h3>
-                            <p class="project-description">
-                                Complete IT infrastructure design and implementation for a new 5-story corporate office. This included data center setup, hybrid cloud migration (Azure), and deployment of smart tech (POS and Queue Management) for the on-site cafeteria.
-                            </p>
-                            <div class="project-details">
-                                <div><strong>Timeline:</strong> 4 Months</div>
-                                <div><strong>Team Size:</strong> 6 (2 Network Eng, 1 Cloud Arch, 2 Support, 1 PM)</div>
-                                <div><strong>Technologies:</strong></div>
-                                <div class="project-tech-tags">
-                                    <span class="tech-tag">Azure Active Directory</span>
-                                    <span class="tech-tag">Cisco Meraki</span>
-                                    <span class="tech-tag">VMWare</span>
-                                    <span class="tech-tag">Custom POS</span>
-                                </div>
-                            </div>
-                        </div>
-                    </article>
-
+                <div class="service-focus">
+                    <p class="service-focus-title">Service Focus</p>
+                    <p>Web Apps, Cloud, Automation, Graphic Design, Web3, E-commerce, Data Center.</p>
                 </div>
-            </div>
-        </section>
+            </aside>
 
-        <section class="managers-section">
-            <div class="container">
-                <h2 class="section-title">Meet Our Project Leadership</h2>
-                
-                <div class="manager-grid">
-                    <div class="manager-card">
-                        <div class="manager-photo">
-                            <img src="https://placehold.co/200x200/f4f4f4/06273e?text=JD" alt="Jane Doe">
-                        </div>
-                        <h4>Jane Doe</h4>
-                        <p class="manager-title">Senior Technical PM</p>
-                        <p class="manager-expertise">
-                            <strong>Expertise:</strong> Agile, Scrum, and FinTech. Jane ensures our most complex software and Web3 projects are delivered on time and on-budget.
-                        </p>
-                    </div>
-                    
-                    <div class="manager-card">
-                        <div class="manager-photo">
-                            <img src="https://placehold.co/200x200/f4f4f4/06273e?text=JS" alt="John Smith">
-                        </div>
-                        <h4>John Smith</h4>
-                        <p class="manager-title">Director of Infrastructure</p>
-                        <p class="manager-expertise">
-                            <strong>Expertise:</strong> Cloud & Infrastructure Logistics. John architects and manages our large-scale cloud migrations and data center deployments.
-                        </p>
-                    </div>
-
-                    <div class="manager-card">
-                        <div class="manager-photo">
-                            <img src="https://placehold.co/200x200/f4f4f4/06273e?text=EC" alt="Emily Chen">
-                        </div>
-                        <h4>Emily Chen</h4>
-                        <p class="manager-title">Creative & Accounts Lead</p>
-                        <p class="manager-expertise">
-                            <strong>Expertise:</strong> Brand & E-commerce Strategy. Emily bridges the gap between technical development and creative marketing for our clients.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="get-started-section">
-            <div class="container">
-                <h2>Ready to Start Your Project?</h2>
-                <p>
-                    Let's discuss your idea. We have the team, the technology, and the expertise to
-                    turn your vision into a reality.
+            <!-- PROJECTS CONTENT -->
+            <section class="projects-section">
+                <h2 class="section-heading">Our Approach</h2>
+                <p class="section-description">
+                    We combine strategic thinking, creative design and deep technical expertise that drive growth, collaboration and impact.
                 </p>
-                <a href="#contact" class="cta-button">Get Started</a>
-            </div>
-        </section>
 
+                <!-- Table Header -->
+                <div class="table-header">
+                    <div class="table-header-cell">Project Name</div>
+                    <div class="table-header-cell">Primary Service</div>
+                    <div class="table-header-cell">Technologies</div>
+                    <div class="table-header-cell text-center">Team Size</div>
+                    <div class="table-header-cell text-right">Completion Date</div>
+                </div>
+
+                <!-- Projects List -->
+                <div id="projects-list" class="projects-list">
+                    <div class="loading-state" id="loading-message">Loading projects...</div>
+                </div>
+            </section>
+        </div>
     </main>
 
-    </body>
+    <script>
+        // ===== DATA =====
+        const projectsData = [
+            {
+                id: 1,
+                name: "Q4 Hyper-Growth Digital Marketing Campaign",
+                service: "Digital Marketing & Advertising",
+                technologies: "Google Ads, Meta Business...",
+                team: 4,
+                date: "Dec 1, 2024",
+                category: "Marketing & Creative Studio"
+            },
+            {
+                id: 2,
+                name: "E-Commerce SaaS Platform Relaunch",
+                service: "Web Applicating & E commerce",
+                technologies: "React, Node.js...",
+                team: 7,
+                date: "Oct 15, 2024",
+                category: "Software Development"
+            },
+            {
+                id: 3,
+                name: "E-Comated Cloud Migration to AWS/Azure",
+                service: "Cloud Computing & Automation",
+                technologies: "AWS, Terraform...",
+                team: 6,
+                date: "Aug 20, 2024",
+                category: "IT Infrastructure"
+            },
+            {
+                id: 4,
+                name: "Decentralized NFT Ticketing System",
+                service: "Blockchain & Web3",
+                technologies: "Solidity, Web3.js...",
+                team: 6,
+                date: "May 20, 2024",
+                category: "Software Development"
+            },
+            {
+                id: 5,
+                name: "Integrated Home Automation Hub V2",
+                service: "IoT & Smart Home Solutions",
+                technologies: "Zigbee, Python, MQTT",
+                team: 5,
+                date: "Feb 1, 2024",
+                category: "Smart Technology"
+            }
+        ];
+
+        // ===== STATE =====
+        let currentFilter = "All Projects";
+
+        // ===== UTILITIES =====
+        function getCategories() {
+            const unique = new Set(projectsData.map(p => p.category));
+            return ["All Projects", ...Array.from(unique)];
+        }
+
+        function getFilteredProjects() {
+            if (currentFilter === "All Projects") {
+                return projectsData;
+            }
+            return projectsData.filter(p => p.category === currentFilter);
+        }
+
+        // ===== RENDER FUNCTIONS =====
+        function renderFilterButtons() {
+            const container = document.getElementById("category-filters");
+            const categories = getCategories();
+            
+            container.innerHTML = categories
+                .map(category => {
+                    const isActive = category === currentFilter;
+                    const count = category === "All Projects" 
+                        ? projectsData.length 
+                        : projectsData.filter(p => p.category === category).length;
+                    
+                    return `
+                        <li>
+                            <button 
+                                class="filter-button ${isActive ? "active" : ""}"
+                                data-category="${category}"
+                            >
+                                ${category} (${count})
+                            </button>
+                        </li>
+                    `;
+                })
+                .join("");
+            
+            // Attach event listeners
+            container.querySelectorAll("button").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    currentFilter = e.target.dataset.category;
+                    renderFilterButtons();
+                    renderProjects();
+                });
+            });
+        }
+
+        function createProjectRow(project) {
+            return `
+                <div class="project-row">
+                    <div class="project-name">${project.name}</div>
+                    <div class="project-service">${project.service}</div>
+                    <div class="project-tech">${project.technologies}</div>
+                    <div class="project-team">
+                        <span class="project-team-label">Team:</span>
+                        ${project.team}
+                    </div>
+                    <div class="project-date">
+                        <span class="project-date-label">Completed:</span>
+                        ${project.date}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProjects() {
+            const container = document.getElementById("projects-list");
+            const filtered = getFilteredProjects();
+            
+            const loadingMsg = document.getElementById("loading-message");
+            if (loadingMsg) loadingMsg.remove();
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="empty-state">No projects found for this category.</div>';
+                return;
+            }
+            
+            container.innerHTML = filtered.map(createProjectRow).join("");
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener("DOMContentLoaded", () => {
+            renderFilterButtons();
+            renderProjects();
+        });
+    </script>
+
+</body>
 </html>

@@ -3,1185 +3,531 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defcon - Portfolio & Projects</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Portfolio Navigator</title>
+    <!-- Load Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for aesthetic UI elements -->
+    <script type="module" src="https://unpkg.com/lucide@latest"></script>
+
+    <!--
+    ====================================================================
+    CONSOLIDATED CSS STYLES (NO SEPARATE FILE DUE TO SINGLE-FILE MANDATE)
+    All custom styles and variables are defined here for easy editing.
+    ====================================================================
+    -->
     <style>
+        /* Define custom colors as CSS variables for explicit reference */
         :root {
-            --black: #000;
-            --light-gray: #f4f4f4;
-            --white: #fff;
-            --primary-blue: #0091ff;
-            --dark-blue: #06273e;
-            --border-radius: 1px;
+            --blue-main: #0091ff;      /* Primary Accent Color */
+            --dark-text: #080d1b;      /* Primary Text/Dark Background */
+            --bg-light: #f4f4f4;       /* Light Background (Close to gray-100) */
+            --border-light: #e5e5e5;   /* Light Border Color (Close to gray-200) */
+            --white: #ffffff;
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-        
+
+        /* Base Styles: Use Inter font and set base colors */
         body {
-            background-color: var(--light-gray);
-            color: var(--black);
-            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--dark-text);
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* Custom scrollbar styling for a cleaner look - used on scrollable containers */
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background-color: var(--border-light); /* #e5e5e5 */
+            border-radius: 3px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background-color: var(--bg-light); /* #f4f4f4 */
+        }
+
+        /* Explicit CSS Helper Classes (Used where Tailwind classes don't match custom hex exactly) */
+        
+        .bg-custom-light {
+            background-color: var(--bg-light);
         }
         
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(6, 39, 62, 0.85), rgba(6, 39, 62, 0.9)), url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
-            padding: 120px 0;
-            text-align: center;
+        .border-custom-light {
+            border-color: var(--border-light);
         }
-        
-        .hero h1 {
-            font-size: 60px;
-            margin-bottom: 50px;
-            font-weight: 700;
-            line-height: 1.2;
+
+        .text-blue-main {
+            color: var(--blue-main);
         }
-        
-        .hero p {
-            font-size: 18px;
-            max-width: 800px;
-            margin: 0 auto 30px;
-            color: rgba(255,255,255,0.9);
+
+        .bg-blue-main {
+            background-color: var(--blue-main);
         }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-blue);
-            color: var(--white);
-            padding: 12px 30px;
-            border-radius: 60px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            border: none;
-            cursor: pointer;
+
+        .bg-blue-main-10 { /* Used for the category tags: 10% opacity of #0091ff */
+            background-color: rgba(0, 145, 255, 0.1); 
         }
-        
-        .btn:hover {
-            background-color: var(--white);
-            color: var(--primary-blue);
-        }
-        
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--primary-blue);
-            color: var(--primary-blue);
-        }
-        
-        .btn-outline:hover {
-            background-color: var(--primary-blue);
-            color: var(--white);
-        }
-        
-        /* Filter Section */
-        .filter-section {
-            padding: 40px 0;
-            background-color: var(--white);
-        }
-        
-        .filter-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-        }
-        
-        .filter-btn {
-            background-color: var(--light-gray);
-            border: 1px solid #ddd;
-            padding: 10px 20px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s;
-        }
-        
-        .filter-btn:hover, .filter-btn.active {
-            background-color: var(--primary-blue);
-            color: var(--white);
-            border-color: var(--primary-blue);
-        }
-        
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            padding: 60px 0;
-        }
-        
-        .project-card {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        
-        .project-image {
-            height: 200px;
-            background-color: var(--dark-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 600;
-            font-size: 18px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        
-        .project-card:hover .project-overlay {
-            opacity: 1;
-        }
-        
-        .project-content {
-            padding: 25px;
-        }
-        
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-        
-        .project-category {
-            display: inline-block;
-            background-color: var(--light-gray);
-            padding: 5px 10px;
-            border-radius: var(--border-radius);
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            width: fit-content;
-        }
-        
-        .project-status {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: var(--border-radius);
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            width: fit-content;
-        }
-        
-        .status-completed {
-            background-color: #e6f7ee;
-            color: #0d6832;
-        }
-        
-        .status-progress {
-            background-color: #fff4e6;
-            color: #cc6b00;
-        }
-        
-        .status-social {
-            background-color: #e6f3ff;
-            color: #0066cc;
-            width: fit-content;
-        }
-        
-        .project-title {
-            font-size: 20px;
-            margin-bottom: 15px;
-            font-weight: 600;
-        }
-        
-        .project-description {
-            color: #555;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-        
-        .project-details {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .detail-item h4 {
-            font-size: 12px;
-            text-transform: uppercase;
-            color: #777;
-            margin-bottom: 5px;
-        }
-        
-        .detail-item p {
-            font-size: 14px;
-            font-weight: 500;
-        }
-        
-        .team-composition {
-            margin-top: 8px;
-            font-size: 12px;
-            color: #555;
-        }
-        
-        .technologies {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-        
-        .tech-tag {
-            background-color: var(--light-gray);
-            padding: 5px 10px;
-            border-radius: var(--border-radius);
-            font-size: 12px;
-            font-weight: 500;
-            width: fit-content;
-        }
-        
-        .project-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        /* Project Managers Section */
-        .managers-section {
-            background-color: var(--white);
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 32px;
-            margin-bottom: 50px;
-            font-weight: 700;
-            color: var(--dark-blue);
-        }
-        
-        .managers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-        }
-        
-        .manager-card {
-            margin-bottom: 3rem;
-            border-radius: var(--border-radius);
-            
-            text-align: left;
-            transition: transform 0.3s;
-        }
-        
-        .manager-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .manager-avatar {
-            width: 100%;
-            height: 300px;
-            border-radius: 1px;
-            background-color: var(--dark-blue);
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 36px;
-            font-weight: 600;
-        }
-        
-        .manager-name {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        .manager-role {
-            color: var(--primary-blue);
-            font-weight: 500;
-            margin-bottom: 15px;
-        }
-        
-        .manager-expertise {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: flex-start;
-            margin-top: 15px;
-        }
-        
-        .expertise-tag {
-            background-color: #f4f4f4;
-            padding: 5px 10px;
-            border-radius: var(--border-radius);
-            font-size: 12px;
-            font-weight: 500;
-            text-align: left;
-        }
-        
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .modal-content {
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            width: 90%;
-            max-width: 1000px;
-            max-height: 90vh;
-            overflow: auto;
-            position: relative;
-        }
-        
-        .modal-header {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .modal-title {
-            font-size: 24px;
-            font-weight: 600;
-        }
-        
-        .close-modal {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #777;
-        }
-        
-        .close-modal:hover {
-            color: var(--black);
-        }
-        
-        .modal-body {
-            padding: 20px;
-        }
-        
-        .project-preview {
-            width: 100%;
-            height: 400px;
-            background-color: var(--light-gray);
-            border-radius: var(--border-radius);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark-blue);
-            font-weight: 600;
-        }
-        
-        .project-links {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .managers-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .project-actions {
-                flex-direction: column;
-            }
-            
-            .modal-content {
-                width: 95%;
-            }
-            
-            .project-header {
-                flex-direction: column;
-                gap: 10px;
-            }
+
+        /* Active list item style - overrides hover for persistent selection */
+        .project-list-item.active {
+            background-color: var(--bg-light);
+            border-left: 4px solid var(--blue-main);
         }
     </style>
-</head>
-<body>
+
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Defcon IT Section - Gradient Background</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Root Variables */
-        :root {
-            --defcon-navy: #0b1426;
-            --defcon-blue: #0091ff;
-            --defcon-light-gray: #f4f4f4;
-            --defcon-white: #ffffff;
-            --defcon-black: #000000;
-            --font-family-inter: 'Inter', sans-serif;
-            --border-radius-1px: 12px;
-            /* New Max Width for Inner Content */
-            --content-max-width: 1000px;
-        }
-
-        /* Container for the whole section */
-        .defcon-merchant-section-container {
-            font-family: var(--font-family-inter);
-            color: var(--defcon-white);
-            background: radial-gradient(75.83% 86.4% at 50% 100%, rgb(3, 68, 129) 0%, rgba(3, 68, 129, 0.21) 67.99%, rgba(3, 68, 129, 0.07) 88.86%, rgba(3, 68, 129, 0) 100%), rgb(1, 1, 24);
-            padding: 40px 0;
-            border: none; /* Ensure the gradient is full-width */
-            width: 100%;
-            margin: 0; /* Remove margin */
-            text-align: center;
-        }
-        
-        /* New Wrapper to constrain all content (Title and Cards) */
-        .defcon-content-wrapper {
-            /* === KEY CHANGE 2: Constrain and Center Content === */
-            max-width: var(--content-max-width);
-            width: 90%; /* Use percentage for responsiveness */
-            margin: 0 auto;
-            padding: 40px; /* Padding inside the border */   
-        }
-
-        /* Title styling */
-        .defcon-merchant-section-title {
-            font-size: 3.5rem;
-            font-weight: 600;
-            color: var(--defcon-white);
-            margin-bottom: 50px;
-            text-align: left;
-        }
-
-        /* --- Asymmetrical Grid (No Change to layout logic) --- */
-        .defcon-asym-feature-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        /* Individual feature card styling */
-        .defcon-asym-feature-card {
-            background-color: #EAEEF4;
-            border-radius: var(--border-radius-1px);
-            padding: 30px;
-            text-align: left; 
-            color: var(--defcon-black);
-            min-height: fit-content;
-            display: flex;
-        }
-        
-        /* Inner Wrapper for vertical alignment */
-        .defcon-card-content-wrapper {
-            display: flex;
-            align-items: center;
-            width: fit-content;
-        }
-        
-        /* Grid Span Utility Classes */
-        .defcon-grid-span-2 {
-            grid-column: span 2;
-        }
-        
-        .defcon-grid-span-1 {
-            grid-column: span 1;
-        }
-
-
-        /* Large number in feature card */
-        .defcon-feature-card-number {
-            font-size: 3.5rem;
-            font-weight: 600;
-            color: var(--defcon-navy);
-            line-height: 1;
-            flex-shrink: 0;
-            margin-right: 15px;
-        }
-        
-        /* Small text next to large number */
-        .defcon-feature-card-text {
-            font-size: 1.2rem;
-            font-weight: 700;
-            line-height: 1.4;
-            color: #555;
-        }
-        
-        /* Bold text inside the description */
-        .defcon-feature-card-text strong {
-            font-weight: 700;
-            color: var(--defcon-navy);
-        }
-
-        /* Styling for the superscript (1) */
-        .defcon-superscript {
-            vertical-align: super;
-            font-size: 0.7em;
-            margin-left: 2px;
-        }
-
-        /* Legal disclaimer at the bottom */
-        .defcon-legal-disclaimer {
-            font-size: 0.8rem;
-            color: var(--defcon-light-gray);
-            margin-top: 20px;
-        }
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 900px) {
-             .defcon-asym-feature-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .defcon-grid-span-2,
-            .defcon-grid-span-1 {
-                grid-column: span 1;
-            }
-        }
-
-        @media (max-width: 600px) {
-             .defcon-asym-feature-grid {
-                grid-template-columns: 1fr;
-            }
-            
-             .defcon-content-wrapper {
-                padding: 25px;
-                width: 100%; /* Allow content wrapper to take full width on smallest screens */
-            }
-            
-            .defcon-merchant-section-title {
-                font-size: 2rem;
-            }
-            
-            .defcon-feature-card-number {
-                font-size: 3rem;
-            }
-        }
-    </style>
 </head>
+<body class="bg-custom-light min-h-screen text-dark-text">
 
-<section class="defcon-merchant-section-container">
-    <div class="defcon-content-wrapper">
-        <h2 class="defcon-merchant-section-title">Our Extensive Project Gallery: From Concept to Completion</h2>
+    <!--
+    ====================================================================
+    HTML STRUCTURE SECTION
+    - Using custom CSS classes (e.g., text-blue-main) defined above.
+    - Border radius remains sharp (rounded-sm) as per your last request.
+    ====================================================================
+    -->
 
-        <div class="defcon-asym-feature-grid">
-            
-            <div class="defcon-asym-feature-card defcon-grid-span-2">
-                <div class="defcon-card-content-wrapper">
-                    <span class="defcon-feature-card-number">&lt;15</span>
-                    <span class="defcon-feature-card-text">
-                        minute average response time for all critical-level support incidents.
-                    </span>
+    <div class="mx-auto p-4 lg:p-8">
+        <header class="mb-6 lg:mb-10 text-center">
+            <h1 class="text-4xl lg:text-5xl font-extrabold text-blue-main tracking-tight">Our Work & Projects</h1>
+            <p class="text-lg text-gray-500 mt-2">A curated view of our 100+ accomplishments across all services.</p>
+        </header>
+
+        <!-- Main Grid Container for Desktop -->
+        <div id="portfolio-container-nav-tag" class="lg:grid lg:grid-cols-12 gap-6 h-[calc(100vh-180px)]">
+
+            <!-- 1. Category Filter Panel (Left) -->
+            <aside class="col-span-12 lg:col-span-3 bg-white p-4 lg:p-6 shadow-xl rounded-sm mb-6 lg:mb-0 h-auto lg:h-full lg:sticky lg:top-8">
+                <h3 class="text-xl font-bold text-dark-text mb-4 flex items-center">
+                    <i data-lucide="filter" class="w-5 h-5 mr-2 text-blue-main"></i> Service Areas
+                </h3>
+                <div id="category-filter-container-nav-tag" class="grid grid-cols-2 lg:grid-cols-1 gap-3">
+                    <!-- Category buttons will be rendered here by JS -->
+                </div>
+            </aside>
+
+            <!-- Back Button for Mobile Detail View (Hidden on Desktop) -->
+            <button id="back-to-list-button-nav-tag" class="lg:hidden fixed bottom-4 left-1/2 -translate-x-1/2 bg-blue-main text-white p-3 rounded-sm shadow-lg z-50 transition-transform duration-300 hidden items-center" onclick="showList()">
+                <i data-lucide="arrow-left" class="w-5 h-5 mr-1"></i> Back to List
+            </button>
+
+
+            <!-- 2. Scrollable Project List (Center) -->
+            <div id="project-list-panel-nav-tag" class="col-span-12 lg:col-span-4 bg-white shadow-xl rounded-sm overflow-hidden h-full">
+                <div class="p-4 bg-custom-light border-b border-custom-light">
+                    <h3 class="text-xl font-bold text-dark-text">Projects List <span id="current-category-name-nav-tag" class="text-base font-normal text-blue-main ml-2"></span></h3>
+                </div>
+                <div id="project-list-nav-tag" class="custom-scroll overflow-y-auto divide-y divide-custom-light h-[calc(100%-60px)]">
+                    <!-- Project list items will be rendered here by JS -->
                 </div>
             </div>
 
-            <div class="defcon-asym-feature-card defcon-grid-span-1">
-                <div class="defcon-card-content-wrapper">
-                    <span class="defcon-feature-card-number">1</span>
-                    <span class="defcon-feature-card-text">
-                        dedicated account manager per client.
-                    </span>
-                </div>
-            </div>
-
-            <div class="defcon-asym-feature-card defcon-grid-span-1">
-                <div class="defcon-card-content-wrapper">
-                    <span class="defcon-feature-card-number">120<span class="defcon-superscript">+</span></span>
-                    <span class="defcon-feature-card-text">
-                       successful projectS. 
-                    </span>
-                </div>
-            </div>
-            
-            <div class="defcon-asym-feature-card defcon-grid-span-2">
-                <div class="defcon-card-content-wrapper">
-                    <span class="defcon-feature-card-number">80K<span class="defcon-superscript">+</span></span>
-                    <span class="defcon-feature-card-text">
-                        cyber threats neutralized on our clients' networks.
-                    </span>
-                </div>
-            </div>
-
-        </div>
-
-        <p class="defcon-legal-disclaimer">
-            <span class="defcon-superscript">(1)</span> As per our Enterprise Service Level Agreement (SLA).
-        </p>
-    </div>
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- Filter Section -->
-    <section class="filter-section">
-        <div class="container">
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="software">Software Development</button>
-                <button class="filter-btn" data-filter="infrastructure">IT Infrastructure</button>
-                <button class="filter-btn" data-filter="marketing">Marketing & Creative</button>
-                <button class="filter-btn" data-filter="blockchain">Blockchain & Web3</button>
-                <button class="filter-btn" data-filter="cloud">Cloud Computing</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Grid -->
-    <section class="container">
-        <div class="projects-grid">
-            <!-- Project 1 -->
-            <div class="project-card" data-category="software,cloud">
-                <div class="project-image" style="background-color: #06273e;">
-                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="Nexus Retail Platform" style="width: 100%; height: 100%; object-fit: cover;">
-                    <div class="project-overlay">
-                        <button class="btn view-project" data-project="nexus-retail">View Site</button>
-                    </div>
-                    
-                </div>
-                <div class="project-content">
-                    <div class="project-header">
-                        <span class="project-category">Software Development</span>
-                        <span class="project-status status-completed">Completed</span>
-                    </div>
-                    <h3 class="project-title">Nexus Retail Platform</h3>
-                    <p class="project-description">A comprehensive e-commerce solution with inventory management, payment processing, and customer analytics. Built for a retail chain with 50+ locations to streamline their online and in-store operations.</p>
-                    <div class="project-details">
-                        <div class="detail-item">
-                            <h4>Timeline</h4>
-                            <p>6 months</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Team Size</h4>
-                            <p>8 people</p>
-                            <div class="team-composition">(2 Frontend, 3 Backend, 1 DevOps, 1 QA, 1 UI/UX)</div>
-                        </div>
-                    </div>
-                    <div class="technologies">
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">AWS</span>
-                        <span class="tech-tag">Stripe API</span>
-                    </div>
-                    <div class="project-actions">
-                        <button class="btn view-project" data-project="nexus-retail">View Site</button>
-                        <button class="btn btn-outline">Case Study</button>
+            <!-- 3. Project Detail View (Right) -->
+            <div id="project-detail-nav-tag" class="col-span-12 lg:col-span-5 bg-white p-6 shadow-xl rounded-sm h-full custom-scroll overflow-y-auto">
+                <div id="detail-content-nav-tag">
+                    <div class="text-center py-20 text-gray-400">
+                        <i data-lucide="info" class="w-10 h-10 mx-auto mb-3"></i>
+                        <p class="text-lg font-semibold">Select a project from the list to view its full details.</p>
+                        <p class="text-sm mt-1">This panel will update dynamically with the case study.</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 2 -->
-            <div class="project-card" data-category="infrastructure,cloud">
-                <div class="project-image" style="background-color: #0091ff;">
-                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="Global Finance Cloud Migration" style="width: 100%; height: 100%; object-fit: cover;">
-                    <div class="project-overlay">
-                        <button class="btn view-project" data-project="finance-migration">View Dashboard</button>
-                    </div>
-                    
-                </div>
-                <div class="project-content">
-                    <div class="project-header">
-                        <span class="project-category">IT Infrastructure</span>
-                        <span class="project-status status-progress">In Progress</span>
-                    </div>
-                    <h3 class="project-title">Global Finance Cloud Migration</h3>
-                    <p class="project-description">Migrated a financial services company's entire infrastructure to AWS, implementing security protocols and disaster recovery solutions. The project improved scalability and reduced operational costs by 40%.</p>
-                    <div class="project-details">
-                        <div class="detail-item">
-                            <h4>Timeline</h4>
-                            <p>9 months</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Team Size</h4>
-                            <p>12 people</p>
-                            <div class="team-composition">(2 Cloud Architects, 4 DevOps, 3 Security, 2 Network, 1 PM)</div>
-                        </div>
-                    </div>
-                    <div class="technologies">
-                        <span class="tech-tag">AWS</span>
-                        <span class="tech-tag">Docker</span>
-                        <span class="tech-tag">Kubernetes</span>
-                        <span class="tech-tag">Terraform</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                    <div class="project-actions">
-                        <button class="btn view-project" data-project="finance-migration">View Dashboard</button>
-                        <button class="btn btn-outline">Case Study</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="project-card" data-category="blockchain">
-                <div class="project-image" style="background-color: #000;">
-                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="ArtChain NFT Marketplace" style="width: 100%; height: 100%; object-fit: cover;">
-                    <div class="project-overlay">
-                        <button class="btn view-project" data-project="artchain">View Marketplace</button>
-                    </div>
-            
-                </div>
-                <div class="project-content">
-                    <div class="project-header">
-                        <span class="project-category">Blockchain & Web3</span>
-                        <span class="project-status status-social">Social Impact</span>
-                    </div>
-                    <h3 class="project-title">ArtChain NFT Marketplace</h3>
-                    <p class="project-description">A decentralized marketplace for digital art using blockchain technology to verify authenticity and ownership of digital assets. The platform enables artists to monetize their work through smart contracts.</p>
-                    <div class="project-details">
-                        <div class="detail-item">
-                            <h4>Timeline</h4>
-                            <p>5 months</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Team Size</h4>
-                            <p>6 people</p>
-                            <div class="team-composition">(2 Blockchain, 1 Frontend, 1 Backend, 1 QA, 1 UI/UX)</div>
-                        </div>
-                    </div>
-                    <div class="technologies">
-                        <span class="tech-tag">Solidity</span>
-                        <span class="tech-tag">Ethereum</span>
-                        <span class="tech-tag">Web3.js</span>
-                        <span class="tech-tag">React</span>
-                        <span class="tech-tag">IPFS</span>
-                    </div>
-                    <div class="project-actions">
-                        <button class="btn view-project" data-project="artchain">View Marketplace</button>
-                        <button class="btn btn-outline">Case Study</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="project-card" data-category="marketing">
-                <div class="project-image" style="background-color: #06273e;">
-                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="TechLaunch 2023 Campaign" style="width: 100%; height: 100%; object-fit: cover;">
-                    <div class="project-overlay">
-                        <button class="btn view-project" data-project="techlaunch">View Campaign</button>
-                    </div>
-                  
-                </div>
-                <div class="project-content">
-                    <div class="project-header">
-                        <span class="project-category">Marketing & Creative</span>
-                        <span class="project-status status-completed">Completed</span>
-                    </div>
-                    <h3 class="project-title">TechLaunch 2023 Campaign</h3>
-                    <p class="project-description">A comprehensive digital marketing campaign for a tech product launch, including social media, content creation, and targeted advertising. The campaign generated over 50,000 leads and increased brand awareness by 200%.</p>
-                    <div class="project-details">
-                        <div class="detail-item">
-                            <h4>Timeline</h4>
-                            <p>3 months</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Team Size</h4>
-                            <p>5 people</p>
-                            <div class="team-composition">(1 Marketing Lead, 2 Designers, 1 Content, 1 Analytics)</div>
-                        </div>
-                    </div>
-                    <div class="technologies">
-                        <span class="tech-tag">Adobe Creative Suite</span>
-                        <span class="tech-tag">Google Ads</span>
-                        <span class="tech-tag">Facebook Ads</span>
-                        <span class="tech-tag">Analytics</span>
-                        <span class="tech-tag">Content Strategy</span>
-                    </div>
-                    <div class="project-actions">
-                        <button class="btn view-project" data-project="techlaunch">View Campaign</button>
-                        <button class="btn btn-outline">Case Study</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 5 -->
-            <div class="project-card" data-category="software">
-                <div class="project-image" style="background-color: #0091ff;">
-                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="HealthTrack Pro Mobile App" style="width: 100%; height: 100%; object-fit: cover;">
-                    <div class="project-overlay">
-                        <button class="btn view-project" data-project="healthtrack">View App</button>
-                    </div>
-                    
-                </div>
-                <div class="project-content">
-                    <div class="project-header">
-                        <span class="project-category">Software Development</span>
-                        <span class="project-status status-progress">In Progress</span>
-                    </div>
-                    <h3 class="project-title">HealthTrack Pro Mobile App</h3>
-                    <p class="project-description">A cross-platform mobile application for health monitoring with real-time data sync, medication reminders, and telehealth integration. The app helps users track their health metrics and connect with healthcare providers.</p>
-                    <div class="project-details">
-                        <div class="detail-item">
-                            <h4>Timeline</h4>
-                            <p>7 months</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Team Size</h4>
-                            <p>10 people</p>
-                            <div class="team-composition">(3 Mobile, 2 Backend, 2 QA, 1 DevOps, 1 UI/UX, 1 PM)</div>
-                        </div>
-                    </div>
-                    <div class="technologies">
-                        <span class="tech-tag">React Native</span>
-                        <span class="tech-tag">Firebase</span>
-                        <span class="tech-tag">Node.js</span>
-                        <span class="tech-tag">MongoDB</span>
-                        <span class="tech-tag">REST API</span>
-                    </div>
-                    <div class="project-actions">
-                        <button class="btn view-project" data-project="healthtrack">View App</button>
-                        <button class="btn btn-outline">Case Study</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Project 6 -->
-            <div class="project-card" data-category="infrastructure">
-                <div class="project-image" style="background-color: #000;">
-                    <img src="thumbnails/Screenshot 2025-10-17 155334.png" alt="Smart Office Implementation" style="width: 100%; height: 100%; object-fit: cover;">
-                </div>
-                <div class="project-content">
-                    <div class="project-header">
-                        <span class="project-category">IT Infrastructure</span>
-                        <span class="project-status status-social">Designed for Social Impact</span>
-                    </div>
-                    <h3 class="project-title">Smart Office Implementation</h3>
-                    <p class="project-description">Implemented a complete smart office solution including POS systems, queue management, ambient lighting, and IoT device integration. The system improved operational efficiency and enhanced the customer experience.</p>
-                    <div class="project-details">
-                        <div class="detail-item">
-                            <h4>Timeline</h4>
-                            <p>4 months</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Team Size</h4>
-                            <p>7 people</p>
-                            <div class="team-composition">(2 IoT, 2 Hardware, 1 Network, 1 QA, 1 PM)</div>
-                        </div>
-                    </div>
-                    <div class="technologies">
-                        <span class="tech-tag">IoT</span>
-                        <span class="tech-tag">POS Systems</span>
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">Custom Hardware</span>
-                        <span class="tech-tag">Network Setup</span>
-                    </div>
-                    <div class="project-actions">
-                        <button class="btn btn-outline">Case Study</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Project Managers Section -->
-    <section class="managers-section">
-        <div class="container">
-            <h2 class="section-title">Our Project Managers</h2>
-            <div class="managers-grid">
-                <!-- Manager 1 -->
-                <div class="manager-card">
-                    <div class="manager-avatar"><img src="team/Gemini_Generated_Image_c3fhy0c3fhy0c3fh.png" alt="Jessica Smith" style="width: 100%; height: 100%; object-fit: cover;"></div>
-                    <h3 class="manager-name">Jessica Smith</h3>
-                    <p class="manager-role">Senior Project Manager</p>
-                    <p>Specializes in software development projects with expertise in agile methodologies and cross-functional team leadership.</p>
-                    <div class="manager-expertise">
-                        <span class="expertise-tag">Agile Methodologies</span>
-                        <span class="expertise-tag">Software Development</span>
-                        <span class="expertise-tag">Team Leadership</span>
-                        <span class="expertise-tag">Risk Management</span>
-                    </div>
-                </div>
-                
-                <!-- Manager 2 -->
-                <div class="manager-card">
-                    <div class="manager-avatar"><img src="team/Gemini_Generated_Image_e1cpzre1cpzre1cp.png" alt="Michael Rodriguez" style="width: 100%; height: 100%; object-fit: cover;"></div>
-                    <h3 class="manager-name">Michael Rodriguez</h3>
-                    <p class="manager-role">Infrastructure Project Manager</p>
-                    <p>Expert in IT infrastructure projects with a focus on cloud migrations, network security, and system integration.</p>
-                    <div class="manager-expertise">
-                        <span class="expertise-tag">Cloud Infrastructure</span>
-                        <span class="expertise-tag">Network Security</span>
-                        <span class="expertise-tag">System Integration</span>
-                        <span class="expertise-tag">Vendor Management</span>
-                    </div>
-                </div>
-                
-                <!-- Manager 3 -->
-                <div class="manager-card">
-                    <div class="manager-avatar"><img src="team/Gemini_Generated_Image_h910b2h910b2h910.png" alt="Amanda Kim" style="width: 100%; height: 100%; object-fit: cover;"></div>
-                    <h3 class="manager-name">Amanda Kim</h3>
-                    <p class="manager-role">Creative Project Manager</p>
-                    <p>Leads marketing and creative projects with expertise in digital campaigns, brand strategy, and multimedia production.</p>
-                    <div class="manager-expertise">
-                        <span class="expertise-tag">Digital Marketing</span>
-                        <span class="expertise-tag">Brand Strategy</span>
-                        <span class="expertise-tag">Content Creation</span>
-                        <span class="expertise-tag">Client Relations</span>
-                    </div>
-                </div>
-                
-                <!-- Manager 4 -->
-                <div class="manager-card">
-                    <div class="manager-avatar"><img src="team/Gemini_Generated_Image_hji0m8hji0m8hji0.png" alt="David Thompson" style="width: 100%; height: 100%; object-fit: cover;"></div>
-                    <h3 class="manager-name">David Thompson</h3>
-                    <p class="manager-role">Emerging Technologies PM</p>
-                    <p>Specializes in blockchain, AI, and Web3 projects with expertise in cutting-edge technology implementation.</p>
-                    <div class="manager-expertise">
-                        <span class="expertise-tag">Blockchain</span>
-                        <span class="expertise-tag">Web3</span>
-                        <span class="expertise-tag">AI Integration</span>
-                        <span class="expertise-tag">Innovation Strategy</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Project Modal -->
-    <div class="modal" id="project-modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="modal-project-title">Project Title</h3>
-                <button class="close-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div class="project-preview" id="modal-project-preview">
-                    Project Preview
-                </div>
-                <p id="modal-project-description">Project description will appear here.</p>
-                <div class="project-links">
-                    <a href="#" class="btn" id="modal-project-link" target="_blank">Visit Live Site</a>
-                    <button class="btn btn-outline">View Case Study</button>
-                </div>
-            </div>
         </div>
     </div>
 
+    <!--
+    ====================================================================
+    JAVASCRIPT LOGIC AND DATA SECTION
+    - Contains all data definitions, state management, and functions.
+    ====================================================================
+    -->
     <script>
-        // Filter functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const filterButtons = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
-            
-            filterButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Remove active class from all buttons
-                    filterButtons.forEach(btn => btn.classList.remove('active'));
-                    // Add active class to clicked button
-                    button.classList.add('active');
-                    
-                    const filterValue = button.getAttribute('data-filter');
-                    
-                    projectCards.forEach(card => {
-                        if (filterValue === 'all' || card.getAttribute('data-category').includes(filterValue)) {
-                            card.style.display = 'block';
-                        } else {
-                            card.style.display = 'none';
-                        }
-                    });
-                });
+        // --- Data Definitions (PROJECTS and CATEGORIES) ---
+
+        // The master list of all projects.
+        const PROJECTS = [
+            {
+                id: 'p1',
+                title: 'Global E-commerce Platform Rebuild',
+                category: 'Software Development',
+                subCategories: ['E-commerce', 'Database Management', 'Web Applications'],
+                description: 'A comprehensive, six-month overhaul of a legacy e-commerce system for a retail client operating in 12 countries. We migrated the backend from monolithic architecture to a modern microservices framework, optimized database queries, and implemented a new React frontend.',
+                outcome: 'The new platform resulted in a **40% reduction in cart abandonment**, a 55% increase in page load speed, and reduced server costs by 20%.',
+                techStack: ['React', 'Node.js', 'PostgreSQL', 'AWS Lambda', 'Tailwind CSS'],
+                timeline: '6 Months',
+                teamSize: 3,
+                teamExpertise: '1 Frontend Developer, 1 Backend Engineer, 1 DevOps Specialist',
+                projectManager: { name: 'Alex Johnson', expertise: 'Solution Architecture, Project Risk Management' }
+            },
+            {
+                id: 'p2',
+                title: 'Hybrid Cloud Infrastructure Migration',
+                category: 'IT Infrastructure',
+                subCategories: ['Cloud Computing', 'IT Consulting', 'Data Center Management'],
+                description: 'Strategized and executed a complex migration of key production services to a hybrid Google Cloud/on-premise environment. This involved establishing secure VPN tunnels, implementing automated failover protocols, and retraining the in-house IT team.',
+                outcome: 'Achieved **99.99% uptime** post-migration, ensured regulatory compliance, and provided the client with superior scalability options for future growth.',
+                techStack: ['Google Cloud Platform (GCP)', 'Terraform', 'Kubernetes', 'Cisco Networking'],
+                timeline: '10 Weeks',
+                teamSize: 5,
+                teamExpertise: '3 Infrastructure Engineers, 1 Network Specialist, 1 Security Analyst',
+                projectManager: { name: 'Sarah Chen', expertise: 'Cloud Strategy, Disaster Recovery Planning' }
+            },
+            {
+                id: 'p3',
+                title: 'High-Availability B2B SaaS API',
+                category: 'Software Development',
+                subCategories: ['API Development', 'Web Applications'],
+                description: 'Built a high-availability REST API from scratch for a B2B Software-as-a-Service product. The API manages real-time financial transaction data and requires strict security protocols and performance metrics.',
+                outcome: 'The API is currently handling over **1 million requests daily** with an average latency of under 50ms, enabling our client to expand their service offering globally.',
+                techStack: ['Python (Flask)', 'Redis', 'JWT Authentication', 'Azure'],
+                timeline: '4 Months',
+                teamSize: 2,
+                teamExpertise: '2 Backend Developers (focused on security & performance)',
+                projectManager: { name: 'Michael Rodriguez', expertise: 'Agile Development, API Governance' }
+            },
+            {
+                id: 'p4',
+                title: 'Smart Queue Management System (QMS)',
+                category: 'IT Infrastructure',
+                subCategories: ['Smart Technology', 'Automation & AI', 'IT Support'],
+                description: 'Designed and installed a smart queue management system for a major retail bank across 50 branches. The system uses AI to predict wait times and automatically allocate customers to the correct service agent.',
+                outcome: 'The implementation reduced average customer wait times by **30%** and improved branch operational efficiency by 15%.',
+                techStack: ['Custom POS Hardware', 'Raspberry Pi/Edge Computing', 'Python/ML Algorithms', 'LAN/WAN'],
+                timeline: '9 Months (Pilot to Rollout)',
+                teamSize: 7,
+                teamExpertise: '2 Hardware Engineers, 3 Software/ML Developers, 2 Onsite Support Specialists',
+                projectManager: { name: 'Jessica Lee', expertise: 'Smart Technology Integration, Logistics Management' }
+            },
+            {
+                id: 'p5',
+                title: '12-Month Multi-Channel Digital Strategy',
+                category: 'Marketing & Creative Studio',
+                subCategories: ['Digital Marketing', 'Advertising Campaigns', 'Content Management'],
+                description: 'Full-service digital campaign planning and execution for a new product launch. This included developing an SEO strategy, managing paid media (Google Ads, Social), and creating weekly content assets.',
+                outcome: 'The campaign achieved a **250% Return on Ad Spend (ROAS)** over the 12-month period and increased organic traffic by 180%.',
+                techStack: ['Google Analytics', 'HubSpot', 'Adobe Creative Suite', 'SEO Tools'],
+                timeline: '12 Months (Ongoing Retainer)',
+                teamSize: 4,
+                teamExpertise: '1 Digital Strategist, 1 Graphic Designer, 1 Content Writer, 1 Media Buyer',
+                projectManager: { name: 'David Kim', expertise: 'Performance Marketing, Brand Strategy' }
+            },
+            {
+                id: 'p6',
+                title: 'Corporate Rebrand & Content Overhaul',
+                category: 'Marketing & Creative Studio',
+                subCategories: ['Graphic Design', 'Multimedia Production', 'Content Management'],
+                description: 'A complete refresh of a long-standing financial firm\'s visual identity. This involved logo redesign, new brand guidelines, photography/video shoots, and the creation of over 50 foundational marketing documents.',
+                outcome: 'Successfully modernized the brand image, increased employee adoption of brand guidelines by 95%, and improved customer engagement rates on social media by 40%.',
+                techStack: ['Adobe Illustrator', 'Premier Pro', 'Figma', 'Brand Management Software'],
+                timeline: '5 Months',
+                teamSize: 3,
+                teamExpertise: '1 Lead Designer, 1 Content Strategist, 1 Multimedia Producer',
+                projectManager: { name: 'David Kim', expertise: 'Performance Marketing, Brand Strategy' }
+            },
+            {
+                id: 'p7',
+                title: 'Secure Blockchain Ledger Implementation',
+                category: 'Software Development',
+                subCategories: ['Blockchain & Web3', 'API Development', 'Database Management'],
+                description: 'Developed a permissioned private blockchain ledger for supply chain transparency. The system ensures immutable record-keeping and integrates with existing ERP systems via a custom API gateway.',
+                outcome: 'Provided end-to-end traceability for sensitive goods, reducing disputes and enabling instant, auditable compliance reports.',
+                techStack: ['Hyperledger Fabric', 'Solidity (for smart contracts)', 'Java', 'REST API'],
+                timeline: '8 Months',
+                teamSize: 4,
+                teamExpertise: '2 Blockchain Developers, 1 Security Engineer, 1 Backend Developer',
+                projectManager: { name: 'Alex Johnson', expertise: 'Solution Architecture, Project Risk Management' }
+            },
+        ];
+
+        const CATEGORIES = [
+            { name: 'Software Development', icon: 'code' },
+            { name: 'IT Infrastructure', icon: 'server' },
+            { name: 'Marketing & Creative Studio', icon: 'palette' }
+        ];
+
+        // --- State and DOM Element Variables ---
+        let activeCategory = 'All';
+        let activeProject = null;
+
+        const listPanel = document.getElementById('project-list-panel-nav-tag');
+        const detailPanel = document.getElementById('project-detail-nav-tag');
+        const backButton = document.getElementById('back-to-list-button-nav-tag');
+
+        // --- Core Functions ---
+
+        /**
+         * Renders the category filter buttons on the left panel.
+         */
+        function renderCategories() {
+            const container = document.getElementById('category-filter-container-nav-tag');
+            container.innerHTML = '';
+
+            // Add 'All' category first
+            const allButton = createCategoryButton('All', 'list-check');
+            container.appendChild(allButton);
+
+            CATEGORIES.forEach(cat => {
+                const button = createCategoryButton(cat.name, cat.icon);
+                container.appendChild(button);
             });
-            
-            // Project modal functionality
-            const modal = document.getElementById('project-modal');
-            const closeModal = document.querySelector('.close-modal');
-            const viewProjectButtons = document.querySelectorAll('.view-project');
-            const modalTitle = document.getElementById('modal-project-title');
-            const modalPreview = document.getElementById('modal-project-preview');
-            const modalDescription = document.getElementById('modal-project-description');
-            const modalLink = document.getElementById('modal-project-link');
-            
-            // Project data for modal
-            const projectData = {
-                'nexus-retail': {
-                    title: 'Nexus Retail Platform',
-                    description: 'A comprehensive e-commerce solution with inventory management, payment processing, and customer analytics. Built for a retail chain with 50+ locations to streamline their online and in-store operations.',
-                    preview: 'E-commerce Platform Preview',
-                    link: 'https://example.com/nexus-retail'
-                },
-                'finance-migration': {
-                    title: 'Global Finance Cloud Migration',
-                    description: 'Migrated a financial services company\'s entire infrastructure to AWS, implementing security protocols and disaster recovery solutions. The project improved scalability and reduced operational costs by 40%.',
-                    preview: 'Cloud Migration Dashboard Preview',
-                    link: 'https://example.com/finance-dashboard'
-                },
-                'artchain': {
-                    title: 'ArtChain NFT Marketplace',
-                    description: 'A decentralized marketplace for digital art using blockchain technology to verify authenticity and ownership of digital assets. The platform enables artists to monetize their work through smart contracts.',
-                    preview: 'NFT Marketplace Preview',
-                    link: 'https://example.com/artchain'
-                },
-                'techlaunch': {
-                    title: 'TechLaunch 2023 Campaign',
-                    description: 'A comprehensive digital marketing campaign for a tech product launch, including social media, content creation, and targeted advertising. The campaign generated over 50,000 leads and increased brand awareness by 200%.',
-                    preview: 'Marketing Campaign Preview',
-                    link: 'https://example.com/techlaunch'
-                },
-                'healthtrack': {
-                    title: 'HealthTrack Pro Mobile App',
-                    description: 'A cross-platform mobile application for health monitoring with real-time data sync, medication reminders, and telehealth integration. The app helps users track their health metrics and connect with healthcare providers.',
-                    preview: 'Mobile App Preview',
-                    link: 'https://example.com/healthtrack'
+
+            // Ensure 'All' is active on load
+            document.querySelector(`[data-category="All"]`).classList.add('bg-blue-main', 'text-white', 'shadow-md');
+            // Wait for Lucide icons to process
+            lucide.createIcons();
+        }
+
+        /**
+         * Creates a category button element.
+         */
+        function createCategoryButton(name, icon) {
+            const button = document.createElement('button');
+            // Updated classes to use custom color mapping and rounded-sm
+            button.className = 'category-button w-full text-left p-3 rounded-sm font-semibold text-dark-text hover:bg-blue-main hover:text-white transition duration-150 flex items-center bg-custom-light';
+            button.setAttribute('data-category', name);
+            button.innerHTML = `<i data-lucide="${icon}" class="w-4 h-4 mr-2"></i> ${name}`;
+            button.onclick = () => filterProjects(name);
+            return button;
+        }
+
+        /**
+         * Filters the project list based on the selected category and updates the UI.
+         */
+        function filterProjects(category) {
+            activeCategory = category;
+
+            // Update button styles
+            document.querySelectorAll('.category-button').forEach(btn => {
+                btn.classList.remove('bg-blue-main', 'text-white', 'shadow-md');
+                btn.classList.add('bg-custom-light', 'text-dark-text');
+            });
+
+            const activeBtn = document.querySelector(`[data-category="${category}"]`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-custom-light', 'text-dark-text');
+                activeBtn.classList.add('bg-blue-main', 'text-white', 'shadow-md');
+            }
+
+            // Update main list header
+            document.getElementById('current-category-name-nav-tag').textContent = category === 'All' ? '(Showing All)' : `(${category})`;
+
+            const filteredProjects = PROJECTS.filter(p => category === 'All' || p.category === category);
+            renderProjectList(filteredProjects);
+        }
+
+        /**
+         * Renders the scrollable list of projects.
+         */
+        function renderProjectList(projects) {
+            const listContainer = document.getElementById('project-list-nav-tag');
+            listContainer.innerHTML = '';
+
+            if (projects.length === 0) {
+                listContainer.innerHTML = '<p class="p-6 text-gray-500 text-center">No projects found in this category.</p>';
+                return;
+            }
+
+            projects.forEach(project => {
+                const item = document.createElement('div');
+                item.id = `list-item-${project.id}-nav-tag`;
+                // Uses standard Tailwind hover/cursor classes
+                item.className = 'project-list-item p-4 hover:bg-gray-100 cursor-pointer transition duration-150';
+                item.setAttribute('data-project-id', project.id);
+                item.onclick = () => showProjectDetail(project.id);
+
+                item.innerHTML = `
+                    <p class="text-lg font-semibold text-dark-text">${project.title}</p>
+                    <p class="text-sm text-blue-main font-medium mt-1">${project.category}</p>
+                    <p class="text-sm text-gray-500 mt-1 line-clamp-2">${project.description.substring(0, 100)}...</p>
+                `;
+                listContainer.appendChild(item);
+            });
+
+            // Re-select the first project in the new list, or clear details
+            if (projects.length > 0) {
+                showProjectDetail(projects[0].id);
+            } else {
+                renderEmptyDetail();
+            }
+        }
+
+        /**
+         * Finds a project by ID and displays its details.
+         */
+        function showProjectDetail(projectId) {
+            const project = PROJECTS.find(p => p.id === projectId);
+
+            if (!project) {
+                console.error("Project not found:", projectId);
+                return;
+            }
+
+            activeProject = projectId;
+
+            // Highlight the active item in the list
+            document.querySelectorAll('.project-list-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            const activeItem = document.getElementById(`list-item-${projectId}-nav-tag`);
+            if (activeItem) {
+                activeItem.classList.add('active'); // Uses the .active CSS class defined in the <style> block
+            }
+
+            // Render the details
+            const detailContent = document.getElementById('detail-content-nav-tag');
+
+            const subCatHtml = project.subCategories.map(cat =>
+                // Uses the explicit bg-blue-main-10 class for the tag background
+                `<span class="inline-block bg-blue-main-10 text-blue-main text-xs font-semibold px-3 py-1 rounded-sm">${cat}</span>`
+            ).join('');
+
+            const techStackHtml = project.techStack.map(tech =>
+                // Uses custom border-custom-light for a light grey background
+                `<span class="inline-block bg-custom-light text-dark-text/80 text-sm px-3 py-1 rounded-sm mr-2 mb-2">${tech}</span>`
+            ).join('');
+
+            detailContent.innerHTML = `
+                <h2 class="text-3xl font-extrabold text-dark-text">${project.title}</h2>
+                <div class="mt-2 mb-4">
+                    ${subCatHtml}
+                </div>
+                
+                <p class="text-sm font-medium text-gray-500 border-b border-custom-light pb-2 mb-4">${project.category} Case Study</p>
+
+                <div class="space-y-8">
+                    
+                    <!-- Project Meta Information (Timeline and Team) -->
+                    <div class="grid grid-cols-2 gap-4 text-sm font-medium">
+                        <div>
+                            <p class="text-gray-500 flex items-center mb-1"><i data-lucide="calendar" class="w-4 h-4 mr-2 text-blue-main"></i> Timeline</p>
+                            <p class="text-dark-text font-semibold">${project.timeline}</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500 flex items-center mb-1"><i data-lucide="users" class="w-4 h-4 mr-2 text-blue-main"></i> Team Size</p>
+                            <p class="text-dark-text font-semibold">${project.teamSize} members</p>
+                        </div>
+                        <div class="col-span-2">
+                            <p class="text-gray-500 flex items-center mb-1"><i data-lucide="monitor-check" class="w-4 h-4 mr-2 text-blue-main"></i> Team Expertise</p>
+                            <p class="text-dark-text text-sm">${project.teamExpertise}</p>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-custom-light pt-6">
+                        <h3 class="text-xl font-bold text-dark-text flex items-center"><i data-lucide="file-text" class="w-5 h-5 mr-2 text-blue-main"></i> Project Summary</h3>
+                        <p class="text-gray-600 mt-2 leading-relaxed">${project.description}</p>
+                    </div>
+
+                    <!-- Key Outcome Section -->
+                    <div class="bg-custom-light border-l-4 border-blue-main p-4 rounded-sm shadow-sm">
+                        <h3 class="text-xl font-bold text-dark-text flex items-center"><i data-lucide="trending-up" class="w-5 h-5 mr-2 text-blue-main"></i> Key Outcome</h3>
+                        <p class="text-dark-text mt-2 font-medium">${project.outcome}</p>
+                    </div>
+                    
+                    <!-- Project Manager Section -->
+                    <div class="border-t border-custom-light pt-6">
+                        <h3 class="text-xl font-bold text-dark-text flex items-center"><i data-lucide="user-check" class="w-5 h-5 mr-2 text-blue-main"></i> Project Manager</h3>
+                        <div class="mt-3 p-3 bg-custom-light rounded-sm">
+                            <p class="font-bold text-dark-text">${project.projectManager.name}</p>
+                            <p class="text-sm text-gray-600 mt-1">${project.projectManager.expertise}</p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-bold text-dark-text flex items-center"><i data-lucide="bolt" class="w-5 h-5 mr-2 text-blue-main"></i> Technologies Used</h3>
+                        <div class="mt-3">
+                            ${techStackHtml || '<p class="text-gray-500">N/A</p>'}
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-custom-light">
+                        <a href="#" class="inline-flex items-center text-blue-main hover:text-dark-text font-semibold transition duration-150">
+                            View Full Case Study <i data-lucide="arrow-right" class="w-4 h-4 ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+
+            // Handle mobile view transition
+            if (window.innerWidth < 1024) {
+                showDetail();
+            }
+
+            // Wait for Lucide icons to process
+            lucide.createIcons();
+            // Scroll detail panel to top
+            detailContent.closest('.custom-scroll').scrollTop = 0;
+        }
+
+        /**
+         * Renders the initial empty state of the detail panel.
+         */
+        function renderEmptyDetail() {
+            const detailContent = document.getElementById('detail-content-nav-tag');
+            detailContent.innerHTML = `
+                <div class="text-center py-20 text-gray-400">
+                    <i data-lucide="info" class="w-10 h-10 mx-auto mb-3"></i>
+                    <p class="text-lg font-semibold">Select a project from the list to view its full details.</p>
+                    <p class="text-sm mt-1">This panel will update dynamically with the case study.</p>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // --- Mobile View Management Functions ---
+
+        /**
+         * Mobile function: Hides the list and shows the detail.
+         */
+        function showDetail() {
+            listPanel.style.display = 'none';
+            detailPanel.style.display = 'block';
+            backButton.classList.remove('hidden');
+            backButton.classList.add('flex');
+        }
+
+        /**
+         * Mobile function: Shows the list and hides the detail.
+         */
+        function showList() {
+            listPanel.style.display = 'block';
+            detailPanel.style.display = 'none';
+            backButton.classList.remove('flex');
+            backButton.classList.add('hidden');
+            // If the user navigates back to the list, scroll the list to the active item
+            if (activeProject) {
+                const activeItem = document.getElementById(`list-item-${activeProject}-nav-tag`);
+                activeItem?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+
+        // --- Initialization ---
+        window.onload = () => {
+            renderCategories();
+            filterProjects('All'); // Initial load of all projects
+
+            // Initial mobile check to set display state
+            if (window.innerWidth < 1024) {
+                detailPanel.style.display = 'none';
+            }
+        };
+
+        // Resize observer to manage mobile view state (ensures layout handles device rotation/resizing)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 1024) {
+                // Desktop view: ensure both panels are visible
+                listPanel.style.display = 'block';
+                detailPanel.style.display = 'block';
+                backButton.classList.add('hidden');
+            } else {
+                // Mobile view: if a project is selected, show detail; otherwise, show list
+                if (activeProject) {
+                    showDetail();
+                } else {
+                    showList();
                 }
-            };
-            
-            // Open modal when view project button is clicked
-            viewProjectButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const projectId = button.getAttribute('data-project');
-                    const project = projectData[projectId];
-                    
-                    if (project) {
-                        modalTitle.textContent = project.title;
-                        modalPreview.textContent = project.preview;
-                        modalDescription.textContent = project.description;
-                        modalLink.href = project.link;
-                        
-                        modal.style.display = 'flex';
-                    }
-                });
-            });
-            
-            // Close modal
-            closeModal.addEventListener('click', () => {
-                modal.style.display = 'none';
-            });
-            
-            // Close modal when clicking outside
-            window.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                }
-            });
+            }
         });
+
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

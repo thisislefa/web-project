@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Work - Project Portfolio</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background-color: #f8fafc;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero-section {
+            background-color: #07091d;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(30, 144, 255, 0.2) 0%, transparent 60%);
+            box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 0 0 16px 16px;
+            padding: 80px 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-title{
+            font-size: 7rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 60px;
+            }
+        }
+
+        .hero-subtitle {
+            font-size: 40px;
+            font-weight: 600;
+            color: #a3d5ff;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .hero-subtitle {
+                font-size: 24px;
+            }
+        }
+
+        .hero-button {
+            display: inline-block;
+            border: 1px solid white;
+            color: #fff;
+            padding: 7px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            
+        }
+
+        .hero-button:hover {
+            background-color: #e5e5e514;
+        }
+
+        /* ===== INTRO SECTION ===== */
+        .intro-section {
+            background-color: #ffffff;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 60px 20px;
+        }
+
+        .intro-container {
+            max-width: 1200px;
+            margin: 5rem auto;
+        }
+
+        .intro-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .intro-grid {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        .intro-heading {
+            font-size: 60px;
+            font-weight: 600;
+            color: #1a202c;
+            line-height: 1.2;
+        }
+
+        .intro-content {
+            color: #4b5563;
+            font-size: 25px;
+            font-weight: 600;
+            line-height: 1.8;
+        }
+
+        .intro-content p {
+            margin-bottom: 16px;
+        }
+
+        .intro-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ===== MAIN LAYOUT ===== */
+        .main-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .main-grid {
+            display: grid;
+            gap: 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .main-grid {
+                grid-template-columns: 1fr 3fr;
+            }
+        }
+
+        /* ===== SIDEBAR (FILTERS) ===== */
+        .sidebar {
+            padding-top: 10px;
+            position: sticky;
+            overflow-y: auto;
+            top: 10px;
+        }
+
+        @media (min-width: 1024px) {
+            .sidebar {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                overflow-y: auto;
+                padding-right: 30px;
+            }
+        }
+
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
+        .filters-list {
+            list-style: none;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        @media (min-width: 1024px) {
+            .filters-list {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        .filter-button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 1px;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            background-color: transparent;
+            color: #4b5563;
+            white-space: nowrap;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            text-align: left;
+        }
+
+        .filter-button:hover {
+            background-color: #f1f5f9;
+        }
+
+        .filter-button.active {
+            background-color: #1c4587;
+            color: white;
+        }
+
+        .service-focus {
+            font-size: 12px;
+            color: #9ca3af;
+            padding-top: 16px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .service-focus-title {
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        /* ===== PROJECTS SECTION ===== */
+        .projects-section {
+            flex: 1;
+        }
+
+        .section-heading {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #1a202c;
+        }
+
+        .section-description {
+            color: #4b5563;
+            margin-bottom: 40px;
+            font-size: 30px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        /* ===== PROJECT TABLE ===== */
+        .table-header {
+            display: none;
+            grid-template-columns: 1.5fr 1.2fr 0.8fr 0.4fr 0.6fr;
+            gap: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #cbd5e1;
+            font-size: 12px;
+            font-weight: 600;
+            
+            color: #5b6067;
+            margin-bottom: 10px;
+        }
+
+        @media (min-width: 768px) {
+            .table-header {
+                display: grid;
+            }
+        }
+
+        .table-header-cell {
+            text-align: left;
+        }
+
+        .table-header-cell.text-center {
+            text-align: center;
+        }
+
+        .table-header-cell.text-right {
+            text-align: right;
+        }
+
+        /* ===== PROJECT ROW ===== */
+       
+
+        .project-row {
+            display: grid;
+            gap: 16px;
+            padding: 16px 8px;
+            border-bottom: 1px solid #e5e7eb;
+            transition: background-color 0.2s ease;
+            cursor: pointer;
+        }
+
+        @media (min-width: 768px) {
+            .project-row {
+                grid-template-columns: 1.5fr 1.2fr 0.8fr 0.4fr 0.6fr;
+                padding: 16px 0;
+            }
+        }
+
+        .project-row:hover {
+            background-color: #f1f5f9;
+        }
+
+        @media (min-width: 768px) {
+            .project-row:hover {
+                background-color: transparent;
+            }
+        }
+
+        .project-name {
+            font-weight: 600;
+            color: #1c4587;
+            grid-column: 1;
+        }
+
+        .project-service {
+            font-size: 16px;
+            font-weight: 600;
+            color: #4b5563;
+            grid-column: 1;
+            margin-top: -8px;
+        }
+
+        @media (min-width: 768px) {
+            .project-service {
+                grid-column: 2;
+                margin-top: 0;
+            }
+        }
+
+        .project-tech {
+            font-size: 16px;
+            font-weight: 600;
+            color: #9ca3af;
+        }
+
+        .project-team {
+            text-align: right;
+            font-size: 16px;
+            font-weight: 600;
+            color: #4b5563;
+            grid-column: 2;
+        }
+
+        @media (min-width: 768px) {
+            .project-team {
+                grid-column: 4;
+                text-align: center;
+            }
+        }
+
+        .project-date {
+            text-align: right;
+            font-size: 16px;
+            font-weight: 600;
+            color: #4b5563;
+            grid-column: 2;
+            order: 5;
+        }
+
+        @media (min-width: 768px) {
+            .project-date {
+                grid-column: 5;
+                order: initial;
+            }
+        }
+
+        .project-team-label,
+        .project-date-label {
+            display: inline;
+            color: #9ca3af;
+            font-weight: 500;
+            margin-right: 6px;
+        }
+
+        @media (min-width: 768px) {
+            .project-team-label,
+            .project-date-label {
+                display: none;
+            }
+        }
+
+        /* ===== EMPTY STATE ===== */
+        .empty-state {
+            padding: 40px 20px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        .loading-state {
+            padding: 40px 20px;
+            text-align: center;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="hero-section">
+        <div class="hero-container">
+            <h2 class="hero-title">Get the most of your digital<br>presence for your business</h2>
+            <p class="hero-subtitle">Over 10 years of experience in delivering high-quality digital solutions, and experts in various industries.</p>
+            <a href="#projects" class="hero-button">View Our Work</a>
+        </div>
+    </header>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon Image-Text Grid</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Root Variables */
+        :root {
+            --defcon-navy: #06273e;
+            --defcon-blue: #0091ff;
+            --defcon-light-gray: #e5e5e5;
+            --defcon-white: #ffffff;
+            --defcon-black: #000000;
+            --font-family-inter: 'Inter', sans-serif;
+            --border-radius-1px: 12px;
+            --content-max-width: 1100px; /* Adjusted for this section */
+        }
+
+        /* Container for the whole section */
+        .defcon-image-text-section-container {
+            font-family: var(--font-family-inter);
+            background-color: var(--defcon-white); /* White background for this section */
+            padding: 60px 0; /* Vertical padding */
+            width: 100%;
+            margin: 0;
+            text-align: center; /* Center content within */
+            color: var(--defcon-navy); /* Default text color for this section */
+        }
+        
+        /* Inner Wrapper to constrain all content */
+        .defcon-image-text-content-wrapper {
+            max-width: var(--content-max-width);
+            width: 90%; /* Use percentage for responsiveness */
+            margin: 0 auto;
+            text-align: left; /* Align grid content to left */
+        }
+
+        /* --- Image-Text Grid --- */
+        .defcon-content-grid {
+            display: grid;
+            /* Two main rows: Top (Text | Image) and Bottom (Image | Image | Text) */
+            /* Using a flexible 3-column layout for the items */
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 15px; /* Space between grid items */
+            align-items: stretch; /* Stretch items to fill height of cell */
+        }
+
+        /* Grid Item Styling */
+        .defcon-grid-item {
+            background-color: var(--defcon-light-gray); /* Light gray background for text boxes */
+            border-radius: var(--border-radius-1px);
+            overflow: hidden; /* Ensures image corners are rounded if item has padding/border-radius */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+            padding: 0; /* Reset padding for individual control */
+        }
+
+        /* Text Block in Grid Item */
+        .defcon-grid-item-text {
+            padding: 30px; /* Padding for text content */
+            font-size: 1.25rem; /* Larger font for main text */
+            font-weight: 500;
+            line-height: 1.4;
+            color: var(--defcon-navy); /* Dark text on light gray background */
+        }
+
+        /* Image Block in Grid Item */
+        .defcon-grid-item-image {
+            width: auto;
+            height: 40vh;
+            object-fit: cover; /* Cover the area without distortion */
+            display: block; /* Remove extra space below image */
+            border-radius: var(--border-radius-1px); /* Match container radius */
+        }
+
+        /* --- Grid Spanning for Asymmetrical Layout --- */
+        /* Top Left Text */
+        .defcon-item-1-text {
+            grid-column: span 1;
+            background-color: #f4f4f4; /* Keep background white for text box */
+            text-align: left;
+            padding: 30px; /* Apply padding here for text */
+            font-size: 1.8rem; /* Slightly larger for this prominent text */
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--defcon-navy);
+            /* Ensure it stretches vertically in the grid */
+            align-self: stretch;
+            display: flex; /* Use flex to vertically center text */
+            align-items: center; /* Vertically center text */
+        }
+
+        /* Top Right Image - spans 2 columns */
+        .defcon-item-2-image {
+            grid-column: span 2;
+        }
+
+        /* Bottom Left Image - spans 1 column */
+        .defcon-item-3-image {
+            grid-column: span 1;
+        }
+
+        /* Bottom Middle Image - spans 1 column */
+        .defcon-item-4-image {
+            grid-column: span 1;
+        }
+
+        /* Bottom Right Text - spans 1 column */
+        .defcon-item-5-text {
+            grid-column: span 1;
+            background-color: #f4f4f4; /* Keep background white for text box */
+            text-align: left;
+            padding: 30px; /* Apply padding here for text */
+            font-size: 1.8rem; /* Consistent large font */
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--defcon-navy);
+            /* Ensure it stretches vertically in the grid */
+            align-self: stretch;
+            display: flex; /* Use flex to vertically center text */
+            align-items: center; /* Vertically center text */
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 992px) {
+            .defcon-content-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns on medium screens */
+            }
+            /* Reset column spans for all items on medium screens to avoid gaps */
+            .defcon-item-1-text,
+            .defcon-item-2-image,
+            .defcon-item-3-image,
+            .defcon-item-4-image,
+            .defcon-item-5-text {
+                grid-column: span 1;
+            }
+            .defcon-item-1-text,
+            .defcon-item-5-text {
+                font-size: 1.25rem; /* Adjust font size for smaller screens */
+            }
+        }
+
+        @media (max-width: 768px) {
+            .defcon-content-grid {
+                grid-template-columns: 1fr; /* Stack all items on small screens */
+            }
+            .defcon-image-text-content-wrapper {
+                width: 95%; /* More width on small screens */
+            }
+            .defcon-grid-item-text,
+            .defcon-item-1-text,
+            .defcon-item-5-text {
+                padding: 20px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="defcon-image-text-section-container">
+        <div class="defcon-image-text-content-wrapper">
+            <div class="defcon-content-grid">
+
+                <div class="defcon-grid-item defcon-item-1-text">
+                    Seamlessly integrate blockchain & Web3 solutions.
+                </div>
+
+                <div class="defcon-grid-item defcon-item-2-image">
+                    <img src="thumbnails/pexels-altabena-10142683.jpg" alt="Modern IT Workplace" class="defcon-grid-item-image">
+                </div>
+
+                <div class="defcon-grid-item defcon-item-3-image">
+                    <img src="thumbnails/pexels-knownasovan-62693.jpg" alt="Team Collaboration" class="defcon-grid-item-image">
+                </div>
+
+                <div class="defcon-grid-item defcon-item-4-image">
+                    <img src="thumbnails/pexels-dominick-davis.jpg" alt="Mobile App Development" class="defcon-grid-item-image">
+                </div>
+
+                <div class="defcon-grid-item defcon-item-5-text">
+                    Leverage AI & Data Analytics to drive informed decisions.
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Defcon IT Section - Gradient Background</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Root Variables */
+        :root {
+            --defcon-navy: #0b1426;
+            --defcon-blue: #0091ff;
+            --defcon-light-gray: #f4f4f4;
+            --defcon-white: #ffffff;
+            --defcon-black: #000000;
+            --font-family-inter: 'Inter', sans-serif;
+            --border-radius-1px: 12px;
+            /* New Max Width for Inner Content */
+            --content-max-width: 1000px;
+        }
+
+        /* Container for the whole section */
+        .defcon-merchant-section-container {
+            font-family: var(--font-family-inter);
+            color: var(--defcon-white);
+            background: radial-gradient(75.83% 86.4% at 50% 100%, rgb(3, 68, 129) 0%, rgba(3, 68, 129, 0.21) 67.99%, rgba(3, 68, 129, 0.07) 88.86%, rgba(3, 68, 129, 0) 100%), rgb(1, 1, 24);
+            padding: 40px 0;
+            border: none; /* Ensure the gradient is full-width */
+            width: 100%;
+            margin: 0; /* Remove margin */
+            text-align: center;
+        }
+        
+        /* New Wrapper to constrain all content (Title and Cards) */
+        .defcon-content-wrapper {
+            /* === KEY CHANGE 2: Constrain and Center Content === */
+            max-width: var(--content-max-width);
+            width: 90%; /* Use percentage for responsiveness */
+            margin: 0 auto;
+            padding: 40px; /* Padding inside the border */   
+        }
+
+        /* Title styling */
+        .defcon-merchant-section-title {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--defcon-white);
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+        /* --- Asymmetrical Grid (No Change to layout logic) --- */
+        .defcon-asym-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+
+        /* Individual feature card styling */
+        .defcon-asym-feature-card {
+            background-color: #EAEEF4;
+            border-radius: var(--border-radius-1px);
+            padding: 30px;
+            text-align: left; 
+            color: var(--defcon-black);
+            min-height: fit-content;
+            display: flex;
+        }
+        
+        /* Inner Wrapper for vertical alignment */
+        .defcon-card-content-wrapper {
+            display: flex;
+            align-items: center;
+            width: fit-content;
+        }
+        
+        /* Grid Span Utility Classes */
+        .defcon-grid-span-2 {
+            grid-column: span 2;
+        }
+        
+        .defcon-grid-span-1 {
+            grid-column: span 1;
+        }
+
+
+        /* Large number in feature card */
+        .defcon-feature-card-number {
+            font-size: 3.5rem;
+            font-weight: 600;
+            color: var(--defcon-navy);
+            line-height: 1;
+            flex-shrink: 0;
+            margin-right: 15px;
+        }
+        
+        /* Small text next to large number */
+        .defcon-feature-card-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.4;
+            color: #555;
+        }
+        
+        /* Bold text inside the description */
+        .defcon-feature-card-text strong {
+            font-weight: 700;
+            color: var(--defcon-navy);
+        }
+
+        /* Styling for the superscript (1) */
+        .defcon-superscript {
+            vertical-align: super;
+            font-size: 0.7em;
+            margin-left: 2px;
+        }
+
+        /* Legal disclaimer at the bottom */
+        .defcon-legal-disclaimer {
+            font-size: 0.8rem;
+            color: var(--defcon-light-gray);
+            margin-top: 20px;
+        }
+
+        /* --- Responsive Adjustments --- */
+        @media (max-width: 900px) {
+             .defcon-asym-feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .defcon-grid-span-2,
+            .defcon-grid-span-1 {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+             .defcon-asym-feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+             .defcon-content-wrapper {
+                padding: 25px;
+                width: 100%; /* Allow content wrapper to take full width on smallest screens */
+            }
+            
+            .defcon-merchant-section-title {
+                font-size: 2rem;
+            }
+            
+            .defcon-feature-card-number {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+
+<section class="defcon-merchant-section-container">
+    <div class="defcon-content-wrapper">
+        <h2 class="defcon-merchant-section-title">Our Extensive Project Gallery: From Concept to Completion</h2>
+
+        <div class="defcon-asym-feature-grid">
+            
+            <div class="defcon-asym-feature-card defcon-grid-span-2">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">&lt;15</span>
+                    <span class="defcon-feature-card-text">
+                        minute average response time for all critical-level support incidents.
+                    </span>
+                </div>
+            </div>
+
+            <div class="defcon-asym-feature-card defcon-grid-span-1">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">1</span>
+                    <span class="defcon-feature-card-text">
+                        dedicated account manager per client.
+                    </span>
+                </div>
+            </div>
+
+            <div class="defcon-asym-feature-card defcon-grid-span-1">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">120<span class="defcon-superscript">+</span></span>
+                    <span class="defcon-feature-card-text">
+                       successful projectS. 
+                    </span>
+                </div>
+            </div>
+            
+            <div class="defcon-asym-feature-card defcon-grid-span-2">
+                <div class="defcon-card-content-wrapper">
+                    <span class="defcon-feature-card-number">80K<span class="defcon-superscript">+</span></span>
+                    <span class="defcon-feature-card-text">
+                        cyber threats neutralized on our clients' networks.
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="defcon-legal-disclaimer">
+            <span class="defcon-superscript">(1)</span> As per our Enterprise Service Level Agreement (SLA).
+        </p>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- INTRO SECTION -->
+    <section class="intro-section">
+        <div class="intro-container">
+            <div class="intro-grid">
+                <div>
+                    <span style="font-size: 15px; text-transform: uppercase; color: #0091ff; font-weight: 600; letter-spacing: 0.04em;">Our Methodology</span>
+                    <h2 class="intro-heading">How We Build Solutions</h2>
+                </div>
+                <div class="intro-content">
+                    <p>
+                        We combine strategic thinking, creative design, and deep technical expertise that drive growth, collaboration, and measurable impact for our clients. Every project begins with a deep dive into your unique challenges and ends with a robust, scalable, and beautifully crafted solution.
+                    </p>
+                    <p>
+                        Our process ensures seamless integration of design and development, guaranteeing the final product is not only functional but also perfectly aligned with your business objectives.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <main id="projects" class="main-container">
+        <div class="main-grid">
+            
+            <!-- SIDEBAR -->
+            <aside class="sidebar">
+                <h3 class="sidebar-title">Select a Category</h3>
+                
+                <div id="filters-container">
+                    <ul class="filters-list" id="category-filters">
+                        <!-- Filters will be generated here -->
+                    </ul>
+                </div>
+
+                <div class="service-focus">
+                    <p class="service-focus-title">Service Focus</p>
+                    <p>Web Apps, Cloud, Automation, Graphic Design, Web3, E-commerce, Data Center.</p>
+                </div>
+            </aside>
+
+            <!-- PROJECTS CONTENT -->
+            <section class="projects-section">
+                <h2 class="section-heading">Proven Outcomes, Origional Work.</h2>
+                <p class="section-description">Browse our comprehensive track record of client solutions across software, infrastructure, and marketing disciplines.</p>
+
+                <!-- Table Header -->
+                <div class="table-header">
+                    <div class="table-header-cell">Project Name</div>
+                    <div class="table-header-cell">Primary Service</div>
+                    <div class="table-header-cell">Technologies</div>
+                    <div class="table-header-cell text-center">Team Size</div>
+                    <div class="table-header-cell text-right">Completion Date</div>
+                </div>
+
+                <!-- Projects List -->
+                <div id="projects-list" class="projects-list">
+                    <div class="loading-state" id="loading-message">Loading projects...</div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // ===== DATA =====
+        const projectsData = [
+            {
+                id: 1,
+                name: "Q4 Hyper-Growth Digital Marketing Campaign",
+                service: "Digital Marketing & Advertising",
+                technologies: "Google Ads, Meta Business...",
+                team: 4,
+                date: "Dec 1, 2024",
+                category: "Marketing & Creative Studio"
+            },
+            {
+                id: 2,
+                name: "E-Commerce SaaS Platform Relaunch",
+                service: "Web Applicating & E commerce",
+                technologies: "React, Node.js...",
+                team: 7,
+                date: "Oct 15, 2024",
+                category: "Software Development"
+            },
+            {
+                id: 3,
+                name: "E-Comated Cloud Migration to AWS/Azure",
+                service: "Cloud Computing & Automation",
+                technologies: "AWS, Terraform...",
+                team: 6,
+                date: "Aug 20, 2024",
+                category: "IT Infrastructure"
+            },
+            {
+                id: 4,
+                name: "Decentralized NFT Ticketing System",
+                service: "Blockchain & Web3",
+                technologies: "Solidity, Web3.js...",
+                team: 6,
+                date: "May 20, 2024",
+                category: "Software Development"
+            },
+            {
+                id: 5,
+                name: "Integrated Home Automation Hub V2",
+                service: "IoT & Smart Home Solutions",
+                technologies: "Zigbee, Python, MQTT",
+                team: 5,
+                date: "Feb 1, 2024",
+                category: "Smart Technology"
+            },
+            {
+                id: 6,
+                name: "Codex",
+                service: "AI",
+                technologies: "Zigbee, Python, MQTT",
+                team: 1,
+                date: "In Progress",
+                category: "Software Development"
+            }
+        ];
+
+        // ===== STATE =====
+        let currentFilter = "All Projects";
+
+        // ===== UTILITIES =====
+        function getCategories() {
+            const unique = new Set(projectsData.map(p => p.category));
+            return ["All Projects", ...Array.from(unique)];
+        }
+
+        function getFilteredProjects() {
+            if (currentFilter === "All Projects") {
+                return projectsData;
+            }
+            return projectsData.filter(p => p.category === currentFilter);
+        }
+
+        // ===== RENDER FUNCTIONS =====
+        function renderFilterButtons() {
+            const container = document.getElementById("category-filters");
+            const categories = getCategories();
+            
+            container.innerHTML = categories
+                .map(category => {
+                    const isActive = category === currentFilter;
+                    const count = category === "All Projects" 
+                        ? projectsData.length 
+                        : projectsData.filter(p => p.category === category).length;
+                    
+                    return `
+                        <li>
+                            <button 
+                                class="filter-button ${isActive ? "active" : ""}"
+                                data-category="${category}"
+                            >
+                                ${category} (${count})
+                            </button>
+                        </li>
+                    `;
+                })
+                .join("");
+            
+            // Attach event listeners
+            container.querySelectorAll("button").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    currentFilter = e.target.dataset.category;
+                    renderFilterButtons();
+                    renderProjects();
+                });
+            });
+        }
+
+        function createProjectRow(project) {
+            return `
+                <div class="project-row">
+                    <div class="project-name">${project.name}</div>
+                    <div class="project-service">${project.service}</div>
+                    <div class="project-tech">${project.technologies}</div>
+                    <div class="project-team">
+                        <span class="project-team-label">Team:</span>
+                        ${project.team}
+                    </div>
+                    <div class="project-date">
+                        <span class="project-date-label">Completed:</span>
+                        ${project.date}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderProjects() {
+            const container = document.getElementById("projects-list");
+            const filtered = getFilteredProjects();
+            
+            const loadingMsg = document.getElementById("loading-message");
+            if (loadingMsg) loadingMsg.remove();
+            
+            if (filtered.length === 0) {
+                container.innerHTML = '<div class="empty-state">No projects found for this category.</div>';
+                return;
+            }
+            
+            container.innerHTML = filtered.map(createProjectRow).join("");
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener("DOMContentLoaded", () => {
+            renderFilterButtons();
+            renderProjects();
+        });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="dungeon-integration-section">
+  <div class="dungeon-integration-container">
+    <h2 class="dungeon-integration-title">Multiple options for easy integration</h2>
+
+    <div class="dungeon-integration-grid">
+
+      <!-- Card 1 -->
+      <div class="dungeon-card dungeon-card-text">
+        <div class="dungeon-card-inner">
+          <div class="dungeon-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="#0091ff"><g fill="none" stroke="#0091ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><path d="M19.5 5.25c2.071 0 3.75-1.007 3.75-2.25S21.571.75 19.5.75S15.75 1.757 15.75 3s1.679 2.25 3.75 2.25"/><path d="M15.75 3v4.5c0 1.242 1.679 2.25 3.75 2.25s3.75-1.008 3.75-2.25V3M19.5 18.75c2.071 0 3.75-1.007 3.75-2.25s-1.679-2.25-3.75-2.25s-3.75 1.007-3.75 2.25s1.679 2.25 3.75 2.25"/><path d="M15.75 16.5V21c0 1.242 1.679 2.25 3.75 2.25s3.75-1.008 3.75-2.25v-4.5M7.125 18.375a6.375 6.375 0 1 0 0-12.75a6.375 6.375 0 0 0 0 12.75M1.07 14H13M1.07 10H13"/><path d="M5.75 5.774a20.65 20.65 0 0 0 .482 12.539M8.5 5.774a20.5 20.5 0 0 1 .75 5.518a20.5 20.5 0 0 1-1.228 7.02M10 3V1.5h3M10 21v1.5h3"/></g></svg>
+          </div>
+          <h3 class="dungeon-card-heading">Premium-level Software Development</h3>
+          <p class="dungeon-card-description">
+            Seamlessly integrate our platform with popular e-commerce systems such as Shopify, WooCommerce, and more.
+          </p>
+          <a href="#" class="dungeon-card-link">Setup 
+            <span style="align-items: center; display: inline-flex; vertical-align: middle;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#0091ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dungeon-link-icon">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2 (image) -->
+      <div class="dungeon-card dungeon-card-image">
+        <img src="https://plus.unsplash.com/premium_photo-1720287601300-cf423c3d6760?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Plugin integrations">
+      </div>
+
+      <!-- Card 3 (image) -->
+      <div class="dungeon-card dungeon-card-image">
+        <img src="https://plus.unsplash.com/premium_photo-1700681802509-d31a20943657?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="API integration preview">
+      </div>
+
+      <!-- Card 4 -->
+      <div class="dungeon-card dungeon-card-text">
+        <div class="dungeon-card-inner">
+          <div class="dungeon-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 36 36" fill="#0091ff"><g id="clarityControlLunOutlineBadged0" fill="#0091ff"><path d="M8 24.59a25.5 25.5 0 0 0 2.75.59l1.21-1.41a24.13 24.13 0 0 1-4-.83ZM32.09 22H15.46l-5.41 6.31L15.49 34h16.6a2 2 0 0 0 2-2v-8.07a2 2 0 0 0-2-1.93Zm0 10H16.34l-3.59-3.77L16.38 24h15.71v8Z"/><path d="M16.11 27a1 1 0 1 0 1 1a1 1 0 0 0-1-1ZM18 17.54a34.81 34.81 0 0 1-10-1.21V18a40.86 40.86 0 0 0 10 1.16c3.46 0 9.13-.45 12-1.91v3.23h2v-7.26a7.32 7.32 0 0 1-2 .28v1.91c-.91.82-5 2.13-12 2.13Z"/><path d="M6 27.53V10.3c2.9 1.43 8.34 1.88 12 1.88a47.66 47.66 0 0 0 7.09-.52a7.45 7.45 0 0 1-1.51-1.8a47.4 47.4 0 0 1-5.58.32C10.71 10.18 6.31 8.69 6 8c.32-.8 4.72-2.3 12-2.3c1.66 0 3.16.08 4.51.21a7.56 7.56 0 0 1 .29-2c-1.7-.17-3.38-.24-4.8-.24c-5.2 0-14 .9-14 4.25v19.6c0 2 3.17 3.14 6.83 3.72l-2.45-2.56C7 28.28 6.13 27.84 6 27.53Z"/><circle cx="30" cy="6" r="5"/></g></svg>
+          </div>
+          <h3 class="dungeon-card-heading">Dedicated Technical Support</h3>
+          <p class="dungeon-card-description">
+            For deeper customization, integrate directly using our SDKs and just a few lines of code.
+          </p>
+          <a href="#" class="dungeon-card-link">API Documentation
+            <span style="align-items: center; display: inline-flex; vertical-align: middle;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#0091ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="dungeon-link-icon">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="dungeon-card dungeon-card-text">
+        <div class="dungeon-card-inner">
+          <div class="dungeon-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 16 16"><path fill="#0091ff" d="M14.25 2.1a1.25 1.25 0 0 0-1.17-.1L6.91 4.43a1.22 1.22 0 0 1-.46.09H2.5a1.25 1.25 0 0 0-1.25 1.25v.1H0v3h1.25V9a1.25 1.25 0 0 0 1.25 1.22L4 13.4a1.26 1.26 0 0 0 1.13.72h.63A1.25 1.25 0 0 0 7 12.87v-2.53l6.08 2.43a1.27 1.27 0 0 0 .47.09a1.29 1.29 0 0 0 .7-.22a1.25 1.25 0 0 0 .55-1V3.13a1.25 1.25 0 0 0-.55-1.03zm-8.5 3.67V9H2.5V5.77zm0 7.1h-.63l-1.23-2.65h1.86zm1.62-3.72A2.29 2.29 0 0 0 7 9V5.7a2.26 2.26 0 0 0 .37-.11l6.18-2.46v8.48zm7.46-3.03v2.5a1.25 1.25 0 0 0 0-2.5z"/></svg>
+          </div>
+          <h3 class="dungeon-card-heading">Data-driven Digital Marketing</h3>
+          <p class="dungeon-card-description">
+            No problem — still benefit from automatic invoicing, affiliate tools, and one-time card payments.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 6 (image) -->
+      <div class="dungeon-card dungeon-card-image">
+        <img src="https://plus.unsplash.com/premium_photo-1720287601013-69bed792f481?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170" alt="Payment process">
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .dungeon-integration-section {
+    width: 100%;
+    padding: 80px 0;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    font-family: "Inter", sans-serif;
+  }
+
+  .dungeon-integration-container {
+    width: 1000px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .dungeon-integration-title {
+    font-size: 3rem;
+    font-weight: 600;
+    text-align: center;
+    color: #0a0a0a;
+  }
+
+  .dungeon-integration-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .dungeon-card {
+    background: #f8f9fb;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+
+  .dungeon-card:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+  }
+
+  .dungeon-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .dungeon-card-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+  }
+
+  .dungeon-card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .dungeon-card-icon {
+    font-size: 24px;
+    color: #0052ff;
+  }
+
+  .dungeon-card-heading {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #0a0a0a;
+    line-height: 1.2;
+  }
+
+  .dungeon-card-description {
+    color: #5f6b7a;
+    line-height: 1.6;
+    font-size: 0.95rem;
+  }
+
+  .dungeon-card-link {
+    color: #0052ff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.3s ease;
+  }
+
+  .dungeon-card-link:hover {
+    color: #002b8e;
+  }
+
+  /* Asymmetry: mix text and images in a pattern */
+  .dungeon-card:nth-child(1) { grid-column: 1; grid-row: 1; }
+  .dungeon-card:nth-child(2) { grid-column: 2; grid-row: 1; }
+  .dungeon-card:nth-child(3) { grid-column: 1; grid-row: 2; }
+  .dungeon-card:nth-child(4) { grid-column: 2; grid-row: 2; }
+  .dungeon-card:nth-child(5) { grid-column: 1; grid-row: 3; }
+  .dungeon-card:nth-child(6) { grid-column: 2; grid-row: 3; }
+
+  @media (max-width: 900px) {
+    .dungeon-integration-container {
+      width: 90%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .dungeon-integration-grid {
+      grid-template-columns: 1fr;
+    }
+    .dungeon-card {
+      min-height: 240px;
+    }
+  }
+</style>
