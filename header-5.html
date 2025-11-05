@@ -1,3 +1,4 @@
+
 <style>
         /*
         =============================================
@@ -18,7 +19,7 @@
             
             /* Sizing */
             --header-height: 55px;
-            --content-max-width: 1500px;
+            --content-max-width-fg: 1500px;
         }
 
         body {
@@ -57,7 +58,7 @@
         }
 
         .custom-header-container {
-            max-width: var(--content-max-width);
+            max-width: var(--content-max-width-fg);
             width: 100%;
             margin: 0 auto;
             padding: 0 40px;
@@ -110,11 +111,10 @@
             display: flex;
             font-size: 14px;
             align-items: center;
-            transition: color 0s ease;
         }
 
         .custom-nav-link:hover {
-            color: var(--color-accent);
+            color: #a0a9be;
         }
         
         /* Action Buttons Wrapper - NEW */
@@ -266,7 +266,7 @@
 
         .mega-menu-panel {
             display: none;
-            max-width: var(--content-max-width);
+            max-width: var(--content-max-width-fg);
             width: 100%; /* Ensure it spans the max width */
             margin: 0 auto;
             padding: 20px 40px 40px 40px; /* Reduced top padding */
@@ -319,10 +319,10 @@
             border-radius: 0; /* Remove border radius */
             transition: color 0s;
             position: relative;
-            margin: 1px 0; /* Tighter vertical spacing */
+            margin: 5px 0; /* Tighter vertical spacing */
             padding: 2px 0; /* Minimal padding */
             letter-spacing: -0.03em;
-            font-size: 18px;
+            font-size: 19px;
             font-weight: 600; /* Regular weight for links */
             color: var(--color-text-light); /* Make column headers light/white */
         }
@@ -352,20 +352,10 @@
         =============================================
         */
         
-        /* Dropdown Icon - simple CSS triangle */
-        .dropdown-indicator {
-            width: 0;
-            height: 0;
-            margin-left: 8px;
-            border-left: 4px solid transparent;
-            border-right: 4px solid transparent;
-            border-top: 5px solid var(--color-text-light);
-            transition: transform 0.3s, border-top-color 0.3s;
-        }
-
-        .custom-nav-link.active .dropdown-indicator {
-             transform: rotate(180deg);
-             border-top-color: var(--color-accent);
+        /* NEW: SVG Icon for mobile dropdown */
+        .mobile-dropdown-icon {
+            display: none; /* Hide on desktop */
+            transition: transform 0.3s ease;
         }
 
         /* Mobile Toggle */
@@ -379,6 +369,12 @@
             padding: 0;
             position: relative;
             z-index: 1010;
+        }
+
+        /* NEW: SVG Icon for mobile dropdown */
+        .mobile-dropdown-icon {
+            display: none; /* Hide on desktop */
+            transition: transform 0.3s ease;
         }
 
         .mobile-toggle span {
@@ -453,12 +449,26 @@
                 padding: 15px 0;
                 font-size: 1.1rem;
                 width: 100%;
+                display: flex; /* Use flex to position icon */
+                justify-content: space-between; /* Pushes text left, icon right */
+                align-items: center;
+            }
+            
+            /* Show and style mobile icon */
+            .mobile-dropdown-icon {
+                display: inline-block; /* Show on mobile */
+            }
+            
+            /* Rotate icon when the parent menu item is active */
+            .custom-nav-item--has-megamenu.active .custom-nav-link .mobile-dropdown-icon {
+                transform: rotate(180deg);
             }
             
             /* Remove underline effect on mobile */
             .custom-nav-link::after {
                 display: none;
             }
+
             
             /* Mobile Action Buttons */
             .header-action-buttons {
@@ -526,6 +536,11 @@
                 background-color: var(--color-menu-bg);
                 border-top: none;
             }
+
+            .mega-menu-link-title {
+              padding: 0;
+              border-bottom: none;
+            }
             
             .custom-nav-item--has-megamenu.active .mega-menu-container {
                 max-height: 2000px;
@@ -533,12 +548,14 @@
             }
             
             .mega-menu-panel {
-                padding: 15px 20px;
+                padding: 15px 0; /* Align content with parent link */
+                display: block; /* Make panel visible by default inside mobile menu */
             }
 
             .megamenu-3-column-grid {
                 grid-template-columns: 1fr;
                 gap: 20px;
+                padding-left: 0; /* Reset desktop padding */
             }
             
             .menu-group-card {
@@ -546,11 +563,17 @@
             }
             
             .menu-group-card h3 {
-                margin-top: 5px;
+                margin-top: 23px;
             }
             
             .mega-menu-group-list a {
-                margin: 15px 0;
+                margin: 10px 0;
+            }
+
+            .mega-menu-group-list li {
+                
+                border: none;
+                
             }
             
             .mega-menu-group-list a:hover {
@@ -575,14 +598,18 @@
             <nav class="custom-main-nav">
                 <ul class="custom-nav-list">
                     <li>
-                        <a href="#" class="custom-nav-link">Businesses</a>
+                        <a href="pricing.html" class="custom-nav-link">Pricing
+                        </a>
                     </li>
                     <li>
-                        <a href="#" class="custom-nav-link">Projects</a>
+                        <a href="projects.html" class="custom-nav-link">Projects</a>
                     </li>
                     <li class="custom-nav-item--has-megamenu">
                         <a href="#" class="custom-nav-link" data-megamenu-trigger="services">
                             Solutions
+                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </a>
                         <div class="mega-menu-container">
                             <div class="mega-menu-panel" data-megamenu-panel="services">
@@ -697,6 +724,9 @@
                     <li class="custom-nav-item--has-megamenu">
                         <a href="#" class="custom-nav-link" data-megamenu-trigger="discover">
                             Discover
+                            <svg class="mobile-dropdown-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                              <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </a>
                         <div class="mega-menu-container">
                             <div class="mega-menu-panel" data-megamenu-panel="discover">
@@ -829,7 +859,7 @@
             <div class="megamenu-3-column-grid">
                 
                 <div class="menu-group-card">
-                    <h3>Software Development</h3>
+                    <h3>Software Engineering</h3>
                     <ul class="mega-menu-group-list">
                         <li>
                             <a href="#">
@@ -848,7 +878,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="mega-menu-link-title">API Development</span>
+                                <span class="mega-menu-link-title">API & Microservices Architecture</span>
                                 </a>
                         </li>
                         <li>
@@ -863,7 +893,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="mega-menu-link-title">Database Management</span>
+                                <span class="mega-menu-link-title">Database Engineering & Management</span>
                                 </a>
                         </li>
                     </ul>
@@ -874,7 +904,7 @@
                     <ul class="mega-menu-group-list">
                         <li>
                             <a href="#">
-                                <span class="mega-menu-link-title">IT Support & Infrastructure</span>
+                                <span class="mega-menu-link-title">Managed IT Support & Helpdesk</span>
                                 </a>
                         </li>
                         <li>
@@ -889,7 +919,7 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="mega-menu-link-title">Data Center Management</span>
+                                <span class="mega-menu-link-title">Data Center & Storage</span>
                                 </a>
                         </li>
                         <li>
@@ -940,17 +970,17 @@
                     <h3>Hyperion</h3>
                     <ul class="mega-menu-group-list">
                         <li>
-                            <a href="#">
+                            <a href="about.html">
                                 <span class="mega-menu-link-title">About Us</span>
                                 </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="roadmap.html">
                                 <span class="mega-menu-link-title">Roadmap</span>
                                 </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="innovations.html">
                                 <span class="mega-menu-link-title">Innovations</span>
                                 </a>
                         </li>
@@ -960,22 +990,22 @@
                                 </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="events.html">
                                 <span class="mega-menu-link-title">Events</span>
                                 </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="careers.html">
                                 <span class="mega-menu-link-title">Careers</span>
                                 </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="partners.html">
                                 <span class="mega-menu-link-title">Partners</span>
                                 </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="licenses-and-registrations.html">
                                 <span class="mega-menu-link-title">Licenses & Registrations</span>
                                 </a>
                         </li>
@@ -991,7 +1021,7 @@
                                 </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="ebooks.html">
                                 <span class="mega-menu-link-title">eBooks</span>
                                 </a>
                         </li>
@@ -1255,3 +1285,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+
+   
+
+
+
+

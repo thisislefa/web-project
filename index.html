@@ -328,13 +328,6 @@
 
 
 
-
-
-
-
-
-
-
 <style>
         /*
         =============================================
@@ -355,7 +348,7 @@
             
             /* Sizing */
             --header-height: 55px;
-            --content-max-width: 1500px;
+            --content-max-width-fg: 1500px;
         }
 
         body {
@@ -394,7 +387,7 @@
         }
 
         .custom-header-container {
-            max-width: var(--content-max-width);
+            max-width: var(--content-max-width-fg);
             width: 100%;
             margin: 0 auto;
             padding: 0 40px;
@@ -447,11 +440,23 @@
             display: flex;
             font-size: 14px;
             align-items: center;
-            transition: color 0s ease;
         }
 
         .custom-nav-link:hover {
-            color: var(--color-accent);
+            color: #a0a9be;
+        }
+        
+        /* NEW - Icon for desktop links like Pricing/Projects */
+        .desktop-link-icon {
+            width: 14px;
+            height: 14px;
+            margin-left: 6px;
+            color: var(--color-text-muted);
+            stroke-width: 2;
+        }
+        
+        .custom-nav-link:hover .desktop-link-icon {
+            color: #a0a9be; /* Match the link hover color */
         }
         
         /* Action Buttons Wrapper - NEW */
@@ -603,7 +608,7 @@
 
         .mega-menu-panel {
             display: none;
-            max-width: var(--content-max-width);
+            max-width: var(--content-max-width-fg);
             width: 100%; /* Ensure it spans the max width */
             margin: 0 auto;
             padding: 20px 40px 40px 40px; /* Reduced top padding */
@@ -640,8 +645,28 @@
             text-transform: none;
             letter-spacing: 0.1px;
             cursor: default; /* Not a clickable element */
-            display: block; /* Don't need flex for an icon */
+            
+            /* MODIFIED */
+            display: flex; /* Use flex to align icon */
+            align-items: center;
+            
              color: var(--color-text-muted);
+        }
+        
+        /* NEW - Icon for mega menu group headings */
+        .menu-group-icon {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px; /* Space between icon and text */
+            color: var(--color-accent); /* Use the accent color */
+            stroke-width: 2;
+        }
+        
+        /* NEW - Image Icon for mega menu group headings */
+        .menu-group-img-icon {
+            width: auto;
+            height: 50px;
+            margin-right: 8px; /* Space between icon and text */
         }
         
         .mega-menu-group-list {
@@ -791,6 +816,11 @@
                 align-items: center;
             }
             
+            /* NEW - Hide desktop-only icons on mobile */
+            .desktop-link-icon {
+                display: none;
+            }
+            
             /* Show and style mobile icon */
             .mobile-dropdown-icon {
                 display: inline-block; /* Show on mobile */
@@ -936,10 +966,17 @@
                 <ul class="custom-nav-list">
                     <li>
                         <a href="pricing.html" class="custom-nav-link">Pricing
+                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
                         </a>
                     </li>
                     <li>
-                        <a href="projects.html" class="custom-nav-link">Projects</a>
+                        <a href="projects.html" class="custom-nav-link">Projects
+                             <svg class="desktop-link-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                        </svg>
+                        </a>
                     </li>
                     <li class="custom-nav-item--has-megamenu">
                         <a href="#" class="custom-nav-link" data-megamenu-trigger="services">
@@ -953,7 +990,9 @@
                                 <div class="megamenu-3-column-grid">
                                     
                                     <div class="menu-group-card">
-                                        <h3>Software Development</h3>
+                                        <h3>
+                                            Software Development
+                                        </h3>
                                         <ul class="mega-menu-group-list">
                                             <li>
                                                 <a href="#">
@@ -994,7 +1033,9 @@
                                     </div>
 
                                     <div class="menu-group-card">
-                                        <h3>IT Infrastructure</h3>
+                                        <h3>
+                                            IT Infrastructure
+                                        </h3>
                                         <ul class="mega-menu-group-list">
                                             <li>
                                                 <a href="#">
@@ -1025,7 +1066,9 @@
                                     </div>
 
                                     <div class="menu-group-card">
-                                        <h3>Marketing & Creative Studio</h3>
+                                        <h3>
+                                            Marketing & Creative Studio
+                                        </h3>
                                         <ul class="mega-menu-group-list">
                                             <li>
                                                 <a href="#">
@@ -1070,7 +1113,12 @@
                                 <div class="megamenu-3-column-grid">
                                     
                                     <div class="menu-group-card">
-                                        <h3>Defcon</h3>
+                                        <h3>
+                                            <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
+                                            </svg>
+                                            Defcon
+                                        </h3>
                                         <ul class="mega-menu-group-list">
                                             <li>
                                                 <a href="#">
@@ -1106,7 +1154,12 @@
                                     </div>
                                     
                                     <div class="menu-group-card">
-                                        <h3>Resources</h3>
+                                        <h3>
+                                            <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
+                                            </svg>
+                                            Resources
+                                        </h3>
                                         <ul class="mega-menu-group-list">
                                             <li>
                                                 <a href="#">
@@ -1137,7 +1190,12 @@
                                     </div>
 
                                     <div class="menu-group-card">
-                                        <h3>Connect</h3>
+                                        <h3>
+                                            <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
+                                            </svg>
+                                            Connect
+                                        </h3>
                                         <ul class="mega-menu-group-list">
                                             <li>
                                                 <a href="#">
@@ -1196,7 +1254,10 @@
             <div class="megamenu-3-column-grid">
                 
                 <div class="menu-group-card">
-                    <h3>Software Engineering</h3>
+                    <h3>
+                        <img src="thumbnails/01.png" alt="Dev Icon" class="menu-group-img-icon">
+                        Software Engineering
+                    </h3>
                     <ul class="mega-menu-group-list">
                         <li>
                             <a href="#">
@@ -1237,7 +1298,10 @@
                 </div>
 
                 <div class="menu-group-card">
-                    <h3>IT Infrastructure</h3>
+                    <h3>
+                        <img src="thumbnails/02.png" alt="IT Icon" class="menu-group-img-icon">
+                        IT Infrastructure
+                    </h3>
                     <ul class="mega-menu-group-list">
                         <li>
                             <a href="#">
@@ -1268,7 +1332,10 @@
                 </div>
 
                 <div class="menu-group-card">
-                    <h3>Marketing & Creative Studio</h3>
+                    <h3>
+                        <img src="thumbnails/03.png" alt="Marketing Icon" class="menu-group-img-icon">
+                        Marketing & Creative Studio
+                    </h3>
                     <ul class="mega-menu-group-list">
                         <li>
                             <a href="#">
@@ -1304,7 +1371,12 @@
             <div class="megamenu-3-column-grid">
                 
                 <div class="menu-group-card">
-                    <h3>Hyperion</h3>
+                    <h3>
+                        <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
+                        </svg>
+                        Hyperion
+                    </h3>
                     <ul class="mega-menu-group-list">
                         <li>
                             <a href="about.html">
@@ -1350,7 +1422,12 @@
                 </div>
                 
                 <div class="menu-group-card">
-                    <h3>Resources</h3>
+                    <h3>
+                        <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
+                        </svg>
+                        Resources
+                    </h3>
                     <ul class="mega-menu-group-list">
                         <li>
                             <a href="#">
@@ -1382,7 +1459,12 @@
                 </div>
 
                 <div class="menu-group-card">
-                    <h3>Connect</h3>
+                    <h3>
+                        <svg class="menu-group-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25A2.25 2.25 0 0113.5 8.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25v2.25a2.25 2.25 0 01-2.25 2.25h-2.25a2.25 2.25 0 01-2.25-2.25v-2.25z" />
+                        </svg>
+                        Connect
+                    </h3>
                     <ul class="mega-menu-group-list">
                         <li>
                             <a href="#">
@@ -1623,7 +1705,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-   
 
 
 
