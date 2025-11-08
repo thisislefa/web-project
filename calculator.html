@@ -1435,13 +1435,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head class: "hprn-head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enterprise Service Cost Estimator</title>
+    <title class: "hprn-title">Enterprise Service Cost Estimator</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -1453,15 +1452,16 @@ document.addEventListener('DOMContentLoaded', function() {
             --color-bg-light: #fff;
         }
 
-        html { line-height: 1.6; -webkit-text-size-adjust: 100%; }
-        body {
+        /* Targetting html and body with specific classes/attributes for better scoping */
+        html.hprn-html { line-height: 1.6; -webkit-text-size-adjust: 100%; }
+        body.hprn-pricing-body {
             margin: 0;
             font-family: 'Inter', sans-serif;
             background-color: var(--color-bg-light);
             color: #1f2937;
         }
-        h1, h2, h3, h4, p, ul { margin: 0; padding: 0; }
-        ul { list-style: none; }
+        .hprn-pricing-body h1, .hprn-pricing-body h2, .hprn-pricing-body h3, .hprn-pricing-body h4, .hprn-pricing-body p, .hprn-pricing-body ul { margin: 0; padding: 0; }
+        .hprn-pricing-body ul { list-style: none; }
 
         .hprn-pricing-body, .hprn-estimate-bar, .hprn-pricing-btn-secondary,
         .hprn-pricing-feature-card, .hprn-pricing-sidebar-box,
@@ -1538,13 +1538,14 @@ document.addEventListener('DOMContentLoaded', function() {
             color: #94a3b8;
         }
 
-        .hprn-estimate-bar .total-amount {
+        /* Renamed total-amount classes to be hprn-specific */
+        .hprn-estimate-bar .hprn-total-amount {
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--color-accent);
         }
 
-        .hprn-estimate-bar .total-amount-secondary {
+        .hprn-estimate-bar .hprn-total-amount-secondary {
             font-size: 1.25rem;
             font-weight: 700;
             color: var(--color-secondary);
@@ -1565,7 +1566,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         .hprn-pricing-btn-secondary:hover { background-color: #475569; }
 
-        .capex-opex-badge {
+        /* Renamed badge classes to be hprn-specific */
+        .hprn-capex-opex-badge {
             display: inline-block;
             padding: 4px 10px;
             border-radius: 3px;
@@ -1575,12 +1577,12 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-left: 0.5rem;
         }
 
-        .capex-badge {
+        .hprn-capex-badge {
             background-color: #dbeafe;
             color: #0c4a6e;
         }
 
-        .opex-badge {
+        .hprn-opex-badge {
             background-color: #fef3c7;
             color: #92400e;
         }
@@ -1659,6 +1661,7 @@ document.addEventListener('DOMContentLoaded', function() {
             padding-bottom: 0.75rem;
         }
 
+        /* Renamed service-block to hprn-service-block */
         .hprn-pricing-feature-card {
             border: 1px solid #e2e8f0;
             padding: 2rem;
@@ -1667,8 +1670,16 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 2rem;
             transition: transform 0.2s;
         }
+        .hprn-service-block {
+            border: 1px solid #e2e8f0;
+            padding: 2rem;
+            background-color: #f9fafb;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+            transition: transform 0.2s;
+        }
 
-        .hprn-pricing-feature-card:hover {
+        .hprn-pricing-feature-card:hover, .hprn-service-block:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
@@ -1680,7 +1691,8 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-bottom: 0.5rem;
         }
 
-        .hprn-pricing-feature-card p.card-description {
+        /* Renamed card-description to hprn-card-description */
+        .hprn-card-description {
             color: #64748b;
             font-size: 0.9375rem;
             margin-bottom: 1.5rem;
@@ -1721,7 +1733,8 @@ document.addEventListener('DOMContentLoaded', function() {
             margin-left: 1rem;
         }
 
-        .hprn-calc-input, .hprn-calc-select {
+        /* Renamed calc-input-trigger to hprn-calc-input-trigger */
+        .hprn-calc-input, .hprn-calc-select, .hprn-calc-input-trigger {
             padding: 0.75rem 1rem;
             border: 1px solid #d1d5db;
             font-family: 'Inter', sans-serif;
@@ -1734,7 +1747,7 @@ document.addEventListener('DOMContentLoaded', function() {
             transition: all 0.2s;
         }
 
-        .hprn-calc-input:focus, .hprn-calc-select:focus {
+        .hprn-calc-input:focus, .hprn-calc-select:focus, .hprn-calc-input-trigger:focus {
             outline: none;
             border-color: var(--color-secondary);
             box-shadow: 0 0 0 1px rgba(6, 182, 212, 0.5);
@@ -1751,7 +1764,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         @media (max-width: 768px) {
             .hprn-pricing-hero-text h1 { font-size: 1.75rem; }
-            .hprn-pricing-feature-card { padding: 1.5rem; }
+            .hprn-pricing-feature-card, .hprn-service-block { padding: 1.5rem; }
             .hprn-calc-input-row { flex-direction: column; }
             .hprn-calc-select.duration-unit { max-width: 100%; }
         }
@@ -1789,15 +1802,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="hprn-estimate-bar-group">
                     <div class="hprn-estimate-bar-item">
                         <h3>Estimated Annualized OpEx (10% Discount)</h3>
-                        <span class="total-amount-secondary" id="total-annualized-display">R 0.00</span>
+                        <span class="hprn-total-amount-secondary" id="total-annualized-display">R 0.00</span>
                     </div>
                     <div class="hprn-estimate-bar-item">
                         <h3>Estimated Monthly OpEx</h3>
-                        <span class="total-amount" id="total-monthly-display">R 0.00</span>
+                        <span class="hprn-total-amount" id="total-monthly-display">R 0.00</span>
                     </div>
                     <div class="hprn-estimate-bar-item">
                         <h3>Estimated Once-Off CapEx</h3>
-                        <span class="total-amount-secondary" id="total-once-off-display">R 0.00</span>
+                        <span class="hprn-total-amount-secondary" id="total-once-off-display">R 0.00</span>
                     </div>
                 </div>
                 <button type="reset" form="calc-form" class="hprn-pricing-btn-secondary">Clear All Configurations</button>
@@ -1818,53 +1831,53 @@ document.addEventListener('DOMContentLoaded', function() {
                             <h4>Software Development</h4>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-web-dev" data-target="config-web-dev">
-                                <label for="check-web-dev">Bespoke Web Development <span class="capex-opex-badge capex-badge">CapEx</span></label>
+                                <label for="check-web-dev">Bespoke Web Development <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span></label>
                             </div>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-mobile-dev" data-target="config-mobile-dev">
-                                <label for="check-mobile-dev">Mobile Development <span class="capex-opex-badge capex-badge">CapEx</span></label>
+                                <label for="check-mobile-dev">Mobile Development <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span></label>
                             </div>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-dev-maintenance" data-target="config-dev-maintenance">
-                                <label for="check-dev-maintenance">Dev Maintenance <span class="capex-opex-badge opex-badge">OpEx</span></label>
+                                <label for="check-dev-maintenance">Dev Maintenance <span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></label>
                             </div>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-api-services" data-target="config-api-services">
-                                <label for="check-api-services">API & Backend <span class="capex-opex-badge capex-badge">CapEx</span></label>
+                                <label for="check-api-services">API & Backend <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span></label>
                             </div>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-ecommerce" data-target="config-ecommerce">
-                                <label for="check-ecommerce">E-commerce <span class="capex-opex-badge capex-badge">CapEx</span></label>
+                                <label for="check-ecommerce">E-commerce <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span></label>
                             </div>
 
                             <h4>Managed IT Infrastructure</h4>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-cloud-compute" data-target="config-cloud-compute">
-                                <label for="check-cloud-compute">Cloud Computing <span class="capex-opex-badge opex-badge">OpEx</span></label>
+                                <label for="check-cloud-compute">Cloud Computing <span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></label>
                             </div>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-it-support" data-target="config-it-support">
-                                <label for="check-it-support">IT Support <span class="capex-opex-badge opex-badge">OpEx</span></label>
+                                <label for="check-it-support">IT Support <span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></label>
                             </div>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-datacenter" data-target="config-datacenter">
-                                <label for="check-datacenter">Data Center <span class="capex-opex-badge opex-badge">OpEx</span></label>
+                                <label for="check-datacenter">Data Center <span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></label>
                             </div>
 
                             <h4>Marketing & Creative</h4>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-marketing-campaigns" data-target="config-marketing-campaigns">
-                                <label for="check-marketing-campaigns">Marketing Campaigns <span class="capex-opex-badge opex-badge">OpEx</span></label>
+                                <label for="check-marketing-campaigns">Marketing Campaigns <span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></label>
                             </div>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-design-services" data-target="config-design-services">
-                                <label for="check-design-services">Design Services <span class="capex-opex-badge capex-badge">CapEx</span><span class="capex-opex-badge opex-badge">OpEx</span></label>
+                                <label for="check-design-services">Design Services <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span><span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></label>
                             </div>
 
                             <h4>Hardware & Equipment</h4>
                             <div class="hprn-service-list-item">
                                 <input type="checkbox" id="check-hardware" data-target="config-hardware">
-                                <label for="check-hardware">Hardware Procurement <span class="capex-opex-badge capex-badge">CapEx</span></label>
+                                <label for="check-hardware">Hardware Procurement <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span></label>
                             </div>
                         </div>
                     </div>
@@ -1879,20 +1892,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     <h2 style="font-size: 1.5rem; font-weight: 700; color: #111827;">Service Configuration</h2>
                     <p style="color: #4b5563; margin-bottom: 2rem; font-size: 0.9375rem;">Configure your enterprise services and view real-time cost estimates.</p>
 
-                    <!-- SECTION: Software Development -->
                     <div class="config-group-title">Software Development</div>
 
-                    <div class="hprn-pricing-feature-card service-block" id="config-web-dev" style="display:none;">
-                        <h3>Web Development <span class="capex-opex-badge capex-badge">CapEx</span></h3>
-                        <p class="card-description">Custom web development with flexible packages and add-on options.</p>
+                    <div class="hprn-service-block" id="config-web-dev" style="display:none;">
+                        <h3>Web Development <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span></h3>
+                        <p class="hprn-card-description">Custom web development with flexible packages and add-on options.</p>
                         <div class="hprn-calc-input-group">
                             <label class="hprn-calc-label"><span>Select Package</span></label>
-                            <select name="web-dev-package" class="hprn-calc-select calc-input-trigger">
+                            <select name="web-dev-package" class="hprn-calc-select hprn-calc-input-trigger">
                                 <option value="0">None (R 0.00)</option>
-                                <option value="50000">Single Page Application (R 50,000.00)</option>
-                                <option value="150000">Multi-Page Business Site (R 150,000.00)</option>
-                                <option value="300000">Enterprise Web Application (R 300,000.00)</option>
-                                <option value="500000">Complex SaaS Platform (R 500,000.00)</option>
+                                <option value="18000">Single Page Application (R 18,000.00)</option>
+                                <option value="40000">Multi-Page Business Site (R 40,000.00)</option>
+                                <option value="65000">Enterprise Web Application (R 65,000.00)</option>
+                                <option value="70000">Complex SaaS Platform (R 70,000.00)</option>
                             </select>
                         </div>
                         <div class="hprn-calc-input-group">
@@ -1900,32 +1912,32 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span>Additional Pages</span>
                                 <span class="hprn-calc-price">R 2,500.00 /page</span>
                             </label>
-                            <input type="number" name="web-dev-pages" class="hprn-calc-input calc-input-trigger" min="0" value="0" step="1">
+                            <input type="number" name="web-dev-pages" class="hprn-calc-input hprn-calc-input-trigger" min="0" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="web-dev-maint-months" class="hprn-calc-label">
                                 <span>Maintenance (Months)</span>
                                 <span class="hprn-calc-price">R 3,000.00 /month</span>
                             </label>
-                            <input type="number" name="web-dev-maint-months" class="hprn-calc-input calc-input-trigger" min="0" max="12" value="0" step="1">
+                            <input type="number" name="web-dev-maint-months" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="12" value="0" step="1">
                         </div>
                     </div>
 
-                    <div class="hprn-pricing-feature-card service-block" id="config-mobile-dev" style="display:none;">
-                        <h3>Mobile Development <span class="capex-opex-badge capex-badge">CapEx</span></h3>
-                        <p class="card-description">Native iOS and Android applications with complexity scaling.</p>
+                    <div class="hprn-service-block" id="config-mobile-dev" style="display:none;">
+                        <h3>Mobile Development <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span></h3>
+                        <p class="hprn-card-description">Native iOS and Android applications with complexity scaling.</p>
                         <div class="hprn-calc-input-group">
                             <label class="hprn-calc-label"><span>Platform Type</span></label>
-                            <select name="mobile-dev-platform" class="hprn-calc-select calc-input-trigger">
+                            <select name="mobile-dev-platform" class="hprn-calc-select hprn-calc-input-trigger">
                                 <option value="0">None (R 0.00)</option>
-                                <option value="80000">iOS Only (R 80,000.00)</option>
-                                <option value="80000">Android Only (R 80,000.00)</option>
-                                <option value="140000">Cross-Platform (R 140,000.00)</option>
+                                <option value="25000">iOS Only (R 25,000.00)</option>
+                                <option value="29000">Android Only (R 29,000.00)</option>
+                                <option value="35000">Cross-Platform (R 35,000.00)</option>
                             </select>
                         </div>
                         <div class="hprn-calc-input-group">
                             <label class="hprn-calc-label"><span>Complexity Multiplier</span></label>
-                            <select name="mobile-dev-complexity" class="hprn-calc-select calc-input-trigger">
+                            <select name="mobile-dev-complexity" class="hprn-calc-select hprn-calc-input-trigger">
                                 <option value="1.0">Standard (1x)</option>
                                 <option value="1.5">Moderate (1.5x)</option>
                                 <option value="2.0">High (2x)</option>
@@ -1937,16 +1949,16 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span>Maintenance (Months)</span>
                                 <span class="hprn-calc-price">R 4,000.00 /month</span>
                             </label>
-                            <input type="number" name="mobile-dev-maint-months" class="hprn-calc-input calc-input-trigger" min="0" max="12" value="0" step="1">
+                            <input type="number" name="mobile-dev-maint-months" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="12" value="0" step="1">
                         </div>
                     </div>
 
-                    <div class="hprn-pricing-feature-card service-block" id="config-dev-maintenance" style="display:none;">
-                        <h3>Development Maintenance <span class="capex-opex-badge opex-badge">OpEx</span></h3>
-                        <p class="card-description">Ongoing support, bug fixes, and application updates.</p>
+                    <div class="hprn-service-block" id="config-dev-maintenance" style="display:none;">
+                        <h3>Development Maintenance <span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></h3>
+                        <p class="hprn-card-description">Ongoing support, bug fixes, and application updates.</p>
                         <div class="hprn-calc-input-group">
                             <label class="hprn-calc-label"><span>Maintenance Tier</span></label>
-                            <select name="dev-maint-tier" class="hprn-calc-select calc-input-trigger">
+                            <select name="dev-maint-tier" class="hprn-calc-select hprn-calc-input-trigger">
                                 <option value="0">None (R 0.00/mo)</option>
                                 <option value="8000">Basic Monitoring (R 8,000.00/mo)</option>
                                 <option value="15000">Standard Support (R 15,000.00/mo)</option>
@@ -1956,20 +1968,20 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="dev-maint-months" class="hprn-calc-label"><span>Duration (Months)</span></label>
-                            <input type="number" name="dev-maint-months" class="hprn-calc-input calc-input-trigger" min="0" max="36" value="0" step="1">
+                            <input type="number" name="dev-maint-months" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="36" value="0" step="1">
                         </div>
                     </div>
 
-                    <div class="hprn-pricing-feature-card service-block" id="config-api-services" style="display:none;">
-                        <h3>API & Backend Services <span class="capex-opex-badge capex-badge">CapEx</span></h3>
-                        <p class="card-description">RESTful APIs, microservices, and robust backend infrastructure.</p>
+                    <div class="hprn-service-block" id="config-api-services" style="display:none;">
+                        <h3>API & Backend Services <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span></h3>
+                        <p class="hprn-card-description">RESTful APIs, microservices, and robust backend infrastructure.</p>
                         <div class="hprn-calc-input-group">
                             <label class="hprn-calc-label"><span>Service Scope</span></label>
-                            <select name="api-scope" class="hprn-calc-select calc-input-trigger">
+                            <select name="api-scope" class="hprn-calc-select hprn-calc-input-trigger">
                                 <option value="0">None (R 0.00)</option>
                                 <option value="60000">Simple REST API (R 60,000.00)</option>
-                                <option value="150000">Advanced Microservices (R 150,000.00)</option>
-                                <option value="300000">Enterprise Backend System (R 300,000.00)</option>
+                                <option value="85000">Advanced Microservices (R 85,000.00)</option>
+                                <option value="100000">Enterprise Backend System (R 100,000.00)</option>
                             </select>
                         </div>
                         <div class="hprn-calc-input-group">
@@ -1977,23 +1989,23 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span>Additional Endpoints</span>
                                 <span class="hprn-calc-price">R 3,500.00 /endpoint</span>
                             </label>
-                            <input type="number" name="api-endpoints" class="hprn-calc-input calc-input-trigger" min="0" max="50" value="0" step="1">
+                            <input type="number" name="api-endpoints" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="50" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="api-databases" class="hprn-calc-label">
                                 <span>Database Modules</span>
                                 <span class="hprn-calc-price">R 8,000.00 /module</span>
                             </label>
-                            <input type="number" name="api-databases" class="hprn-calc-input calc-input-trigger" min="0" max="20" value="0" step="1">
+                            <input type="number" name="api-databases" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="20" value="0" step="1">
                         </div>
                     </div>
 
-                    <div class="hprn-pricing-feature-card service-block" id="config-ecommerce" style="display:none;">
-                        <h3>E-commerce Solutions <span class="capex-opex-badge capex-badge">CapEx</span></h3>
-                        <p class="card-description">Full-featured online stores with payment integration and inventory management.</p>
+                    <div class="hprn-service-block" id="config-ecommerce" style="display:none;">
+                        <h3>E-commerce Solutions <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span></h3>
+                        <p class="hprn-card-description">Full-featured online stores with payment integration and inventory management.</p>
                         <div class="hprn-calc-input-group">
                             <label class="hprn-calc-label"><span>Platform Type</span></label>
-                            <select name="ecom-platform" class="hprn-calc-select calc-input-trigger">
+                            <select name="ecom-platform" class="hprn-calc-select hprn-calc-input-trigger">
                                 <option value="0">None (R 0.00)</option>
                                 <option value="12000">Basic Store (R 12,000.00)</option>
                                 <option value="20000">Professional Store (R 20,000.00)</option>
@@ -2005,52 +2017,51 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span>Payment Gateway Integrations</span>
                                 <span class="hprn-calc-price">R 5,000.00 /gateway</span>
                             </label>
-                            <input type="number" name="ecom-payment-gateways" class="hprn-calc-input calc-input-trigger" min="0" max="10" value="0" step="1">
+                            <input type="number" name="ecom-payment-gateways" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="10" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="ecom-hosting-months" class="hprn-calc-label">
                                 <span>Hosting & Support (Months)</span>
                                 <span class="hprn-calc-price">R 6,000.00 /month</span>
                             </label>
-                            <input type="number" name="ecom-hosting-months" class="hprn-calc-input calc-input-trigger" min="0" max="12" value="0" step="1">
+                            <input type="number" name="ecom-hosting-months" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="12" value="0" step="1">
                         </div>
                     </div>
 
-                    <!-- SECTION: Managed IT Infrastructure -->
                     <div class="config-group-title">Managed IT Infrastructure</div>
 
-                    <div class="hprn-pricing-feature-card service-block" id="config-cloud-compute" style="display:none;">
-                        <h3>Cloud Computing <span class="capex-opex-badge opex-badge">OpEx</span></h3>
-                        <p class="card-description">Managed cloud infrastructure, VMs, and computing resources.</p>
+                    <div class="hprn-service-block" id="config-cloud-compute" style="display:none;">
+                        <h3>Cloud Computing <span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></h3>
+                        <p class="hprn-card-description">Managed cloud infrastructure, VMs, and computing resources.</p>
                         <div class="hprn-calc-input-group">
                             <label for="cloud-vm-count" class="hprn-calc-label">
                                 <span>Virtual Machines/Containers</span>
                                 <span class="hprn-calc-price">R 2,200.00 /VM/mo</span>
                             </label>
-                            <input type="number" name="cloud-vm-count" class="hprn-calc-input calc-input-trigger" min="0" max="100" value="0" step="1">
+                            <input type="number" name="cloud-vm-count" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="100" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="cloud-storage-tb" class="hprn-calc-label">
                                 <span>Storage (TB)</span>
                                 <span class="hprn-calc-price">R 1,500.00 /TB/mo</span>
                             </label>
-                            <input type="number" name="cloud-storage-tb" class="hprn-calc-input calc-input-trigger" min="0" max="500" value="0" step="1">
+                            <input type="number" name="cloud-storage-tb" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="500" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label class="hprn-calc-label"><span>Commitment Plan</span></label>
-                            <select name="cloud-commitment" class="hprn-calc-select calc-input-trigger">
+                            <select name="cloud-commitment" class="hprn-calc-select hprn-calc-input-trigger">
                                 <option value="1">Monthly (No Discount)</option>
                                 <option value="0.9">Annual (10% Discount)</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="hprn-pricing-feature-card service-block" id="config-it-support" style="display:none;">
-                        <h3>IT Support & Maintenance <span class="capex-opex-badge opex-badge">OpEx</span></h3>
-                        <p class="card-description">Remote support, helpdesk services, and IT staff augmentation.</p>
+                    <div class="hprn-service-block" id="config-it-support" style="display:none;">
+                        <h3>IT Support & Maintenance <span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></h3>
+                        <p class="hprn-card-description">Remote support, helpdesk services, and IT staff augmentation.</p>
                         <div class="hprn-calc-input-group">
                             <label class="hprn-calc-label"><span>Support Tier</span></label>
-                            <select name="it-support-tier" class="hprn-calc-select calc-input-trigger">
+                            <select name="it-support-tier" class="hprn-calc-select hprn-calc-input-trigger">
                                 <option value="0">None (R 0.00/mo)</option>
                                 <option value="10000">Basic 8/5 Helpdesk (R 10,000.00/mo)</option>
                                 <option value="20000">Standard 24/7 Support (R 20,000.00/mo)</option>
@@ -2062,52 +2073,51 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span>Supported Users</span>
                                 <span class="hprn-calc-price">R 1,200.00 /user/mo</span>
                             </label>
-                            <input type="number" name="it-support-users" class="hprn-calc-input calc-input-trigger" min="0" max="500" value="0" step="5">
+                            <input type="number" name="it-support-users" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="500" value="0" step="5">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="it-support-remote-hours" class="hprn-calc-label">
                                 <span>Remote Support Sessions</span>
                                 <span class="hprn-calc-price">R 800.00 /hour (Monthly Cap)</span>
                             </label>
-                            <input type="number" name="it-support-remote-hours" class="hprn-calc-input calc-input-trigger" min="0" max="160" value="0" step="5">
+                            <input type="number" name="it-support-remote-hours" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="160" value="0" step="5">
                         </div>
                     </div>
 
-                    <div class="hprn-pricing-feature-card service-block" id="config-datacenter" style="display:none;">
-                        <h3>Data Center Services <span class="capex-opex-badge opex-badge">OpEx</span></h3>
-                        <p class="card-description">Colocation, server management, backup, and disaster recovery.</p>
+                    <div class="hprn-service-block" id="config-datacenter" style="display:none;">
+                        <h3>Data Center Services <span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></h3>
+                        <p class="hprn-card-description">Colocation, server management, backup, and disaster recovery.</p>
                         <div class="hprn-calc-input-group">
                             <label for="dc-racks" class="hprn-calc-label">
                                 <span>Server Racks</span>
                                 <span class="hprn-calc-price">R 12,000.00 /rack/mo</span>
                             </label>
-                            <input type="number" name="dc-racks" class="hprn-calc-input calc-input-trigger" min="0" max="20" value="0" step="1">
+                            <input type="number" name="dc-racks" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="20" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="dc-backup-storage" class="hprn-calc-label">
                                 <span>Backup Storage (TB)</span>
                                 <span class="hprn-calc-price">R 2,000.00 /TB/mo</span>
                             </label>
-                            <input type="number" name="dc-backup-storage" class="hprn-calc-input calc-input-trigger" min="0" max="100" value="0" step="5">
+                            <input type="number" name="dc-backup-storage" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="100" value="0" step="5">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="dc-monitoring-points" class="hprn-calc-label">
                                 <span>Monitoring & CCTV Points</span>
                                 <span class="hprn-calc-price">R 600.00 /point/mo</span>
                             </label>
-                            <input type="number" name="dc-monitoring-points" class="hprn-calc-input calc-input-trigger" min="0" max="100" value="0" step="5">
+                            <input type="number" name="dc-monitoring-points" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="100" value="0" step="5">
                         </div>
                     </div>
 
-                    <!-- SECTION: Marketing & Creative -->
                     <div class="config-group-title">Marketing & Creative Studio</div>
 
-                    <div class="hprn-pricing-feature-card service-block" id="config-marketing-campaigns" style="display:none;">
-                        <h3>Marketing Campaigns <span class="capex-opex-badge opex-badge">OpEx</span></h3>
-                        <p class="card-description">Digital marketing strategy, execution, and management (excludes ad spend).</p>
+                    <div class="hprn-service-block" id="config-marketing-campaigns" style="display:none;">
+                        <h3>Marketing Campaigns <span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></h3>
+                        <p class="hprn-card-description">Digital marketing strategy, execution, and management (excludes ad spend).</p>
                         <div class="hprn-calc-input-group">
                             <label class="hprn-calc-label"><span>Campaign Management Tier</span></label>
-                            <select name="marketing-tier" class="hprn-calc-select calc-input-trigger">
+                            <select name="marketing-tier" class="hprn-calc-select hprn-calc-input-trigger">
                                 <option value="0">None (R 0.00/mo)</option>
                                 <option value="15000">Social Media Management (R 15,000.00/mo)</option>
                                 <option value="35000">Full Funnel Marketing (R 35,000.00/mo)</option>
@@ -2118,23 +2128,23 @@ document.addEventListener('DOMContentLoaded', function() {
                             <label for="marketing-duration-months" class="hprn-calc-label">
                                 <span>Campaign Duration (Months)</span>
                             </label>
-                            <input type="number" name="marketing-duration-months" class="hprn-calc-input calc-input-trigger" min="0" max="36" value="0" step="1">
+                            <input type="number" name="marketing-duration-months" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="36" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="marketing-ad-accounts" class="hprn-calc-label">
                                 <span>Ad Accounts to Manage</span>
                                 <span class="hprn-calc-price">R 2,000.00 /account/mo</span>
                             </label>
-                            <input type="number" name="marketing-ad-accounts" class="hprn-calc-input calc-input-trigger" min="0" max="15" value="0" step="1">
+                            <input type="number" name="marketing-ad-accounts" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="15" value="0" step="1">
                         </div>
                     </div>
 
-                    <div class="hprn-pricing-feature-card service-block" id="config-design-services" style="display:none;">
-                        <h3>Design Services <span class="capex-opex-badge capex-badge">CapEx</span><span class="capex-opex-badge opex-badge">OpEx</span></h3>
-                        <p class="card-description">Graphic design, branding, content creation, and multimedia production.</p>
+                    <div class="hprn-service-block" id="config-design-services" style="display:none;">
+                        <h3>Design Services <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span><span class="hprn-capex-opex-badge hprn-opex-badge">OpEx</span></h3>
+                        <p class="hprn-card-description">Graphic design, branding, content creation, and multimedia production.</p>
                         <div class="hprn-calc-input-group">
                             <label class="hprn-calc-label"><span>One-Time Design Package</span></label>
-                            <select name="design-capex-package" class="hprn-calc-select calc-input-trigger">
+                            <select name="design-capex-package" class="hprn-calc-select hprn-calc-input-trigger">
                                 <option value="0">None (R 0.00)</option>
                                 <option value="25000">Logo & Brand Guide (R 25,000.00)</option>
                                 <option value="60000">Complete Brand Identity (R 60,000.00)</option>
@@ -2146,50 +2156,49 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <span>Monthly Design Retainer (Hours)</span>
                                 <span class="hprn-calc-price">R 1,200.00 /hour/mo</span>
                             </label>
-                            <input type="number" name="design-opex-hours" class="hprn-calc-input calc-input-trigger" min="0" max="160" value="0" step="5">
+                            <input type="number" name="design-opex-hours" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="160" value="0" step="5">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="design-video-production" class="hprn-calc-label">
                                 <span>Video Production Projects</span>
                                 <span class="hprn-calc-price">R 15,000.00 /video</span>
                             </label>
-                            <input type="number" name="design-video-production" class="hprn-calc-input calc-input-trigger" min="0" max="12" value="0" step="1">
+                            <input type="number" name="design-video-production" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="12" value="0" step="1">
                         </div>
                     </div>
 
-                    <!-- SECTION: Hardware & Equipment -->
                     <div class="config-group-title">Hardware & Equipment</div>
 
-                    <div class="hprn-pricing-feature-card service-block" id="config-hardware" style="display:none;">
-                        <h3>Hardware Procurement <span class="capex-opex-badge capex-badge">CapEx</span></h3>
-                        <p class="card-description">Enterprise hardware, workstations, servers, and networking equipment.</p>
+                    <div class="hprn-service-block" id="config-hardware" style="display:none;">
+                        <h3>Hardware Procurement <span class="hprn-capex-opex-badge hprn-capex-badge">CapEx</span></h3>
+                        <p class="hprn-card-description">Enterprise hardware, workstations, servers, and networking equipment.</p>
                         <div class="hprn-calc-input-group">
                             <label for="hardware-workstations" class="hprn-calc-label">
                                 <span>Workstations/Laptops</span>
                                 <span class="hprn-calc-price">R 30,000.00 /unit</span>
                             </label>
-                            <input type="number" name="hardware-workstations" class="hprn-calc-input calc-input-trigger" min="0" max="100" value="0" step="1">
+                            <input type="number" name="hardware-workstations" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="100" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="hardware-servers" class="hprn-calc-label">
                                 <span>Enterprise Servers</span>
                                 <span class="hprn-calc-price">R 75,000.00 /unit</span>
                             </label>
-                            <input type="number" name="hardware-servers" class="hprn-calc-input calc-input-trigger" min="0" max="20" value="0" step="1">
+                            <input type="number" name="hardware-servers" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="20" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="hardware-networking" class="hprn-calc-label">
                                 <span>Networking Equipment (Switches, Routers)</span>
                                 <span class="hprn-calc-price">R 18,000.00 /unit</span>
                             </label>
-                            <input type="number" name="hardware-networking" class="hprn-calc-input calc-input-trigger" min="0" max="30" value="0" step="1">
+                            <input type="number" name="hardware-networking" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="30" value="0" step="1">
                         </div>
                         <div class="hprn-calc-input-group">
                             <label for="hardware-pos-systems" class="hprn-calc-label">
                                 <span>POS & Retail Systems</span>
                                 <span class="hprn-calc-price">R 12,000.00 /unit</span>
                             </label>
-                            <input type="number" name="hardware-pos-systems" class="hprn-calc-input calc-input-trigger" min="0" max="50" value="0" step="1">
+                            <input type="number" name="hardware-pos-systems" class="hprn-calc-input hprn-calc-input-trigger" min="0" max="50" value="0" step="1">
                         </div>
                     </div>
 
@@ -2211,7 +2220,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const calcForm = document.getElementById('calc-form');
             const serviceCheckboxes = document.querySelectorAll('.hprn-service-list-item input[type="checkbox"]');
-            const configBlocks = document.querySelectorAll('.service-block');
+            // Updated class name for blocks and inputs
+            const configBlocks = document.querySelectorAll('.hprn-service-block');
             const monthlyDisplay = document.getElementById('total-monthly-display');
             const onceOffDisplay = document.getElementById('total-once-off-display');
             const annualizedDisplay = document.getElementById('total-annualized-display');
@@ -2364,6 +2374,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     totalAnnualized = totalAnnualized * CONVERSION.ANNUAL_DISCOUNT;
                 }
 
+                // Updated class names in the display update logic
                 monthlyDisplay.innerText = formatCurrency(totalMonthly);
                 onceOffDisplay.innerText = formatCurrency(totalOnceOff);
                 annualizedDisplay.innerText = formatCurrency(totalAnnualized);
@@ -2376,6 +2387,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 checkbox.addEventListener('change', handleServiceToggle);
             });
 
+            // Updated class name for inputs
             calcForm.querySelectorAll('input, select').forEach(input => {
                 input.addEventListener('input', calculateTotal);
                 input.addEventListener('change', calculateTotal);
@@ -2399,11 +2411,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
-
-
-
-
-
 
 
 
