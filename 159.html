@@ -1,444 +1,679 @@
-
-
-<!-- Google Font Import for Inter -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<style>
-/* --- IT Market Insights Dashboard Styles --- */
-/* * Unique prefix 'itmi-' is used for all classes 
- * to prevent conflicts with other codebases.
- */
-
- * {
-    margin: 0;
- }
-
-/* --- Base & Fonts --- */
-.itmi-font-wrapper {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #14172B;
-    color: #F0F0F0;
-    padding: 24px 100px;
-    border-radius: 12px;
-}
-
-/* --- Custom Wrapper Tag --- */
-/* This is the special wrapper tag you requested */
-it-market-insights-container {
-    display: block;
-    width: 100%;
-}
-
-/* --- Utility Colors --- */
-.itmi-text-green {
-    color: #0ECB81;
-}
-.itmi-text-red {
-    color: #F6465D;
-}
-
-/* --- Header Stats Bar --- */
-.itmi-header-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    align-items: center;
-    padding-bottom: 24px;
-    border-bottom: 1px solid #282D48;
-}
-
-.itmi-header-stat {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    white-space: nowrap;
-}
-
-.itmi-header-stat-label {
-    font-size: 13px;
-    color: #8A91B5;
-    font-weight: 500;
-}
-
-.itmi-header-stat-value {
-    font-size: 14px;
-    color: #F0F0F0;
-    font-weight: 600;
-}
-
-.itmi-header-stat-value.itmi-fear-index {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.itmi-fear-gauge {
-    width: 20px;
-    height: 10px;
-    background: linear-gradient(to right, #F6465D, #F6A000, #0ECB81);
-    border-radius: 2px;
-    position: relative;
-    border: 1px solid #444;
-}
-
-.itmi-fear-needle {
-    width: 2px;
-    height: 12px;
-    background: #FFFFFF;
-    position: absolute;
-    bottom: -1px;
-    left: 72%; /* 72 is the "Bullish" value */
-    transform: translateX(-50%);
-    border-radius: 2px;
-}
-
-/* --- Trending Section --- */
-.itmi-trending-section {
-    padding: 24px 0;
-}
-
-.itmi-trending-title {
-    font-size: 24px;
-    font-weight: 700;
-    color: #FFFFFF;
-    margin: 0 0 20px 0;
-}
-
-.itmi-trending-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-}
-
-.itmi-card {
-    background-color: #1E223D;
-    border-radius: 12px;
-    padding: 20px;
-    /* --- Abstract background gradients to mimic the image --- */
-    background-position: top right;
-    background-repeat: no-repeat;
-    background-size: 80px 80px;
-}
-
-/* Card-specific background gradients */
-.itmi-card-1 {
-    background-image: radial-gradient(circle at 100% 0, rgba(53, 112, 247, 0.15), transparent 70%);
-}
-.itmi-card-2 {
-    background-image: radial-gradient(circle at 100% 0, rgba(138, 145, 181, 0.15), transparent 70%);
-}
-.itmi-card-3 {
-    background-image: radial-gradient(circle at 100% 0, rgba(14, 203, 129, 0.15), transparent 70%);
-}
-.itmi-card-4 {
-    background-image: radial-gradient(circle at 100% 0, rgba(246, 70, 93, 0.15), transparent 70%);
-}
-
-
-.itmi-card-header {
-    margin-bottom: 24px;
-}
-
-.itmi-card-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #FFFFFF;
-    margin: 0;
-}
-
-.itmi-card-subtitle {
-    font-size: 13px;
-    color: #8A91B5;
-    margin: 4px 0 0 0;
-}
-
-.itmi-card-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
-
-.itmi-card-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.itmi-card-item-name-group {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.itmi-card-item-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: #282D48;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 12px;
-    color: #FFFFFF;
-}
-
-.itmi-card-item-icon svg {
-    width: 18px;
-    height: 18px;
-    fill: #FFFFFF;
-}
-
-.itmi-card-item-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: #FFFFFF;
-}
-
-.itmi-card-item-value-group {
-    text-align: right;
-}
-
-.itmi-card-item-value {
-    font-size: 15px;
-    font-weight: 600;
-    color: #FFFFFF;
-}
-
-.itmi-card-item-change {
-    font-size: 13px;
-    font-weight: 500;
-    margin-top: 2px;
-}
-
-/* --- Main Table Section --- */
-.itmi-table-controls {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    padding: 24px 0;
-}
-
-.itmi-filter-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.itmi-filter-btn {
-    background-color: #282D48;
-    color: #F0F0F0;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 18px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    transition: background-color 0.2s ease;
-}
-
-.itmi-filter-btn:hover {
-    background-color: #3A4063;
-}
-
-.itmi-filter-btn.itmi-active {
-    background-color: #3570F7;
-    color: #FFFFFF;
-}
-
-.itmi-dropdown-group {
-    display: flex;
-    gap: 8px;
-}
-
-/* New Dropdown Styles */
-.itmi-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.itmi-dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #282D48;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    border-radius: 8px;
-    padding: 8px 0;
-    z-index: 1;
-    right: 0; /* Align to the right */
-    margin-top: 4px;
-}
-
-.itmi-dropdown-item {
-    color: #F0F0F0;
-    padding: 10px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 14px;
-    font-weight: 500;
-    white-space: nowrap;
-    cursor: pointer;
-}
-
-.itmi-dropdown-item:hover {
-    background-color: #3A4063;
-}
-
-.itmi-dropdown-content-show {
-    display: block;
-}
-/* End New Dropdown Styles */
-
-.itmi-dropdown-btn {
-    background-color: #282D48;
-    color: #F0F0F0;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.itmi-dropdown-btn svg {
-    width: 12px;
-    height: 12px;
-    fill: #8A91B5;
-}
-
-/* --- Data Table --- */
-.itmi-data-table-wrapper {
-    overflow-x: auto; /* For responsiveness on small screens */
-}
-
-.itmi-data-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 800px; /* Ensure table has a min width */
-}
-
-.itmi-data-table th,
-.itmi-data-table td {
-    padding: 16px 12px;
-    text-align: left;
-    white-space: nowrap;
-}
-
-.itmi-data-table th {
-    font-size: 13px;
-    color: #8A91B5;
-    font-weight: 500;
-    border-bottom: 1px solid #282D48;
-}
-
-/* Align table headers */
-.itmi-data-table th:nth-child(1),
-.itmi-data-table td:nth-child(1) {
-    width: 4%;
-    text-align: center;
-}
-.itmi-data-table th:nth-child(3),
-.itmi-data-table td:nth-child(3),
-.itmi-data-table th:nth-child(4),
-.itmi-data-table td:nth-child(4),
-.itmi-data-table th:nth-child(6),
-.itmi-data-table td:nth-child(6),
-.itmi-data-table th:nth-child(7),
-.itmi-data-table td:nth-child(7) {
-    text-align: right;
-}
-
-.itmi-data-table td {
-    font-size: 15px;
-    font-weight: 600;
-    color: #F0F0F0;
-}
-
-.itmi-data-table tbody tr {
-    border-bottom: 1px solid #282D48;
-    transition: background-color 0.2s ease;
-}
-
-.itmi-data-table tbody tr:hover {
-    background-color: #282D48;
-}
-
-.itmi-table-sector-group {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.itmi-table-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: #282D48;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.itmi-table-icon svg {
-    width: 18px;
-    height: 18px;
-    fill: #FFFFFF;
-}
-
-.itmi-table-sector-name {
-    font-size: 15px;
-    font-weight: 600;
-    color: #F0F0F0;
-}
-
-.itmi-table-sector-symbol {
-    font-size: 14px;
-    font-weight: 500;
-    color: #8A91B5;
-    margin-left: 4px;
-}
-
-.itmi-sparkline-chart svg {
-    width: 100px;
-    height: 30px;
-}
-
-.itmi-trade-link {
-    color: #3570F7;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.itmi-star-icon {
-    width: 20px;
-    height: 20px;
-    fill: #8A91B5;
-    cursor: pointer;
-}
-.itmi-star-icon:hover {
-    fill: #F6A000;
-}
-
-/* Style for a favorited star */
-.itmi-star-icon.itmi-favorited {
-    fill: #F6A000;
-}
-
-</style>
-
-<!-- 
-  This is the custom tag wrapper you requested.
-  You can copy everything from here down.
--->
-<it-market-insights-container>
-    <div class="itmi-font-wrapper">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Market Insights Dashboard</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font Import for Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- IT Market Insights Dashboard Styles --- */
+
+        /* Set base font and background */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080d1b;
+            color: #F0F0F0;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        /* Utility classes */
+        .itmi-text-green { color: #0ECB81; }
+        .itmi-text-red { color: #F6465D; }
+
+        /* Main container padding - Responsive */
+        .itmi-container {
+            padding: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-container {
+                padding: 20px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .itmi-container {
+                padding: 24px 40px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .itmi-container {
+                padding: 24px 60px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .itmi-container {
+                padding: 24px 100px;
+            }
+        }
+
+        /* --- Header Stats Bar --- */
+        .itmi-header-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            padding-bottom: 24px;
+            margin-bottom: 2rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-header-bar {
+                gap: 16px;
+                justify-content: flex-start;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .itmi-header-bar {
+                margin-top: 4rem;
+                margin-bottom: 3rem;
+            }
+        }
+
+        .itmi-header-stat {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-header-stat {
+                gap: 8px;
+            }
+        }
+
+        .itmi-header-stat-label {
+            font-size: 12px;
+            color: #8A91B5;
+            font-weight: 500;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-header-stat-label {
+                font-size: 14px;
+            }
+        }
+
+        .itmi-header-stat-value {
+            font-size: 12px;
+            color: #F0F0F0;
+            font-weight: 600;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-header-stat-value {
+                font-size: 14px;
+            }
+        }
+
+        .itmi-header-stat-value.itmi-fear-index {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .itmi-fear-gauge {
+            width: 20px;
+            height: 10px;
+            background: linear-gradient(to right, #F6465D, #F6A000, #0ECB81);
+            border-radius: 2px;
+            position: relative;
+            border: 1px solid #444;
+        }
+
+        .itmi-fear-needle {
+            width: 2px;
+            height: 12px;
+            background: #FFFFFF;
+            position: absolute;
+            bottom: -1px;
+            left: 72%; /* 72 is the "Bullish" value */
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+
+        /* Header */
+        .itmi-header {
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* Cards Layout */
+        .itmi-cards-grid {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 60px;
+            /* Responsive grid: 1 column on small, 2 columns on medium, 4 columns on large screens */
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        @media (min-width: 640px) {
+            .itmi-cards-grid {
+                gap: 18px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .itmi-cards-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .itmi-cards-grid {
+                grid-template-columns: repeat(4, 1fr);
+                margin-bottom: 100px;
+            }
+        }
+
+        .itmi-card {
+            background-color: #0b1326;
+            border-radius: 20px;
+            padding: 20px 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (min-width: 640px) {
+            .itmi-card {
+                border-radius: 24px;
+                padding: 22px 14px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .itmi-card {
+                border-radius: 30px;
+                padding: 24px 16px;
+            }
+        }
+
+        /* Card-specific background gradients */
+        .itmi-card-1 {
+            background-image: radial-gradient(circle at 100% 0, rgba(0, 98, 255, 0.427), transparent 70%);
+        }
+        .itmi-card-2 {
+            background-image: radial-gradient(circle at 100% 0, rgba(138, 145, 181, 0.303), transparent 70%);
+        }
+        .itmi-card-3 {
+            background-image: radial-gradient(circle at 100% 0, rgba(14, 203, 129, 0.15), transparent 70%);
+        }
+        .itmi-card-4 {
+            background-image: radial-gradient(circle at 100% 0, rgba(246, 70, 93, 0.15), transparent 70%);
+        }
+
+        .itmi-card-header {
+            margin-bottom: 12px;
+        }
+
+        .itmi-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-card-title {
+                font-size: 18px;
+            }
+        }
+
+        .itmi-card-subtitle {
+            font-size: 12px;
+            color: #a0a9be;
+            margin-top: 4px;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-card-subtitle {
+                font-size: 14px;
+            }
+        }
+
+        .itmi-card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .itmi-card-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+        }
+
+        .itmi-card-item-name-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-card-item-name-group {
+                gap: 12px;
+            }
+        }
+
+        /* Icon Placeholder Styling for Cards */
+        .itmi-card-item-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #282D48;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 10px;
+            color: #FFFFFF;
+            overflow: hidden; /* Keep image rounded */
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-card-item-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+        }
+
+        .itmi-card-item-icon img {
+            width: fit-content;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .itmi-card-item-name {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-card-item-name {
+                font-size: 16px;
+            }
+        }
+
+        .itmi-card-item-value-group {
+            text-align: right;
+        }
+
+        .itmi-card-item-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-card-item-value {
+                font-size: 16px;
+            }
+        }
+
+        .itmi-card-item-change {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-card-item-change {
+                font-size: 14px;
+            }
+        }
+
+        /* Filters and Dropdowns Section */
+        .itmi-filter-bar {
+            background-color: transparent;
+            border-radius: 12px;
+            padding: 12px 0;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        @media (min-width: 768px) {
+            .itmi-filter-bar {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 16px;
+                gap: 12px;
+            }
+        }
+
+        .itmi-filter-group {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-filter-group {
+                gap: 8px;
+                justify-content: flex-start;
+            }
+        }
+
+        .itmi-filter-btn {
+            background-color: transparent;
+            color: #8A91B5;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 50px;
+            border: 1px solid #282D48;
+            transition: all 0.2s;
+            cursor: pointer;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-filter-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+
+        .itmi-filter-btn:hover {
+            background-color: #262a3f;
+        }
+
+        .itmi-filter-btn.active {
+            background-color: #0e86cb70;
+            border: 1px solid #0091fa;
+            color: #FFFFFF;
+        }
+
+        /* Dropdown Group */
+        .itmi-dropdown-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-dropdown-group {
+                justify-content: flex-end;
+            }
+        }
+
+        .itmi-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .itmi-dropdown-btn {
+            background-color: #1f2338;
+            color: #F0F0F0;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 50px;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-dropdown-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+        
+        .itmi-dropdown-btn:hover {
+            background-color: #161927;
+        }
+        
+        .itmi-dropdown-caret {
+            fill: currentColor;
+            width: 16px;
+            height: 16px;
+            margin-left: 4px;
+            transition: transform 0.2s;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-dropdown-caret {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        .itmi-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #1f2338;
+            min-width: 140px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.4);
+            border-radius: 8px;
+            padding: 8px 0;
+            z-index: 10;
+            right: 0; /* Align to the right */
+            margin-top: 8px;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-dropdown-content {
+                min-width: 160px;
+            }
+        }
+
+        .itmi-dropdown-item {
+            color: #F0F0F0;
+            padding: 8px 14px;
+            text-decoration: none;
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-dropdown-item {
+                font-size: 14px;
+                padding: 10px 16px;
+            }
+        }
+
+        .itmi-dropdown-item:hover {
+            background-color: #22263a;
+        }
+
+        .itmi-dropdown-content-show {
+            display: block;
+        }
+
+
+        /* Data Table */
+        .itmi-table-card {
+            background-color: transparent;
+            border-radius: 12px;
+            overflow-x: auto; /* Enable horizontal scroll on small screens */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 5rem;
+            -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+        }
+
+        @media (min-width: 1024px) {
+            .itmi-table-card {
+                margin-bottom: 10rem;
+            }
+        }
+        
+        .itmi-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px; /* Minimum width to prevent crushing on mobile */
+        }
+
+        @media (min-width: 1024px) {
+            .itmi-table {
+                min-width: 900px;
+            }
+        }
+
+        .itmi-table th {
+            text-align: left;
+            padding: 16px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #8A91B5;
+            text-transform: none;
+            border-bottom: 1px solid #282D48;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-table th {
+                font-size: 14px;
+                padding: 19px 16px;
+            }
+        }
+
+        .itmi-table td {
+            padding: 24px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 1px solid #282D48;
+            white-space: nowrap;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-table td {
+                font-size: 16px;
+                padding: 36px 16px;
+            }
+        }
+        
+        .itmi-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .itmi-table-sector-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-table-sector-group {
+                gap: 12px;
+            }
+        }
+
+        /* Icon Placeholder Styling for Table */
+        .itmi-table-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background-color: #282D48;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Keep image rounded */
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-table-icon {
+                width: 32px;
+                height: 32px;
+            }
+        }
+        
+        .itmi-table-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .itmi-table-sector-name {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-table-sector-name {
+                font-size: 16px;
+            }
+        }
+
+        .itmi-table-sector-symbol {
+            font-size: 12px;
+            font-weight: 600;
+            color: #8A91B5;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-table-sector-symbol {
+                font-size: 14px;
+            }
+        }
+
+        .itmi-trade-link {
+            color: #0091fa;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+            font-size: 14px;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-trade-link {
+                font-size: 16px;
+            }
+        }
+        
+        .itmi-star-icon {
+            cursor: pointer;
+            transition: fill 0.2s;
+        }
+        
+        /* Sparkline Chart (SVG) */
+        .itmi-sparkline-chart svg {
+            width: 80px;
+            height: 24px;
+        }
+
+        @media (min-width: 640px) {
+            .itmi-sparkline-chart svg {
+                width: 100px;
+                height: 30px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="itmi-container">
 
         <!-- --- HEADER STATS BAR --- -->
         <header class="itmi-header-bar">
@@ -473,502 +708,568 @@ it-market-insights-container {
                 </span>
             </div>
         </header>
+        
+        <!-- Header -->
+        <div class="itmi-header">
+            <h1 class="text-2xl font-bold">Trending Today</h1>
+            <p class="text-sm text-gray-400 mt-1">Global Tech and Finance Sector Watch</p>
+        </div>
+        
 
-        <!-- --- TRENDING SECTION --- -->
-        <section class="itmi-trending-section">
-            <h2 class="itmi-trending-title">Trending Today</h2>
+        <!-- Trending Cards Section -->
+        <div class="itmi-cards-grid">
             
-            <div class="itmi-trending-grid">
-                
-                <!-- Card 1: Hot Technologies -->
-                <div class="itmi-card itmi-card-1">
-                    <div class="itmi-card-header">
-                        <h3 class="itmi-card-title">Hot Technologies</h3>
-                        <p class="itmi-card-subtitle">Fastest-growing tech skills (YoY)</p>
+            <!-- Card 1: Trending Tech -->
+            <div class="itmi-card itmi-card-1">
+                <div class="itmi-card-header">
+                    <h3 class="itmi-card-title">Trending Tech</h3>
+                    <p class="itmi-card-subtitle">Developer adoption (YoY)</p>
+                </div>
+                <div class="itmi-card-list" id="itmi-hot-tech-list">
+                    <!-- Item 1 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://www.logo.wine/a/logo/Rust_(video_game)/Rust_(video_game)-Logo.wine.svg" alt="Rust icon">
+                            </span>
+                            <span class="itmi-card-item-name">Rust</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value">1.4M Devs</div>
+                            <div class="itmi-card-item-change itmi-text-green">+22.1%</div>
+                        </div>
                     </div>
-                    <div class="itmi-card-list">
-                        <!-- Item 1 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon">R</span>
-                                <span class="itmi-card-item-name">Rust</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">1.4M Devs</div>
-                                <div class="itmi-card-item-change itmi-text-green">+22.1%</div>
-                            </div>
+                    <!-- Item 2 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://www.logo.wine/a/logo/WebAssembly/WebAssembly-Logo.wine.svg" alt="WebAssembly icon">
+                            </span>
+                            <span class="itmi-card-item-name">WebAssembly</span>
                         </div>
-                        <!-- Item 2 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon">W</span>
-                                <span class="itmi-card-item-name">WebAssembly</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">850k Devs</div>
-                                <div class="itmi-card-item-change itmi-text-green">+19.4%</div>
-                            </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value">850k Devs</div>
+                            <div class="itmi-card-item-change itmi-text-green">+19.4%</div>
                         </div>
-                        <!-- Item 3 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon">Go</span>
-                                <span class="itmi-card-item-name">Go</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">2.1M Devs</div>
-                                <div class="itmi-card-item-change itmi-text-green">+15.8%</div>
-                            </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://www.logo.wine/a/logo/Go_(programming_language)/Go_(programming_language)-Logo.wine.svg" alt="Go icon">
+                            </span>
+                            <span class="itmi-card-item-name">Go</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value">2.1M Devs</div>
+                            <div class="itmi-card-item-change itmi-text-green">+15.8%</div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Card 2: Industry Buzz -->
-                <div class="itmi-card itmi-card-2">
-                    <div class="itmi-card-header">
-                        <h3 class="itmi-card-title">Industry Buzz</h3>
-                        <p class="itmi-card-subtitle">Market size forecasts</p>
-                    </div>
-                    <div class="itmi-card-list">
-                        <!-- Item 1 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon">
-                                    <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"></path></svg>
-                                </span>
-                                <span class="itmi-card-item-name">Generative AI</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">$1.3T</div>
-                                <div class="itmi-card-item-change" style="color: #8A91B5;">by 2032</div>
-                            </div>
-                        </div>
-                        <!-- Item 2 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon">
-                                     <svg viewBox="0 0 24 24"><path d="M7 2v2h2v-2h-2zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2zm-8 4v2h2v-2h-2zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2zm-8 4v2h2v-2h-2zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2zm-8 4v2h2v-2h-2zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2zm-8 4v2h2v-2h-2zm4 0v2h2v-2h-2zm4 0v2h2v-2h-2z"></path></svg>
-                                </span>
-                                <span class="itmi-card-item-name">Quantum</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">$5.3B</div>
-                                <div class="itmi-card-item-change" style="color: #8A91B5;">by 2029</div>
-                            </div>
-                        </div>
-                        <!-- Item 3 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon">
-                                    <svg viewBox="0 0 24 24"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v-3h12v3h4v-6c0-1.66-1.34-3-3-3zM5 16h14v-5H5v5zm14-7H5c-1.1 0-2 .9-2 2v6c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-6c0-1.1-.9-2-2-2z"></path></svg>
-                                </span>
-                                <span class="itmi-card-item-name">Edge AI</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">$2.7B</div>
-                                <div class="itmi-card-item-change" style="color: #8A91B5;">by 2028</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Card 3: Top Market Movers -->
-                <div class="itmi-card itmi-card-3">
-                    <div class="itmi-card-header">
-                        <h3 class="itmi-card-title">Top Market Movers</h3>
-                        <p class="itmi-card-subtitle">Biggest gainers (1Y Change)</p>
-                    </div>
-                    <div class="itmi-card-list">
-                        <!-- Item 1 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon" style="background-color: #0ECB81; color: #111;">NV</span>
-                                <span class="itmi-card-item-name">NVIDIA</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">$3.1T</div>
-                                <div class="itmi-card-item-change itmi-text-green">+188.2%</div>
-                            </div>
-                        </div>
-                        <!-- Item 2 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon" style="background-color: #F6465D; color: #FFF;">AV</span>
-                                <span class="itmi-card-item-name">Broadcom</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">$820B</div>
-                                <div class="itmi-card-item-change itmi-text-green">+95.1%</div>
-                            </div>
-                        </div>
-                        <!-- Item 3 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon" style="background-color: #F6A000; color: #111;">PA</span>
-                                <span class="itmi-card-item-name">Palo Alto</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">$110B</div>
-                                <div class="itmi-card-item-change itmi-text-green">+72.4%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4: New Launches -->
-                <div class="itmi-card itmi-card-4">
-                    <div class="itmi-card-header">
-                        <h3 class="itmi-card-title">Notable Launches</h3>
-                        <p class="itmi-card-subtitle">Recent model/product releases</p>
-                    </div>
-                    <div class="itmi-card-list">
-                        <!-- Item 1 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon" style="background-color: #4285F4;">G</span>
-                                <span class="itmi-card-item-name">Project Astra</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">Google</div>
-                                <div class="itmi-card-item-change" style="color: #8A91B5;">Q3 2025</div>
-                            </div>
-                        </div>
-                        <!-- Item 2 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon" style="background-color: #1877F2;">M</span>
-                                <span class="itmi-card-item-name">Llama 4</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">Meta</div>
-                                <div class="itmi-card-item-change" style="color: #8A91B5;">Q4 2025</div>
-                            </div>
-                        </div>
-                        <!-- Item 3 -->
-                        <div class="itmi-card-item">
-                            <div class="itmi-card-item-name-group">
-                                <span class="itmi-card-item-icon" style="background-color: #10A37F;">O</span>
-                                <span class="itmi-card-item-name">GPT-5</span>
-                            </div>
-                            <div class="itmi-card-item-value-group">
-                                <div class="itmi-card-item-value">OpenAI</div>
-                                <div class="itmi-card-item-change" style="color: #8A91B5;">Q1 2026</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </section>
 
-        <!-- --- MAIN TABLE SECTION --- -->
-        <section class="itmi-table-section">
+            <!-- Card 2: Industry Buzz -->
+            <div class="itmi-card itmi-card-2">
+                <div class="itmi-card-header">
+                    <h3 class="itmi-card-title">Industry Buzz</h3>
+                    <p class="itmi-card-subtitle">Market size forecasts</p>
+                </div>
+                <div class="itmi-card-list" id="itmi-buzz-list">
+                    <!-- Item 1 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://cdn1.iconfinder.com/data/icons/artificial-intelligence-281/64/Text_AI_Generative_Imaging_Rendering-512.png" alt="AI icon">
+                            </span>
+                            <span class="itmi-card-item-name">Generative AI</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <!-- data-usd-value is used for currency conversion -->
+                            <div class="itmi-card-item-value" data-usd-value="1300000000000">$1.3T</div>
+                            <div class="itmi-card-item-change" style="color: #8A91B5;">by 2032</div>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                 <img src="https://images.seeklogo.com/logo-png/11/1/quantum-logo-png_seeklogo-114413.png" alt="Quantum icon">
+                            </span>
+                            <span class="itmi-card-item-name">Quantum</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" data-usd-value="5300000000">$5.3B</div>
+                            <div class="itmi-card-item-change" style="color: #8A91B5;">by 2029</div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://placehold.co/32x32/282D48/F0F0F0?text=E" alt="Edge icon">
+                            </span>
+                            <span class="itmi-card-item-name">Edge AI</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" data-usd-value="2700000000">$2.7B</div>
+                            <div class="itmi-card-item-change" style="color: #8A91B5;">by 2028</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <!-- Controls -->
-            <div class="itmi-table-controls">
-                <div class="itmi-filter-group" id="itmi-filter-group">
-                    <button class="itmi-filter-btn itmi-active" data-filter="All Sectors">All Sectors</button>
-                    <button class="itmi-filter-btn" data-filter="Top Growth">Top Growth</button>
-                    <button class="itmi-filter-btn" data-filter="Top R&D">Top R&D</button>
-                    <button class="itmi-filter-btn" data-filter="New">New</button>
-                    <button class="itmi-filter-btn" data-filter="Favorites">Favorites</button>
+            <!-- Card 3: Top Market Movers -->
+            <div class="itmi-card itmi-card-3">
+                <div class="itmi-card-header">
+                    <h3 class="itmi-card-title">Top Market Movers</h3>
+                    <p class="itmi-card-subtitle">Biggest gainers (1Y Change)</p>
                 </div>
-                <div class="itmi-dropdown-group">
-                    <!-- Dropdown 1: Currency -->
-                    <div class="itmi-dropdown">
-                        <button class="itmi-dropdown-btn" data-toggle="itmi-currency-dropdown" id="itmi-currency-btn">
-                            USD
-                            <svg viewBox="0 0 24 24" class="itmi-dropdown-caret"><path d="M7 10l5 5 5-5z"></path></svg>
-                        </button>
-                        <div class="itmi-dropdown-content" id="itmi-currency-dropdown">
-                            <a class="itmi-dropdown-item" data-value="USD">USD</a>
-                            <a class="itmi-dropdown-item" data-value="EUR">EUR</a>
-                            <a class="itmi-dropdown-item" data-value="BTC">BTC</a>
+                <div class="itmi-card-list" id="itmi-movers-list">
+                    <!-- Item 1 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/10/1/nvidia-logo-png_seeklogo-101614.png" alt="NVIDIA icon">
+                            </span>
+                            <span class="itmi-card-item-name">NVIDIA</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" data-usd-value="3100000000000">$3.1T</div>
+                            <div class="itmi-card-item-change itmi-text-green">+188.2%</div>
                         </div>
                     </div>
-                    <!-- Dropdown 2: Categories -->
-                    <div class="itmi-dropdown">
-                        <button class="itmi-dropdown-btn" data-toggle="itmi-category-dropdown" id="itmi-category-btn">
-                            All Categories
-                            <svg viewBox="0 0 24 24" class="itmi-dropdown-caret"><path d="M7 10l5 5 5-5z"></path></svg>
-                        </button>
-                        <div class="itmi-dropdown-content" id="itmi-category-dropdown">
-                            <a class="itmi-dropdown-item" data-value="All Categories">All Categories</a>
-                            <a class="itmi-dropdown-item" data-value="Tech">Tech</a>
-                            <a class="itmi-dropdown-item" data-value="Finance">Finance</a>
-                            <a class="itmi-dropdown-item" data-value="SaaS">SaaS</a>
+                    <!-- Item 2 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/35/1/broadcom-logo-png_seeklogo-357502.png" alt="Broadcom icon">
+                            </span>
+                            <span class="itmi-card-item-name">Broadcom</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" data-usd-value="820000000000">$820B</div>
+                            <div class="itmi-card-item-change itmi-text-green">+95.1%</div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/38/1/palo-alto-networks-logo-png_seeklogo-384891.png" alt="Palo Alto icon">
+                            </span>
+                            <span class="itmi-card-item-name">Palo Alto</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" data-usd-value="110000000000">$110B</div>
+                            <div class="itmi-card-item-change itmi-text-green">+72.4%</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Data Table -->
-            <div class="itmi-data-table-wrapper">
-                <table class="itmi-data-table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Sector</th>
-                            <th>Market Cap</th>
-                            <th>YoY Growth</th>
-                            <th>1Y Trend</th>
-                            <th>Key Player</th>
-                            <th>R&D Spend (TTM)</th>
-                            <th>Trade</th>
-                            <th></th> <!-- Star Icon -->
-                        </tr>
-                    </thead>
-                    <tbody id="itmi-table-body">
-                        <!-- Rows will be dynamically injected here by JavaScript -->
-                    </tbody>
-                </table>
+            <!-- Card 4: New Launches -->
+            <div class="itmi-card itmi-card-4">
+                <div class="itmi-card-header">
+                    <h3 class="itmi-card-title">New Launches</h3>
+                    <p class="itmi-card-subtitle">Recent product announcements</p>
+                </div>
+                <div class="itmi-card-list">
+                    <!-- Item 1 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/26/1/google-2015-logo-png_seeklogo-268116.png" alt="Google icon">
+                            </span>
+                            <span class="itmi-card-item-name">Project Astra</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" style="color: #8A91B5;">(Google)</div>
+                            <div class="itmi-card-item-change itmi-text-green">Vision AI</div>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/42/1/meta-icon-new-facebook-2021-logo-png_seeklogo-424014.png" alt="Meta icon">
+                            </span>
+                            <span class="itmi-card-item-name">Llama 4</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" style="color: #8A91B5;">(Meta)</div>
+                            <div class="itmi-card-item-change itmi-text-green">Open LLM</div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="itmi-card-item">
+                        <div class="itmi-card-item-name-group">
+                            <span class="itmi-card-item-icon">
+                                <img src="https://images.seeklogo.com/logo-png/50/1/chatgpt-logo-png_seeklogo-500383.png" alt="OpenAI icon">
+                            </span>
+                            <span class="itmi-card-item-name">GPT-5</span>
+                        </div>
+                        <div class="itmi-card-item-value-group">
+                            <div class="itmi-card-item-value" style="color: #8A91B5;">(OpenAI)</div>
+                            <div class="itmi-card-item-change itmi-text-green">Next Gen AI</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="itmi-filter-bar">
+            <!-- Filter Buttons -->
+            <div class="itmi-filter-group" id="itmi-filter-group">
+                <button class="itmi-filter-btn active" data-filter="All Sectors">All Sectors</button>
+                <button class="itmi-filter-btn" data-filter="Top Growth">Top Growth</button>
+                <button class="itmi-filter-btn" data-filter="Top R&D">Top R&D</button>
+                <button class="itmi-filter-btn" data-filter="New">New</button>
+                <button class="itmi-filter-btn" data-filter="Favorites">Favorites</button>
+            </div>
+            
+            <!-- Dropdowns -->
+            <div class="itmi-dropdown-group">
+                <!-- Dropdown 1: Currency -->
+                <div class="itmi-dropdown">
+                    <button class="itmi-dropdown-btn" data-toggle="itmi-currency-dropdown" id="itmi-currency-btn">
+                        USD 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#ffffff" d="m12 13.171l4.95-4.95l1.414 1.415L12 16L5.636 9.636L7.05 8.222l4.95 4.95Z"/></svg>
+                    </button>
+                    <div class="itmi-dropdown-content" id="itmi-currency-dropdown">
+                        <a class="itmi-dropdown-item" data-value="USD">USD</a>
+                        <a class="itmi-dropdown-item" data-value="EUR">EUR</a>
+                        <a class="itmi-dropdown-item" data-value="BTC">BTC</a>
+                    </div>
+                </div>
+                <!-- Dropdown 2: Categories -->
+                <div class="itmi-dropdown">
+                    <button class="itmi-dropdown-btn" data-toggle="itmi-category-dropdown" id="itmi-category-btn">
+                        All Categories
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path fill="#ffffff" d="m12 13.171l4.95-4.95l1.414 1.415L12 16L5.636 9.636L7.05 8.222l4.95 4.95Z"/></svg>
+                    </button>
+                    <div class="itmi-dropdown-content" id="itmi-category-dropdown">
+                        <a class="itmi-dropdown-item" data-value="All Categories">All Categories</a>
+                        <a class="itmi-dropdown-item" data-value="Tech">Tech</a>
+                        <a class="itmi-dropdown-item" data-value="Finance">Finance</a>
+                        <a class="itmi-dropdown-item" data-value="SaaS">SaaS</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="itmi-table-card">
+            <table class="itmi-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Sector Name / Symbol</th>
+                        <th>Market Cap</th>
+                        <th>YoY Growth</th>
+                        <th>1Y Performance</th>
+                        <th>Key Player</th>
+                        <th>R&D Spend (Annual)</th>
+                        <th>Trade</th>
+                        <th>Favorite</th>
+                    </tr>
+                </thead>
+                <tbody id="itmi-table-body">
+                    <!-- Table rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
 
     </div>
-</it-market-insights-container>
 
-<script>
+    <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // --- 1. Data Source ---
-    // All table data is stored here.
-    // 'categories' array is used for filtering.
+
+    // --- 1. Data Mockup ---
     let allSectorData = [
         {
             id: 1,
             rank: 1,
-            iconSvg: `<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 12.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm-7 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm3.5 4c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z"></path></svg>`,
+            iconUrl: 'https://imgs.search.brave.com/lIu3F-AenrMio3181ZI20CrxwyOkerPDP9OzPw1GJkU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMjIx/MDAyNzI2My92ZWN0/b3IvYXJ0aWZpY2lh/bC1pbnRlbGxpZ2Vu/Y2UtaWNvbi5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9dVl0/TnF3cUw0UThqWnRv/UGZjVlhYYmpLUHVK/c21JeUFNWjRQVUh0/SDViYz0',
             name: 'Artificial Intelligence',
             symbol: 'AI',
-            marketCap: '$2.8T',
+            marketCap: 2.8e12, // 2.8 Trillion USD
             yoyGrowth: 34.5,
-            sparklinePath: 'M 0 25 Q 10 15, 20 18 T 40 20 T 60 10 T 80 8 T 100 5',
+            sparklinePath: 'M 0 25 Q 10 15, 20 18 T 40 20 T 60 10 T 80 8 T 100 5', // High growth line
             keyPlayer: 'OpenAI',
-            rdSpend: '$20B+ (est)',
+            rdSpend: 20e9, // 20 Billion USD
             favorite: false,
-            categories: ['Top Growth', 'Top R&D', 'New']
+            categories: ['Top Growth', 'Top R&D', 'New'],
+            mainCategory: 'Tech'
         },
         {
             id: 2,
             rank: 2,
-            iconSvg: `<svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"></path></svg>`,
+            iconUrl: 'https://imgs.search.brave.com/7SgirpfhWfX8Ez82jTiGEzesMN1oMisVVZG1djwAqRw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMDYv/MDMwLzYwMC9zbWFs/bC9hYnN0cmFjdC1j/bG91ZC1sb2dvLWJs/dWUtc2hhcGUtY2xv/dWQtY29tcHV0aW5n/LWlzb2xhdGVkLW9u/LXdoaXRlLWJhY2tn/cm91bmQtdXNhYmxl/LWZvci1idXNpbmVz/cy1hbmQtdGVjaG5v/bG9neS1sb2dvcy1m/bGF0LWxvZ28tZGVz/aWduLXRlbXBsYXRl/LWVsZW1lbnQtdmVj/dG9yLmpwZw',
             name: 'Cloud Computing',
             symbol: 'CLOUD',
-            marketCap: '$2.1T',
+            marketCap: 2.1e12, // 2.1 Trillion USD
             yoyGrowth: 18.2,
             sparklinePath: 'M 0 28 Q 10 20, 20 22 T 40 18 T 60 15 T 80 10 T 100 12',
             keyPlayer: 'Microsoft (Azure)',
-            rdSpend: '$27.1B',
+            rdSpend: 27.1e9, // 27.1 Billion USD
             favorite: true,
-            categories: ['Top Growth', 'Top R&D']
+            categories: ['Top Growth', 'Top R&D'],
+            mainCategory: 'Tech'
         },
         {
             id: 3,
             rank: 3,
-            iconSvg: `<svg viewBox="0 0 24 24"><path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM9 4h6v2H9V4zm6 16H9v-2h6v2zm-1-4H8v-6h6v6z"></path></svg>`,
+            iconUrl: 'https://imgs.search.brave.com/rfchsHt0EbKCMaXVmolggaPni7SuYt2-txvoImIsdCQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jZG4u/YnJhbmRmZXRjaC5p/by9pZFdmRG1NTlpW/L3cvNDAwL2gvNDAw/L3RoZW1lL2Rhcmsv/aWNvbi5wbmc_Yz0x/YnhpZDY0TXVwN2Fj/emV3U0FZTVgmdD0x/NzUyMTMxNTk1NTcx',
             name: 'Semiconductors',
             symbol: 'SEMI',
-            marketCap: '$4.2T',
+            marketCap: 4.2e12, // 4.2 Trillion USD
             yoyGrowth: 28.1,
             sparklinePath: 'M 0 20 Q 10 25, 20 15 T 40 18 T 60 5 T 80 10 T 100 3',
             keyPlayer: 'NVIDIA',
-            rdSpend: '$8.9B',
+            rdSpend: 8.9e9, // 8.9 Billion USD
             favorite: false,
-            categories: ['Top Growth']
+            categories: ['Top Growth'],
+            mainCategory: 'Tech'
         },
         {
             id: 4,
             rank: 4,
-            iconSvg: `<svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"></path></svg>`,
+            iconUrl: 'https://imgs.search.brave.com/353r6apL5UMLKJTDAGbEwi2vNz1ztDY5A5rTu8vIKhI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzAxLzk4LzU1LzU1/LzM2MF9GXzE5ODU1/NTU2NF9IaVdPaUV5/YzVwRTdGUmdnekh2/REtUVDM0NjBHZWxJ/bC5qcGc',
             name: 'Cybersecurity',
             symbol: 'CYBER',
-            marketCap: '$345B',
+            marketCap: 345e9, // 345 Billion USD
             yoyGrowth: 14.7,
             sparklinePath: 'M 0 28 Q 10 22, 20 18 T 40 20 T 60 14 T 80 16 T 100 10',
             keyPlayer: 'Palo Alto Networks',
-            rdSpend: '$1.9B',
+            rdSpend: 1.9e9, // 1.9 Billion USD
             favorite: false,
-            categories: ['Top Growth']
+            categories: ['Top Growth'],
+            mainCategory: 'Tech'
         },
         {
             id: 5,
             rank: 5,
-            iconSvg: `<svg viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-8h11V5H12v5zm4 4H4v6h12v-6z"></path></svg>`,
+            iconUrl: 'https://imgs.search.brave.com/HmmO5sJKAaJ8jVnkNvQQ_fnCur4IT7E_TzMAy4MjnW8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMucHJvbXB0YmFz/ZS5jb20vREFMTEVf/SU1BR0VTL2lOQXpj/QzVZNkNiZkE5TVRW/TDRNYmpvZkFuczEv/cmVzaXplZC8xNzAy/NzI0NjYzNDkydF84/MDB4ODAwLndlYnA_/YWx0PW1lZGlhJnRv/a2VuPTAwODExZTcz/LTA5MTItNDEzMy04/Y2QzLTUxZWNiZjMy/NTQwMQ',
             name: 'SaaS',
             symbol: 'SAAS',
-            marketCap: '$1.9T',
+            marketCap: 1.9e12, // 1.9 Trillion USD
             yoyGrowth: 16.8,
             sparklinePath: 'M 0 25 Q 10 20, 20 18 T 40 15 T 60 12 T 80 14 T 100 8',
             keyPlayer: 'Salesforce',
-            rdSpend: '$9.8B',
+            rdSpend: 9.8e9, // 9.8 Billion USD
             favorite: false,
-            categories: ['Top R&D']
+            categories: ['Top R&D'],
+            mainCategory: 'SaaS'
         },
         {
             id: 6,
             rank: 6,
-            iconSvg: `<svg viewBox="0 0 24 24"><path d="M17 18c-1.11 0-2 .9-2 2s.89 2 2 2 2-.9 2-2-.89-2-2-2zm-10 0c-1.11 0-2 .9-2 2s.89 2 2 2 2-.9 2-2-.89-2-2-2zm-1.02-14h1.04l2.71 4.93L12 6H5.21l-.94-2H1v2h2.2l3.41 7H15c.55 0 1 .45 1 1s-.45 1-1 1H8.1l-.94 2H18v-2H9.7l1.06-2H17c1.65 0 3-1.35 3-3V6c0-1.65-1.35-3-3-3H9.42l-.94-2H3.42z"></path></svg>`,
+            iconUrl: 'https://images.seeklogo.com/logo-png/51/1/89-studio-logo-png_seeklogo-515777.png',
             name: 'E-commerce',
             symbol: 'ECOM',
-            marketCap: '$3.5T',
+            marketCap: 3.5e12, // 3.5 Trillion USD
             yoyGrowth: -9.4,
-            sparklinePath: 'M 0 5 Q 10 12, 20 10 T 40 18 T 60 20 T 80 25 T 100 28',
+            sparklinePath: 'M 0 5 Q 10 12, 20 10 T 40 18 T 60 20 T 80 25 T 100 28', // Negative growth line
             keyPlayer: 'Amazon',
-            rdSpend: '$85.5B',
+            rdSpend: 85.5e9, // 85.5 Billion USD
             favorite: false,
-            categories: ['Top R&D']
+            categories: ['Top R&D'],
+            mainCategory: 'Finance' 
         },
         {
             id: 7,
             rank: 7,
-            iconSvg: `<svg viewBox="0 0 24 24"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zm0-8h14V7H7v2z"></path></svg>`,
+            iconUrl: 'https://imgs.search.brave.com/30LirFazr18im2CIj469GIOdw8mBDpz7tj64ggunsQM/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/cHJlbWl1bS12ZWN0/b3IvZ2xvYmFsLWNv/bm5lY3QtdGVjaG5v/bG9neS1sb2dvLWRl/c2lnbi10ZW1wbGF0/ZXNfMjQ1OTktNzQ5/LmpwZz9zZW10PWFp/c19oeWJyaWQmdz03/NDAmcT04MA',
             name: 'Quantum Computing',
             symbol: 'QCOM',
-            marketCap: '$5.3B',
+            marketCap: 5.3e9, // 5.3 Billion USD
             yoyGrowth: 25.0,
             sparklinePath: 'M 0 25 Q 10 10, 20 15 T 40 5 T 60 10 T 80 3 T 100 5',
             keyPlayer: 'IonQ',
-            rdSpend: '$150M',
+            rdSpend: 150e6, // 150 Million USD
             favorite: false,
-            categories: ['New', 'Top Growth']
+            categories: ['New', 'Top Growth'],
+            mainCategory: 'Tech'
         }
     ];
 
     // --- 2. State ---
-    let currentFilter = 'All Sectors'; // Default filter
+    let currentFilter = 'All Sectors'; // Active filter button (e.g., 'Top Growth')
+    let currentCurrency = 'USD';        // Active currency dropdown value
+    let currentCategory = 'All Categories'; // Active category dropdown value
 
-    // --- 3. DOM References ---
+    // --- 3. Currency Conversion & Formatting ---
+    const conversionRates = {
+        USD: 1,
+        EUR: 0.92,
+        BTC: 0.000015
+    };
+
+    /**
+     * Formats a large number into T, B, M or adds currency symbols.
+     * @param {number} value - The base USD value.
+     * @param {string} currency - The target currency (e.g., 'USD', 'EUR', 'BTC').
+     */
+    function formatCurrency(value, currency) {
+        const convertedValue = value * conversionRates[currency];
+
+        if (currency === 'BTC') {
+            // Format Bitcoin with 2-6 decimal places
+            return `₿${convertedValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 6 })}`;
+        }
+        
+        const symbol = currency === 'EUR' ? '€' : '$';
+        
+        if (convertedValue >= 1e12) { // Trillions
+            return `${symbol}${(convertedValue / 1e12).toFixed(2)}T`;
+        } else if (convertedValue >= 1e9) { // Billions
+            return `${symbol}${(convertedValue / 1e9).toFixed(1)}B`;
+        } else if (convertedValue >= 1e6) { // Millions
+            return `${symbol}${(convertedValue / 1e6).toFixed(1)}M`;
+        } else {
+            return `${symbol}${convertedValue.toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+        }
+    }
+
+    // --- 4. DOM References ---
     const tableBody = document.getElementById('itmi-table-body');
     const filterButtonGroup = document.getElementById('itmi-filter-group');
     const filterButtons = document.querySelectorAll('.itmi-filter-btn');
 
-    // New DOM References for Dropdowns
+    // Dropdown DOM Refs
     const dropdownButtons = document.querySelectorAll('.itmi-dropdown-btn');
     const currencyBtn = document.getElementById('itmi-currency-btn');
     const categoryBtn = document.getElementById('itmi-category-btn');
+    const trendingCardValueElements = document.querySelectorAll('.itmi-card-item-value[data-usd-value]');
 
-    // --- 4. Render Function ---
+
+    // --- 5. Render Functions ---
+
+    /**
+     * Updates the values in the "Trending Today" cards based on currency.
+     */
+    function renderTrendingCards() {
+        trendingCardValueElements.forEach(el => {
+            const baseUsdValue = parseFloat(el.dataset.usdValue);
+            if (!isNaN(baseUsdValue)) {
+                el.textContent = formatCurrency(baseUsdValue, currentCurrency);
+            }
+        });
+    }
+
     /**
      * Clears and re-renders the table based on the provided data array.
-     * @param {Array} dataToRender - The array of sector objects to display.
+     * @param {Array<Object>} data The data to display.
      */
-    function renderTable(dataToRender) {
+    function renderTable(data) {
         if (!tableBody) return;
-        tableBody.innerHTML = ''; // Clear existing table rows
+        tableBody.innerHTML = ''; // Clear existing rows
 
-        if (dataToRender.length === 0) {
-            tableBody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 20px; color: #8A91B5;">No items match this filter.</td></tr>`;
-            return;
-        }
-
-        dataToRender.forEach(item => {
-            const row = document.createElement('tr');
+        data.forEach(item => {
+            const row = tableBody.insertRow();
+            row.dataset.id = item.id;
             
             const yoyColorClass = item.yoyGrowth >= 0 ? 'itmi-text-green' : 'itmi-text-red';
             const yoySign = item.yoyGrowth >= 0 ? '+' : '';
-            const favoritedClass = item.favorite ? 'itmi-favorited' : '';
+            const sparklineColor = item.yoyGrowth >= 0 ? '#0ECB81' : '#F6465D';
 
             row.innerHTML = `
                 <td>${item.rank}</td>
                 <td>
                     <div class="itmi-table-sector-group">
-                        <span class="itmi-table-icon">
-                            ${item.iconSvg}
+                        <span class="itmi-table-icon" data-id="${item.id}">
+                            <img src="${item.iconUrl}" alt="${item.name} icon">
                         </span>
                         <span class="itmi-table-sector-name">${item.name}<span class="itmi-table-sector-symbol">${item.symbol}</span></span>
                     </div>
                 </td>
-                <td>${item.marketCap}</td>
+                <td>${formatCurrency(item.marketCap, currentCurrency)}</td>
                 <td class="${yoyColorClass}">${yoySign}${item.yoyGrowth}%</td>
                 <td class="itmi-sparkline-chart">
-                    <svg class="${yoyColorClass}" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 100 30">
-                        <path d="${item.sparklinePath}"></path>
+                    <svg viewBox="0 0 100 30" preserveAspectRatio="none">
+                        <path d="${item.sparklinePath}" fill="none" stroke="${sparklineColor}" stroke-width="2" vector-effect="non-scaling-stroke"/>
+                        <circle cx="100" cy="${item.sparklinePath.match(/T 100 (\d+)/)?.[1] || 5}" r="2" fill="${sparklineColor}"/>
                     </svg>
                 </td>
                 <td>${item.keyPlayer}</td>
-                <td>${item.rdSpend}</td>
+                <td>${formatCurrency(item.rdSpend, currentCurrency)}</td>
                 <td><a href="#" class="itmi-trade-link">Details</a></td>
                 <td>
-                    <!-- Use data-id to link star to data item -->
-                    <svg class="itmi-star-icon ${favoritedClass}" data-id="${item.id}" viewBox="0 0 24 24">
-                        <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path>
+                    <svg class="itmi-star-icon" data-id="${item.id}" width="20" height="20" viewBox="0 0 24 24" fill="${item.favorite ? '#F8C000' : 'none'}" stroke="${item.favorite ? '#F8C000' : '#8A91B5'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
                     </svg>
                 </td>
             `;
-            tableBody.appendChild(row);
         });
     }
 
-    // --- 5. Filter and Re-render ---
     /**
-     * Filters the main data based on the currentFilter and calls renderTable.
+     * Filters the main data based on the currentFilter and currentCategory and calls renderTable.
      */
     function filterAndRender() {
         let filteredData;
 
+        // 1. Filter by top buttons (All, Top Growth, etc.)
         if (currentFilter === 'All Sectors') {
             filteredData = allSectorData;
         } else if (currentFilter === 'Favorites') {
             filteredData = allSectorData.filter(item => item.favorite);
         } else {
+            // Filter by Top Growth, Top R&D, New
             filteredData = allSectorData.filter(item => item.categories.includes(currentFilter));
         }
+
+        // 2. Filter by "All Categories" dropdown
+        if (currentCategory !== 'All Categories') {
+            filteredData = filteredData.filter(item => item.mainCategory === currentCategory);
+        }
+        
+        // Sort by Rank for stable view
+        filteredData.sort((a, b) => a.rank - b.rank);
 
         renderTable(filteredData);
     }
 
     // --- 6. Event Handlers ---
-    
+
     /**
-     * Handles clicks on the filter button group.
+     * Handles clicks on the top filter buttons (All Sectors, Top Growth, etc.)
      */
     function handleFilterClick(e) {
-        const clickedButton = e.target.closest('.itmi-filter-btn');
-        if (!clickedButton) return; // Click wasn't on a button
+        const button = e.target.closest('.itmi-filter-btn');
+        if (!button) return;
 
-        // Get filter from data attribute
-        const filterType = clickedButton.dataset.filter;
-        if (!filterType) return;
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
 
-        currentFilter = filterType;
-
-        // Update active class
-        filterButtons.forEach(btn => {
-            btn.classList.remove('itmi-active');
-        });
-        clickedButton.classList.add('itmi-active');
-
-        // Filter and re-render the table
+        // Add active class to the clicked button
+        button.classList.add('active');
+        
+        // Update state and re-render
+        currentFilter = button.dataset.filter;
+        console.log(`Filter changed to: ${currentFilter}`);
         filterAndRender();
     }
 
     /**
-     * Handles clicks on the star icons within the table body.
+     * Handles clicks on the star icon to toggle favorite status.
      */
     function handleStarClick(e) {
-        // Find the star icon that was clicked
         const starIcon = e.target.closest('.itmi-star-icon');
-        if (!starIcon) return; // Click wasn't on a star
+        if (!starIcon) return;
+        
+        const itemId = parseInt(starIcon.dataset.id);
+        const item = allSectorData.find(d => d.id === itemId);
 
-        // Get the ID from the data attribute
-        const itemId = parseInt(starIcon.dataset.id, 10);
-        if (!itemId) return;
-
-        // Find the corresponding item in the data
-        const dataItem = allSectorData.find(item => item.id === itemId);
-        if (!dataItem) return;
-
-        // Toggle the favorite state
-        dataItem.favorite = !dataItem.favorite;
-
-        // Re-render the table
-        // This will automatically update the star's class
-        // and remove the item if we are in the 'Favorites' filter.
-        filterAndRender();
+        if (item) {
+            item.favorite = !item.favorite;
+            // Update UI immediately and re-render based on current filters
+            filterAndRender();
+            console.log(`Item ${item.name} favorite status toggled to: ${item.favorite}`);
+        }
     }
-
-    // --- New Dropdown Handlers ---
-
+    
     /**
      * Closes all open dropdown menus.
      */
@@ -1002,7 +1303,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * Handles clicks on items within a dropdown menu.
+     * Handles clicks on items within a dropdown menu (Currency or Category).
      */
     function handleDropdownItemClick(e) {
         e.preventDefault(); // Stop <a> tag from navigating
@@ -1014,18 +1315,27 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (!dropdownMenu || !newValue) return;
 
-        // Update the button text
+        // Determine which dropdown was clicked and update state
         if (dropdownMenu.id === 'itmi-currency-dropdown' && currencyBtn) {
-            // Update text node, keeping svg intact
+            // Update button text (childNode[0] is the text node before the SVG)
             currencyBtn.childNodes[0].nodeValue = `${newValue} `; 
+            currentCurrency = newValue;
+            
+            // Re-render table AND trending cards to reflect new currency
+            filterAndRender();
+            renderTrendingCards();
+            console.log(`Currency changed to: ${newValue}`);
+
         } else if (dropdownMenu.id === 'itmi-category-dropdown' && categoryBtn) {
-            // Update text node, keeping svg intact
+            // Update button text
             categoryBtn.childNodes[0].nodeValue = `${newValue} `; 
+            currentCategory = newValue;
+            
+            // Re-render table only, as this filter does not affect cards
+            filterAndRender();
+            console.log(`Category changed to: ${newValue}`);
         }
         
-        console.log(`Dropdown item selected: ${newValue}`);
-        // Add logic here to filter data or change currency (not implemented)
-
         closeAllDropdowns();
     }
 
@@ -1037,9 +1347,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+
     // --- 7. Initial Setup ---
 
-    // Add event listeners
+    // Add event listeners for top filters and star toggle
     if (filterButtonGroup) {
         filterButtonGroup.addEventListener('click', handleFilterClick);
     }
@@ -1047,7 +1358,7 @@ document.addEventListener('DOMContentLoaded', () => {
         tableBody.addEventListener('click', handleStarClick);
     }
 
-    // Add new event listeners for dropdowns
+    // Add event listeners for dropdowns
     dropdownButtons.forEach(button => {
         button.addEventListener('click', handleDropdownToggle);
     });
@@ -1056,7 +1367,10 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.addEventListener('click', handleDropdownItemClick);
     });
 
-    // Initial table render on page load
+    // Initial render on page load
     filterAndRender();
+    renderTrendingCards(); 
 });
-</script>
+    </script>
+</body>
+</html>
